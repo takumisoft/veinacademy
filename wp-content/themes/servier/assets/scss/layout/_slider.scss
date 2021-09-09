@@ -1,0 +1,140 @@
+$slider__content--padding-x: 60px;
+$slider__content--padding-y: 30px;
+
+.slider {
+  @include clearfix;
+  margin-bottom: $padding-base-vertical;
+  position:      relative;
+  width:         100%;
+  @include responsive($max: $screen-xs-max) {
+    margin-top: 15px;
+  }
+  &__item {
+    color: $white;
+    width: 100%;
+  }
+  &__inner {
+    @include border-radius(4px);
+    background-position: center center;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+    display:             block;
+    padding:             1px;
+    position:            relative;
+    width:               100%;
+    &:before {
+      content:        '';
+      display:        block;
+      padding-bottom: $aspect-ration-16-9;
+      width:          100%;
+      @include responsive($max: $screen-xs-max) {
+        padding-bottom: $aspect-ration-1-1;
+      }
+    }
+  }
+  &__content {
+    bottom:   15%;
+    left:     0;
+    padding:  $slider__content--padding-y/2 $slider__content--padding-x/2;
+    position: absolute;
+    width:    100%;
+    @include responsive(sm) {
+      bottom:  0;
+      padding: $slider__content--padding-y $slider__content--padding-x;
+
+    }
+  }
+
+  &__title {
+    font-size:     36px;
+    font-weight:   300;
+    line-height:   1.25;
+    margin-bottom: 20px;
+    text-shadow:   0 3px 20px rgba($white, 0.5);
+    @include responsive(lg) {
+      font-size:   48px;
+      line-height: 1;
+      width:       60%;
+    }
+  }
+
+  &__link {
+    text-align:      center;
+    text-decoration: underline;
+    @include responsive(sm) {
+      font-size: 16px;
+    }
+  }
+
+  &__icon {
+    color: $white;
+  }
+  $slider__nav--size: 30px;
+  &__nav {
+    font-size:  $slider__nav--size;
+    @include clearfix;
+    left:       0;
+    margin-top: -($slider__nav--size/2);
+    padding:    0 20px;
+    position:   absolute;
+    top:        50%;
+    width:      100%;
+    z-index:    2;
+    > button {
+      @include transition-ease-in-out(150ms);
+      background: none;
+      border:     0;
+      color:      $white;
+      outline:    0;
+      &:hover {
+        color: $brand-primary;
+      }
+      + button {
+        float: right;
+      }
+    }
+    @include responsive($max: $screen-xs-max) {
+      display:   none; //
+      font-size: 5vw;
+      padding:   0;
+    }
+  }
+  $slider__dot--size: 12px;
+  $slider__dot--bg-color: $white;
+  $slider__dot--bg-color--active: $brand-primary;
+  &__dots {
+    @include clearfix;
+    bottom:     $slider__content--padding-y;
+    left:       0;
+    padding:    0 $slider__content--padding-x;
+    position:   absolute;
+    text-align: left;
+    width:      100%;
+    z-index:    2;
+    &.disabled {
+      display: none;
+    }
+    @include responsive($max: $screen-xs-max) {
+      bottom:     5px;
+      text-align: center;
+    }
+  }
+  &__dot {
+    @include border-radius($slider__dot--size);
+    @include transition-ease-in-out(150ms);
+    background-color: $slider__dot--bg-color;
+    border:           0;
+    display:          inline-block;
+    height:           $slider__dot--size;
+    margin-left:      5px;
+    margin-right:     5px;
+    outline:          0;
+    padding:          0;
+    width:            $slider__dot--size;
+    &:hover,
+    &.active {
+      background-color: $slider__dot--bg-color--active;
+    }
+
+  }
+}

@@ -1,0 +1,30 @@
+<div class="content-sort">
+    <span class="content-sort__label">{{ __('Sorted by') }}:&nbsp;</span>
+    <div class="content-sort__dropdown">
+        <div class="dropdown">
+            {% set sort_item_active = 'newest' %}
+            {% set sort_item = 'oldest' %}
+            {% set isOrderAsc = fn('get_query_var','order') == 'ASC' %}
+            {% set sort_url = fn('add_query_arg' , {
+                'orderby':'date',
+                'order':'ASC'
+            }, current_url ) %}
+
+            {% if isOrderAsc %}
+                {% set sort_item_active = 'oldest' %}
+                {% set sort_item = 'newest' %}
+                {% set sort_url = fn('remove_query_arg' , [
+                    'orderby','order'
+                ], current_url ) %}
+            {% endif %}
+            <a class="dropdown-toggle" type="button" id="dropdownMenuSort" data-toggle="dropdown">
+                {{ sort_item_active }}
+                <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenuSort">
+                <li><a tabindex="-1" href="{{ sort_url }}">{{ sort_item }}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

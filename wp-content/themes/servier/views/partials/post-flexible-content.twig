@@ -1,0 +1,63 @@
+{% for block in post.get_field('flexible_content') %}
+    {% if block.acf_fc_layout == "block_gallery" %}
+        <div class="post-slider">
+            <div class="owl-carousel" id="postCarousel" itemscope itemtype="http://schema.org/ImageGallery">
+                {% for image in block.gallery %}
+                    <figure class="post-slider__item">
+                        {{ function('wp_get_attachment_image', TimberImage(image).ID, 'full','', {
+                            'class': ' img-responsive',
+                            'draggable': 'false',
+                            'itemprop': 'image',
+                            'alt':  TimberImage(image).name
+                        }) }}
+                        {#caption#}
+                        {% set image_caption %}
+                            <figcaption class="post-slider__caption" itemprop="caption">
+                                {% set attachment_website = TimberImage(image).get_field('attachment_website') %}
+
+                                {% if attachment_website %}<a href="{{ attachment_website }}" target="_blank" rel="noopener nofollow">{% endif %}
+                                    {% if image.caption %}
+                                        {{ image.caption }}
+                                    {% elseif image.description %}
+                                        {{ image.description }}
+                                    {% endif %}
+                                    {% if attachment_website %}</a>{% endif %}
+                            </figcaption>
+                        {% endset %}
+
+                        {% if image_caption %}
+                            {{ image_caption }}
+                        {% endif %}
+                    </figure>
+
+                {% endfor %}
+            </div>
+            <div class="post-slider__nav"></div>
+        </div>
+        {#owl-carousel#}
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" type="text/css" media="all">
+
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <script id="marque" type="text/javascript">
+            jQuery(document).ready(function () {
+                var postCarousel = jQuery('#postCarousel');
+                postCarousel.owlCarousel({
+                    margin: 15,
+                    loop: false,
+                    autoHeight: true,
+                    items: 2,
+                    nav: true,
+                    navClass: ['post-slider__nav-prev', 'post-slider__nav-next'],
+                    navContainer: '.post-slider__nav',
+                    dotsClass: 'post-slider__dots',
+                    dotClass: 'post-slider__dot',
+                    navText: ["<i class='icon-custom-arrow-left-liner'></i>", "<i class='icon-custom-arrow-right-liner'></i>"]
+                });
+            });
+        </script>
+    {% elseif block.acf_fc_layout == "block_text" %}
+        {{ block.content }}
+    {% endif %}
+{% endfor %}
+<!--/.post-flexible-content-->
+

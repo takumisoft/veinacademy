@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9">
+
+                {#Slider#}
+                {% if post.get_field('slider') %}
+                    {% include 'partials/slider.twig'
+                        with { slides : post.get_field('slider') } %}
+                {% endif %}
+
+                {#Sticky post_types#}
+                {% set post_types = post.get_field('sticky_post_types') %}
+                {% if post_types %}
+                    <div class="row row-spacing-10">
+                        {% for item in post_types %}
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12">
+                                {% include 'partials/teaser-post-type.twig' %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <aside class="col-sm-3">
+                {% include 'layout/sidebar-posts.twig' %}
+
+            </aside>
+        </div>
+    </div>
+{% endblock %}

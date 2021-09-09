@@ -1,0 +1,30 @@
+$banner-hero-title--color: $brand-primary;
+$banner-hero-title--border-radius: $border-radius-base;
+$banner-hero-title--padding-y: 80px;
+$banner-hero-title--padding-x: 20px;
+.banner-hero {
+  @include border-radius($banner-hero-title--border-radius);
+  @include background-cover();
+  margin-bottom: 15px;
+  padding:       ($banner-hero-title--padding-y - 10) $banner-hero-title--padding-x;
+  @include responsive(md) {
+    padding: $banner-hero-title--padding-y $banner-hero-title--padding-x;
+  }
+  &__title {
+    color:       $banner-hero-title--color;
+    font-size:   30px;
+    font-weight: 300;
+    line-height: 1.12;
+    @include responsive(md) {
+      font-size: 51px;
+    }
+    &:before {
+      background-color: $banner-hero-title--color;
+      content:          '';
+      display:          inline-block;
+      height:           2px;
+      vertical-align:   middle;
+      width:            40px;
+    }
+  }
+}

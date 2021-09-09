@@ -1,0 +1,12 @@
+.page-home {
+  //
+  .teaser-library {
+    &__speaker {
+      font-size:   13px;
+      font-weight: 300;
+    }
+    &__image {
+      margin-bottom: $padding-small-vertical;
+    }
+  }
+}

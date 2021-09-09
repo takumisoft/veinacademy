@@ -1,0 +1,69 @@
+// Contact Form 7
+$wpcf7__response-output--border-color: $brand-primary;
+
+$wpcf7__validation-errors--border-color: $brand-danger;
+$wpcf7__validation-errors--color: $wpcf7__validation-errors--border-color;
+
+$wpcf7__validation-ok--border-color: $brand-success;
+$wpcf7__validation-ok--color: $wpcf7__validation-ok--border-color;
+
+.wpcf7 {
+  &-response-output {
+    @include clearfix;
+    border:  1px dotted $wpcf7__response-output--border-color;
+    margin:  $line-height-computed*2 0;
+    padding: $padding-large-vertical*2 $padding-large-horizontal*2;
+    &.wpcf7-display-none {
+      display: none;
+    }
+    ul {
+      padding-left: $padding-base-horizontal;
+    }
+  }
+  &-validation-errors {
+    border-color: $wpcf7__validation-errors--border-color;
+    color:        $wpcf7__validation-errors--color;
+  }
+
+  &-mail-sent-ok {
+    border-color:  $wpcf7__validation-ok--border-color;
+    color:         $wpcf7__validation-ok--color;
+    margin-bottom: $line-height-computed*2;
+    margin-top:    $line-height-computed*2;
+    text-align:    center;
+  }
+
+  &-not-valid {
+    border-color: $wpcf7__validation-errors--border-color !important;
+    &-tip {
+      color:       $wpcf7__validation-errors--color;
+      display:     block;
+      font-size:   14px;
+      font-weight: 300;
+      margin-top:  $padding-small-vertical;
+    }
+  }
+
+  &-radio {
+    .wpcf7 {
+      &-list-item {
+        display:       inline-block;
+        font-size:     18px;
+        padding-left:  $padding-large-horizontal;
+        padding-right: $padding-large-horizontal;
+        &.first {
+          padding-left: 0;
+        }
+        &-label {
+          cursor:      pointer;
+          font-weight: normal;
+          margin-left: $padding-small-horizontal;
+        }
+      }
+    }
+  }
+}
+
+.screen-reader-response {
+  display: none;
+}

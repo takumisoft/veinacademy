@@ -1,0 +1,129 @@
+{% set term_interview = TimberTerm('interviews-podcasts','library-type') %}
+
+{% set interview_title = term_interview.name %}
+{% set interview_link = term_interview.link %}
+
+{% set news_title = posts_news|first.type.labels.name %}
+{% set news_link = function('get_post_type_archive_link', 'news' ) %}
+
+<aside class="sidebar-posts">
+    <h2>{{ __('HOT TOPICS IN PHLEBOLOGY & PROCTOLOGY') }}</h2>
+    {% if interview_title %}
+        <h3>{{ interview_title }}</h3>
+    {% endif %}
+    <section class="p-relative">
+        <div id="sidebarPostsInterviews" class="sidebar-posts__wrapper">
+            {% for row in posts_interviews|batch(2) %}
+                <div>
+                    {% for post in row %}
+                        {% include 'partials/teaser-library.twig' %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <nav id="sidebarPostsInterviewsNav" class="sidebar-posts__nav">
+            <a class="sidebar-posts__nav-prev" href="javascript:void(0)">&nbsp; &nbsp;</a>
+            <a class="sidebar-posts__nav-next" href="javascript:void(0)">&nbsp; &nbsp;</a>
+        </nav>
+    </section>
+
+    {% if interview_link %}
+        <p class="sidebar-posts__view-all">
+            <a class="btn btn-link gray-dark f12 td-u" href="{{ interview_link }}">
+                {{ 'View all' }} <i class="icon-custom-arrow-right ml5"></i>
+            </a>
+        </p>
+    {% endif %}
+
+    {% if news_title %}
+        <h3>{{ __('LATEST ') ~ news_title|upper }}</h3>
+    {% endif %}
+    <section class="p-relative">
+        <div id="sidebarPostsNews" class="sidebar-posts__wrapper">
+            {% for row in posts_news|batch(2) %}
+                <div>
+                    {% for post in row %}
+                        {% include 'partials/teaser-xs.twig' %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <nav id="sidebarPostsNewsNav" class="sidebar-posts__nav">
+            <a class="sidebar-posts__nav-prev" href="javascript:void(0)">&nbsp; &nbsp;</a>
+            <a class="sidebar-posts__nav-next" href="javascript:void(0)">&nbsp; &nbsp;</a>
+        </nav>
+    </section>
+
+
+    {% if news_link %}
+        <p class="sidebar-posts__view-all">
+            <a class="btn btn-link gray-dark f12 td-u" href="{{ news_link }}">
+                {{ 'All the '~ news_title|lower }} <i class="icon-custom-arrow-right ml5"></i>
+            </a>
+        </p>
+    {% endif %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.8.6/tiny-slider.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.8.6/min/tiny-slider.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script>
+        $(function () {
+
+            var slider_args = {
+                "items": 2,
+                "axis": "vertical",
+                "swipeAngle": false,
+                "autoplay": false,
+                "autoplayButtonOutput": false,
+                "controls": false,
+                "loop": false,
+                "nav": false,
+                "autoHeight": false,
+                "speed": 400,
+                "responsive": {
+                    769: {
+                        "items": 1,
+                        "autoHeight": true,
+                        "controls": true,
+                    }
+                }
+            };
+
+            var sidebarPostsInterviews = $('#sidebarPostsInterviews');
+            var sidebarInterviews = tns($.extend({
+                    "container": "#sidebarPostsInterviews",
+                    "controlsContainer": '#sidebarPostsInterviewsNav',
+                },
+                slider_args
+            ));
+
+            sidebarPostsInterviews.on('mousewheel', function (event) {
+                if (event.deltaY > 0) {
+                    sidebarInterviews.goTo('prev');
+                } else {
+                    sidebarInterviews.goTo('next');
+                }
+                event.preventDefault();
+            });
+
+            var sidebarPostsNews = $('#sidebarPostsNews');
+            var sidebarNews = tns($.extend({
+                    "container": "#sidebarPostsNews",
+                    "controlsContainer": '#sidebarPostsNewsNav',
+                },
+                slider_args
+            ));
+
+            sidebarPostsNews.on('mousewheel', function (event) {
+                if (event.deltaY > 0) {
+                    sidebarNews.goTo('prev');
+                } else {
+                    sidebarNews.goTo('next');
+                }
+                event.preventDefault();
+                console.log(event.deltaX, event.deltaY, event.deltaFactor);
+            });
+        });
+
+    </script>
+</aside>

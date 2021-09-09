@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+///************************************************************
+// *  @_Author : German Pichardo
+// *
+// *  Personal class modifiers
+// ************************************************************/
+
+.clear {
+  clear:      both;
+  display:    block;
+  height:     0;
+  overflow:   hidden;
+  visibility: hidden;
+  width:      0;
+}
+
+.o-h {
+  overflow: hidden;
+}
+
+.fw-bold {
+  font-weight: bold !important;
+}
+
+.fw-normal {
+  font-weight: normal !important;
+}
+
+.td-u {
+  text-decoration: underline;
+}
+
+.br-none {
+  @include border-radius(0);
+}
+
+.p-relative {
+  position: relative;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+///************************************************************
+// *  Opacity
+// ************************************************************/
+$opacity-levels: 40, 50, 60, 70;
+@each $opacity in $opacity-levels {
+  .o-#{$opacity} {
+    @include opacity($opacity/100);
+  }
+}
+
+///************************************************************
+// *  Fonts
+// ************************************************************/
+@for $i from 4 through 15 {
+  .f#{$i*2} {
+    font-size: #{$i*2+px} !important;
+  }
+}
+
+// Font Weight
+$font-weights: 200, 300, 400, 500, 600, 700, 800;
+@each $weight in $font-weights {
+  .fw-#{$weight} {
+    font-weight: #{$weight};
+  }
+}
+
+///************************************************************
+// *  Margin
+// ************************************************************/
+.m0 {
+  margin: 0 !important;
+}
+
+@for $i from 0 through 6 {
+  .mb-#{$i*5} {
+    margin-bottom: #{$i*5+px} !important;
+  }
+}
+
+@for $i from 0 through 6 {
+  .mt-#{$i*5} {
+    margin-top: #{$i*5+px} !important;
+  }
+}
+
+///************************************************************
+// *  Padding
+// ************************************************************/
+@for $i from 0 through 6 {
+  .p-#{$i*5} {
+    padding: #{$i*5+px} !important;
+  }
+}
+
+@for $i from 0 through 6 {
+  .pb-#{$i*5} {
+    padding-bottom: #{$i*5+px} !important;
+  }
+}
+
+@for $i from 0 through 6 {
+  .pt-#{$i*5} {
+    padding-top: #{$i*5+px} !important;
+  }
+}
+
+@for $i from 0 through 6 {
+  .pr-#{$i*5} {
+    padding-right: #{$i*5+px} !important;
+  }
+}
+//
+@include responsive(x-xs) {
+  .w100-xxs {
+    clear: both;
+    float: none;
+    width: 100%;
+  }
+}
+
+$spaces: (
+                 0: 0,
+                 1: 1px,
+                 3: 3px,
+                 5: 5px,
+                 10: 10px,
+                 40: 40px,
+                 50: 50px
+         );
+
+@each $space, $space-value in $spaces {
+  .row-spacing-#{$space} {
+    margin-left:  - $space-value;
+    margin-right: - $space-value;
+    > [class*='col-'] {
+      padding-left:  $space-value;
+      padding-right: $space-value;
+    }
+  }
+}
+
+.row-col-vertical {
+  @include responsive(sm) {
+    display: table;
+    > [class*='col-'] {
+      float: none;
+      @include vertical-center(100%);
+    }
+  }
+}
+
+.row-col-vertical-xs {
+  display: table;
+  > [class*='col-'] {
+    float: none;
+    @include vertical-center(100%);
+  }
+}

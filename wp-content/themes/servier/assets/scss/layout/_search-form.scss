@@ -1,0 +1,48 @@
+$search-form--height: 40px;
+$search-form--color: $brand-primary;
+
+$search-form__input--color: $gray-light;
+$search-form__input--border-color: $search-form--color;
+$search-form__input-placeholder-color: $search-form__input--color;
+$search-form__input--width: 230px;
+
+$search-form__button--font-size: 24px;
+$search-form__button--width: 42px;
+$search-form__button--color: $search-form--color;
+
+.search-form {
+  @include clearfix;
+  &__input {
+    @include transition-content($time: 450ms, $ease: $cubic-bezier-1);
+    @include box-shadow(none);
+    @include border-radius(0);
+    @include placeholder($search-form__input-placeholder-color);
+    border-bottom:      2px solid $search-form__input--border-color;
+    border-left-width:  0;
+    border-right-width: 0;
+    border-top-width:   0;
+    color:              $search-form__input--color;
+    font-size:          15px;
+    font-weight:        300;
+    width:              85%;
+    &:focus {
+      padding-left: 0;
+      @include box-shadow(none);
+    }
+    @include responsive(sm) {
+      width: $search-form__input--width;
+    }
+  }
+  &__button {
+    background: none;
+    border:     0;
+    color:      $search-form--color;
+    float:      right;
+    font-size:  $search-form__button--font-size;
+    outline:    0;
+    width:      15%;
+    @include responsive(sm) {
+      width: $search-form__button--width;
+    }
+  }
+}

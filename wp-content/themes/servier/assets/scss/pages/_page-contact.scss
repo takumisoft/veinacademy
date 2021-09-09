@@ -1,0 +1,30 @@
+body.page-contact {
+  .wpcf7 {
+    padding-bottom: 30px;
+  }
+  .post-content {
+    h3 {
+      margin-bottom: 30px;
+    }
+    p:last-child {
+      font-size:   14px;
+      font-weight: 300;
+      line-height: 1.29;
+    }
+    @include responsive(lg) {
+      padding-left:  15px;
+      padding-right: $padding-percentage-base*2;
+      position:      relative;
+      &:before {
+        border-right: 1px solid $input-border;
+        content:      '';
+        height:       100%;
+        left:         - $grid-gutter-width/2;
+        position:     absolute;
+        top:          0;
+        width:        1px;
+      }
+    }
+  }
+
+}

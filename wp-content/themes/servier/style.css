@@ -1,0 +1,41 @@
+/************************************************************
+Theme Name: Servier - Vein academy
+Description: Theme Servier - Vein academy
+Author: Groupe 361
+Author URI: http://www.groupe361.com
+Version: 1.0.0
+************************************************************/
+
+.underline {
+	text-decoration: underline !important;
+}
+
+.grecaptcha-badge {
+                visibility: collapse !important;  
+}
+
+.teaser__image:before {
+	content: none !important;
+}
+
+.teaser__image {
+	height: 150px;
+}
+.teaser--website .teaser__image::before {
+	display: none;
+}
+
+#accordion>h3 {
+	cursor: pointer;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+#accordion>div {
+	padding: 5px;
+	background: #f8f8f8;
+}
+
+#accordion .author {
+	font-weight: bold;
+}

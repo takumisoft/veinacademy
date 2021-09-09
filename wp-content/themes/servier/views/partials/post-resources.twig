@@ -1,0 +1,21 @@
+<div class="post-resources">
+    {% if resources.url %}
+        <a class="btn btn-liner btn-lg"
+           rel="noopener nofollow"
+           target="_blank"
+           href="{{ resources.url }}"
+        >
+            {{ __('Visit site') }}
+            <small class="icon-custom-link ml20"></small>
+        </a>
+    {% endif %}
+    {% if resources.file %}
+        <a class="btn btn-liner btn-lg"
+           href="{{ resources.file.url }}"
+           download="{{ resources.file.name }}"
+        >
+            {{ __('Download') }}
+            <i class="icon-custom-{{ '.ppt' in resources.file.filename ? 'ppt' : 'pdf' }} ml20 f14"></i>
+        </a>
+    {% endif %}
+</div>

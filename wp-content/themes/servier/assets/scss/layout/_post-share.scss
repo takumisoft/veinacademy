@@ -1,0 +1,46 @@
+// Custom Style for plugin Juiz Social Post Sharer
+$post-share__item--color: $white;
+$post-share__item--bg-color: lighten($gray-light, 8);
+$post-share__item--bg-color-active: $brand-primary;
+$post-share__item--button-size: 34px;
+$post-share__item--border-radius: $post-share__item--button-size;
+
+.post-share {
+
+  .juiz_sps {
+    &_links_list {
+      text-align: center;
+      @include responsive(lg) {
+        display:  block;
+        position: absolute;
+        right:    -($post-share__item--button-size);
+        top:      0;
+        width:    $post-share__item--button-size;
+        .contentHasMedia & {
+          top: $contentHasMedia--vertical-offset;
+        }
+      }
+    }
+    &_item {
+      min-height:     1px;
+      vertical-align: sub;
+      > a {
+        @include border-radius($post-share__item--border-radius);
+        background-color: $post-share__item--bg-color;
+        color:            $post-share__item--color;
+        display:          block !important;
+        height:           $post-share__item--button-size;
+        line-height:      $post-share__item--button-size;
+        margin-bottom:    5px;
+        padding:          0;
+        width:            $post-share__item--button-size;
+        &:hover {
+          background-color: $post-share__item--bg-color-active;
+        }
+      }
+    }
+    &_network_name {
+      width: 0;
+    }
+  }
+}

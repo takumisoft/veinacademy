@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {% include 'layout/banner-default.twig' with {
+        class: 'white',
+        title: __('Error 404')
+    } %}
+
+    <div class="content {{ 'content--'~post_type }}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <article class="post-content text-center">
+                        <br>
+                        <br>
+                        <h2>
+                            {{ __('La page que vous cherchez n\'existe pas') }}
+                        </h2>
+                        <br>
+                        <br>
+                        <div class="clearfix text-center p15">
+                            <a class="btn btn-primary" href="{{ site.link }}">
+                                <i class="icon-custom-arrow-left"></i> &nbsp; {{ __('Retour à la page d\'accueil') }}</a>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

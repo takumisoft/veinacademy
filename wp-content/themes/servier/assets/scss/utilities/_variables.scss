@@ -1,0 +1,66 @@
+// Basic Colors
+$white:  												#ffffff;
+$black:  												#000000;
+
+// Colors
+$blue-servier:        					#0072ba;
+$blue:        									#3999be;
+$blue-dark:       							#005caa;
+$blue-darker:       						#26354f;
+$purple:      									#7d74a0;
+$yellow:          							#d38316;
+$yellow-light:          				#e89e27;
+$pink:          								#af4c81;
+$brown:          								#6c4949;
+$red:          									#ed2e03;
+
+// Theme main colors
+$theme-brand-primary: 					$blue-servier;
+$theme-brand-secondary: 				$yellow;
+$theme-brand-tertiary: 					$purple;
+
+$theme-colors: (
+		'white': 				$white,
+		'blue': 				$blue,
+		'purple': 			$purple,
+		'pink': 				$pink,
+		'brown': 				$brown,
+		'blue-dark': 	  $blue-dark,
+		'blue-darker': 	$blue-darker,
+		'yellow': 			$yellow,
+		'yellow-light': $yellow-light,
+		'red': 					$red,
+);
+
+
+// Borders
+$gray-border: 									#ebebeb;
+$gray-border-1: 								1px solid $gray-border;
+
+// Font Family
+$font-family-1: 								'Heebo', sans-serif;
+$font-family-2: 								$font-family-1;
+$font-family-3: 								Arial, Helvetica, sans-serif;
+
+// Image-Path
+$assetPath : 										'../';
+
+$padding-percentage-base: 			percentage((1/12));
+
+// Ease Transitions
+$cubic-bezier-1: 								cubic-bezier(.19, 1, .22, 1);
+$cubic-bezier-2: 								cubic-bezier(.165,.84,.44,1);
+$cubic-bezier-3: 								cubic-bezier(.80, .01, .56, .61);
+
+// Aspect ration standards
+$aspect-ration-1-1:           	100%; /* 1:1 Aspect Ratio */
+$aspect-ration-16-9:          	56.25%; /* 16:9 Aspect Ratio */
+$aspect-ration-4-3:           	75%; /* 4:3 Aspect Ratio */
+$aspect-ration-3-2:           	66.66%; /* 3:2 Aspect Ratio */
+$aspect-ration-8-5:           	62.5%; /* 8:5 Aspect Ratio */
+
+// Sidebar
+$sidebar-width:									130px;
+
+// Banner with media
+$contentHasMedia--vertical-offset: 100px;

@@ -1,0 +1,26 @@
+<header id="header" class="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">
+    <div class="container-fluid">
+        <nav class="navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {# Custom logo #}
+                {% if fn('get_custom_logo') is not null %}
+                    {{ fn('get_custom_logo') }}
+                {% else %}
+                    <img src="{{ theme.link ~ 'assets/img/servier-vein-academy-logo.png' }}" alt="servier-vein-academy-logo">
+                {% endif %}
+            </div><!--/.navbar-header-->
+
+            {% include "layout/search-form.twig" with {
+                class: 'hidden-xs hidden-sm'
+            } %}
+
+        </nav>
+    </div>
+</header><!-- /#header -->
+
+

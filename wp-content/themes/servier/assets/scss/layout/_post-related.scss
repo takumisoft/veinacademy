@@ -1,0 +1,12 @@
+$post-related__title--color: $brand-primary;
+
+.post-related {
+  &__title {
+    border-bottom: 2px solid $post-related__title--color;
+    color:         $post-related__title--color;
+    font-size:     16px;
+    font-weight:   800;
+    line-height:   1.25;
+    margin:        30px 0;
+  }
+}

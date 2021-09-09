@@ -1,0 +1,60 @@
+// Button Style
+@mixin button-theme($color:$white, $background:$btn-default-bg, $border:$btn-default-border) {
+  color:            $color;
+  background-color: $background;
+  border-color:     $border;
+  &:focus,
+  &.focus {
+    color:            $color;
+    background-color: darken($background, 10%);
+    border-color:     darken($border, 25%);
+  }
+  &:hover {
+    color:            $color;
+    background-color: darken($background, 10%);
+    border-color:     darken($border, 12%);
+  }
+}
+
+button {
+  @include hover-focus-active {
+    outline: 0;
+  }
+}
+
+.btn {
+  @include transition-content($ease: $cubic-bezier-3);
+  &:not(.btn-lg) {
+    font-size: 13px;
+    padding:   6px 10px;
+    i {
+      font-size: 10px;
+      &:before {
+        @include transition-content($ease: $cubic-bezier-1);
+      }
+    }
+  }
+  i {
+    &:before {
+      @include transition-content($ease: $cubic-bezier-1);
+    }
+  }
+  &:hover {
+    i:before {
+      @include translate(-3px, 0);
+    }
+  }
+  &.btn-lg {
+    font-size:   18px;
+    font-weight: 500;
+    padding:     10px 25px;
+  }
+}
+
+.btn-liner {
+  border-color: $gray-lightest;
+  &:hover {
+    border-color: $gray-lighter;
+    color:        $gray-lighter;
+  }
+}

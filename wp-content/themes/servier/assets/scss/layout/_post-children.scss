@@ -1,0 +1,42 @@
+$post-children--vertical-spacing: 5px;
+.post-children {
+  @include clearfix;
+  margin-bottom: 40px;
+  + .content {
+    padding-top: 0;
+  }
+  ul {
+    list-style:   none;
+    margin-left:  - $post-children--vertical-spacing;
+    padding-left: 0;
+    li {
+      display:       inline-block;
+      margin-bottom: 5px;
+      padding-left:  $post-children--vertical-spacing;
+      padding-right: $post-children--vertical-spacing;
+      a {
+        @include border-radius($border-radius-small);
+        @include transition-content($ease: $cubic-bezier-1);
+        background-color: $gray-lightest;
+        display:          block;
+        overflow:         hidden;
+        padding:          6px 15px;
+        text-overflow:    ellipsis;
+        width:            100%;
+      }
+      a:hover,
+      a:active,
+      a:focus {
+        background-color: $input-border;
+        color:            inherit;
+      }
+      &.active a {
+        background-color: $brand-primary;
+        color:            $white;
+      }
+      @include responsive($max: $screen-xs-max) {
+        display: block;
+      }
+    }
+  }
+}

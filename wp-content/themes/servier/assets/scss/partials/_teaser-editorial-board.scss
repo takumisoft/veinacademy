@@ -1,0 +1,51 @@
+$teaser-editorial-board--padding-y: 30px;
+$teaser-editorial-board__image-size: 84px;
+.teaser-editorial-board {
+  &__item {
+    margin: $teaser-editorial-board--padding-y 0;
+    & {
+      display: table;
+      width:   100%;
+      > * {
+        display:        table-cell;
+        vertical-align: top;
+      }
+    }
+  }
+  &__left {
+    width: $teaser-editorial-board__image-size;
+  }
+
+  &__image {
+    @include background-cover();
+    @include embed-ratio(1 1);
+    background-color: $gray-lightest;
+  }
+
+  &__title {
+    color:         $brand-primary;
+    font-size:     22px;
+    font-weight:   300;
+    line-height:   1.27;
+    margin-bottom: 10px;
+    margin-top:    0;
+    padding-left:  15px;
+  }
+  &__content {
+    color:        $gray;
+    font-size:    14px;
+    font-weight:  300;
+    line-height:  1.5;
+    padding-left: 15px;
+    @include responsive(sm) {
+      font-size: 16px;
+    }
+    p {
+      margin-bottom: 1px;
+      margin-top:    0;
+    }
+  }
+  &__btn {
+    margin-top: 10px;
+  }
+}

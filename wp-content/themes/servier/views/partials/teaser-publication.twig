@@ -1,0 +1,52 @@
+{% set date = post.date("d F Y") %}
+{% set speaker = post.terms('speaker')|first %}
+
+{% set library_type = post.terms('library-type')|join(' ') %}
+{% set isEducational = 'Educational' in library_type %}
+{% set isInterview = 'Interviews' in library_type %}
+{% set libcat = post.terms({query:{taxonomy:'library-type', parent:52}}) %}
+
+{% set image = post.thumbnail.src(image_src)|default('http://via.placeholder.com/170x170?text=No+Image') %}
+{% set thumbnail_publi = post.get_field('thumbnail-image') %}
+
+{% set title = post.title %}
+
+<article class="teaser {{ class }}
+    {{ 'teaser--'~post.post_type }}
+    {% if isEducational %} {{ 'teaser-library--isEducational' }}  {% endif %}
+    {% if isInterview %} {{ 'teaser-library--isInterview' }}  {% endif %}"
+>
+
+		<figure onclick="location.href='{{ post.link }}';" title="{{ title }}" class="teaser__image"
+			{% if thumbnail_publi %}
+				style="background-image: url('{{ thumbnail_publi }}');height: 135px;cursor:pointer";
+			{% elseif image %}
+				style="background-image: url('{{ image }}');height: 135px;cursor:pointer";
+			{% endif %}
+		>
+		</figure>
+
+		<div class="teaser__content">
+			<span style="display: block; padding-bottom: 10px;"><span style="color:#96368b;" class="teaser__category" >{{ libcat|join(',') }}</span> - {{ date }}</span>
+			<a class="teaser-library__inner"
+			   href="{{ post.link }}"
+			   title=" {{ title }}"
+			>
+				<p class="teaser-library__title" >{{ title|truncate(12) }}</p>
+				<div class="teaser-library__excerpt" style="color: #96368b;">
+					{#excert#}
+					{% set post_excert %}
+						{% if post.subtitle %}
+							{{ post.subtitle|truncate(7) }}
+						{% elseif post.post_excerpt %}
+							{{ post.post_excerpt }}
+						{% else %}
+							{{ post.post_content|truncate(7) }}
+						{% endif %}
+					{% endset %}
+
+					{{ post_excert }}
+				</div>
+			</a>
+		</div>
+</article>

@@ -1,0 +1,27 @@
+{% if pagination.pages %}
+    <div class="pagination__wrapper">
+        <ul class="pagination">
+            <li class="{{ pagination.prev.link|length ? '' : 'disabled' }}">
+                <a href="{{ pagination.prev.link|length ? pagination.prev.link : 'javascript:void(0)' }}" class="prev" aria-label="Previous">
+                    <i class="icon-custom-arrow-left-liner " aria-hidden="true"></i>
+                </a>
+            </li>
+
+            {% for page in pagination.pages %}
+                <li class="{% if page.current %}active {% endif %} {% if loop.last %}last{% endif %}">
+                    {% if page.link %}
+                        <a href="{{ page.link }}">{{ page.title }}</a>
+                    {% else %}
+                        <span>{{ page.title }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+            <li class="{{ pagination.next.link|length ? '' : 'disabled' }}">
+                <a href="{{ pagination.next.link|length ? pagination.next.link : 'javascript:void(0)' }}" class="next" aria-label="Next">
+                    <i class="icon-custom-arrow-right-liner " aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endif %}

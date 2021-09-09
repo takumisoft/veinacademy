@@ -1,0 +1,159 @@
+{% set isApps = post.type == 'apps' %}
+{% set isBook = post.type == 'book' %}
+{% set isWebsite = post.type == 'website' %}
+{% set isNews = post.type == 'news' %}
+
+{% set image_src = isWebsite ? 'ratio_8_5' : (isBook ? 'medium_large' : 'medium')  %}
+{% set image = post.thumbnail.src(image_src)|default('http://via.placeholder.com/170x170?text=No+Image') %}
+{% set thumbnail_news = post.get_field('thumbnail-image') %}
+
+{% set title = post.title %}
+
+{% set resources = post.get_field('resources') %}
+{% set category = post.terms('category') %}
+{% set library_type = post.terms('library-type') %}
+
+{#Location#}
+{% set country = post.terms('country')|first %}
+{% set city = post.terms('city') ? post.terms('city')|first ~ ',' : false %}
+{% set location = country or city ? "%s %s"|format(city, country ) : false %}
+
+{#Dates event#}
+{% set date_day_disabled = post.get_field('date_day_disabled') %}
+{% set date_end = date_day_disabled ? null : post.get_field('date_end') %}
+{% set date_start = post.get_field('date_start') ? (date_day_disabled ? post.get_field('date_start')|date('F Y') : (post.get_field('date_start')|date('F Y') == (date_end is not empty ? date_end|date('F Y'): null) ) ? post.get_field('date_start')|date('F j') : post.get_field('date_start')|date('F j Y')) : '' %}
+{% set date_event = date_start or date_end ? "%s %s"|format(date_start, date_end is not empty ? ((post.get_field('date_start')|date('F Y') == (date_end is not empty ? date_end|date('F Y') : null) ) ? ' - '~date_end|date('j Y') : ' - '~date_end|date('F j Y')) : '') : false %}
+
+<article class="teaser {{ class }} {{ 'teaser--'~post.post_type }} {% if category %}{{ 'teaser--'~category|first.slug }}{% endif %}">
+    <figure class="teaser__image"
+		{% if isNews %}
+			onclick="location.href='{{ post.link }}';" title="{{ title }}"
+			{% if thumbnail_news %}
+				style="background-image: url('{{ thumbnail_news }}');height: 135px;cursor:pointer";
+			{% elseif image %}
+				style="background-image: url('{{ image }}');height: 135px;cursor:pointer";
+			{% endif %}	
+		{% endif %}
+		{% if (isBook or isWebsite or isApps) and image %}
+			onclick="location.href='{{ post.link }}';" title="{{ title }}"
+			style="background-image: url('{{ image }}');height: 135px;cursor:pointer";
+		{% endif %}
+	>
+        {% if category|first.slug == 'events-congress' and resources.url %}
+            <a href="{{ resources.url }}" rel="nofollow" rel="noopener" target="_blank"></a>
+        {% endif %}
+    </figure>
+    <div class="teaser__content">
+        <p>
+            {#If search#}
+            {% if is_search %}
+                <span class="teaser__category">
+                    {{ post.type.labels.name }}
+
+                    {% if category %}
+                        : {{ category|join(',') }}
+                    {% elseif library_type %}
+                        : {{ library_type|join(',') }}
+                    {% endif %}
+
+                </span>
+            {% else %}
+                {% if category %}
+                    <span class="teaser__category">{{ category|join(',') }}</span>
+                {% endif %}
+            {% endif %}
+
+            <span class="teaser__date">&nbsp;</span>
+
+        </p>
+
+        <h4 class="teaser__title" style="cursor: pointer;" onclick="location.href='{{ post.link }}';" title="{{ title }}">
+            {% if is_search %}
+                {{ title|highlight(search_query) }}
+            {% else %}
+                {{ title|truncate(13) }}
+            {% endif %}
+        </h4>
+
+        {#Excerpt#}
+        {% if not isNews %}
+            <div class="teaser__excerpt">
+                {#excert#}
+                {% set post_excert %}
+                    {% if post.post_excerpt %}
+                        {{ post.post_excerpt }}
+                    {% elseif post.subtitle %}
+                        {{ post.subtitle|truncate(13) }}
+                    {% else %}
+                        {{ post.post_content|truncate(13) }}
+                    {% endif %}
+                {% endset %}
+
+                {% if is_search %}
+                    {{ post_excert|highlight(search_query) }}
+                {% else %}
+                    {{ post_excert }}
+                {% endif %}
+            </div>
+        {% endif %}
+
+
+        {#Apps#}
+        {% if isApps %}
+            {% set url_google_play = post.get_field('url_google_play') %}
+            {% set url_app_store = post.get_field('url_app_store') %}
+            {% if url_google_play or url_app_store %}
+                <div class="teaser__download-apps">
+                    {% if url_google_play %}
+                        <a href="{{ url_google_play }}"
+                           title="{{ __('Get it on Google Play') }}"
+                           target="_blank"
+                           rel="nofollow">
+                            <img src="{{ theme.link ~ '/assets/img/apps/btn-google-play.png' }}" alt="btn-google-play">
+                        </a>
+                    {% endif %}
+                    {% if url_app_store %}
+                        <a href="{{ url_app_store }}"
+                           title="{{ __('Download on the App Store') }}"
+                           target="_blank"
+                           rel="nofollow">
+                            <img src="{{ theme.link ~ '/assets/img/apps/btn-app-store.png' }}" alt="btn-google-play">
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% endif %}
+
+        {% if not is_search %}
+            {% if not isNews %}
+                <span class="teaser__date">{{ post.date("d F Y") }}</span>
+            {% endif %}
+        {% endif %}
+
+        {% if (location or date_event) %}
+            <p class="teaser__location mb-10">
+                {{ location }}{% if location and date_event %},{% endif %} {{ date_event }}
+            </p>
+        {% endif %}
+
+        <div class="teaser__btn-wrapper">
+            {% if resources.url %}
+                <a class="teaser__btn btn btn-liner"
+                   href="{{ resources.url }}"
+                   rel="nofollow"
+                   rel="noopener"
+                   target="_blank"
+                >
+                    {{ __('Visit site') }}
+                    <small class="icon-custom-link ml30"></small>
+                </a>
+            {% endif %}
+            <a class="teaser__btn teaser__btn--view-more btn btn-default"
+               href="{{ post.link }}">
+                {{ __('Read more') }}
+                <i class="icon-custom-arrow-right ml10"></i>
+            </a>
+        </div>
+    </div>
+</article>

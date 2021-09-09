@@ -1,0 +1,158 @@
+$sidebar--bg-color: $body-bg;
+
+$sidebar__menu--width: $sidebar-width;
+$sidebar__menu-item--color: $gray-dark;
+$sidebar__menu-item--color--active: $brand-primary;
+$sidebar__menu-item--font-size: 15px;
+$sidebar__menu-item--font-weight: 300;
+
+.sidebar {
+  background-color: $sidebar--bg-color;
+  display:          block;
+  height:           100%;
+  @include responsive($max: $grid-float-breakpoint - 1) {
+    border-top: 1px solid $input-border;
+    overflow:   hidden;
+    &:not(.in) {
+      height: 0;
+    }
+  }
+
+  &.in {
+    overflow-y: auto;
+  }
+
+  @include responsive($grid-float-breakpoint) {
+    &.collapse {
+      display:  block !important;
+      height:   100% !important;
+      overflow: visible !important;
+    }
+    &.in {
+      overflow-y: visible;
+    }
+  }
+  .search-form {
+    margin:  30px 0;
+    padding: 0 $grid-gutter-width;
+  }
+  ul {
+    list-style: none;
+    margin:     0;
+    padding:    0;
+  }
+
+  // Menu
+  &__menu {
+    position: relative;
+    @include responsive(sm) {
+      height: 100%;
+    }
+    // item
+    &-item {
+      color:       $sidebar__menu-item--color;
+      font-size:   28px;
+      font-style:  normal;
+      font-weight: $sidebar__menu-item--font-weight;
+      padding:     10px $grid-gutter-width;
+      &:hover,
+      &.open,
+      &.active {
+        color:       $sidebar__menu-item--color--active;
+        font-weight: 500;
+      }
+      @include responsive(sm) {
+        font-size: $sidebar__menu-item--font-size;
+        padding:   9px $grid-gutter-width/2;
+      }
+    }
+  }
+
+  // Collapse
+  $sidebar__dropdown-menu--width: 380px;
+  $sidebar__dropdown-menu--bg-color: $brand-primary;
+  $sidebar__dropdown-menu--color: $white;
+  $sidebar__dropdown-menu--padding-y: 35px;
+  $sidebar__dropdown-menu--padding-x: 40px;
+  $sidebar__dropdown-menu-item-padding-y: 30px;
+  $sidebar__dropdown-menu-heading--font-size: 38px;
+  .sidebar__dropdown-menu {
+    @include animation(showDropDownMenu 260ms $cubic-bezier-3 both);
+    @include border-radius(0);
+    background-color: $sidebar__dropdown-menu--bg-color;
+    color:            $sidebar__dropdown-menu--color;
+    float:            none;
+    font-size:        inherit;
+    padding:          $sidebar__dropdown-menu--padding-y $sidebar__dropdown-menu--padding-x;
+    width:            100%;
+    // Position
+    @include responsive($grid-float-breakpoint) {
+      height: 100%;
+      left:   100%;
+      top:    0;
+      width:  $sidebar__dropdown-menu--width;
+    }
+    @include responsive(xs) {
+      margin-top: $sidebar__dropdown-menu--padding-y/2;
+      padding:    ceil($sidebar__dropdown-menu--padding-y/2) $sidebar__dropdown-menu--padding-x/2;
+      position:   relative;
+    }
+
+    &--close {
+      color:      $sidebar__dropdown-menu--color;
+      font-size:  24px;
+      margin-top: 5px;
+      i:before {
+        @include transition-content($time: 260ms, $ease: $cubic-bezier-3);
+      }
+      &:hover {
+        i:before {
+          @include rotate(90deg);
+        }
+      }
+    }
+    &-heading {
+      h4 {
+        color:         $white;
+        font-size:     $sidebar__dropdown-menu-heading--font-size;
+        font-weight:   100;
+        margin-bottom: 10px;
+      }
+    }
+    &-item {
+      border-bottom:  1px solid rgba($white, 0.4);
+      line-height:    1.47;
+      padding-bottom: $sidebar__dropdown-menu-item-padding-y;
+      padding-top:    $sidebar__dropdown-menu-item-padding-y;
+      &:last-child {
+        border-bottom-width: 0;
+      }
+    }
+    > li {
+      > a {
+        display:     block;
+        font-weight: $sidebar__menu-item--font-weight;
+        padding:     0;
+        white-space: inherit; // prevent links from randomly breaking onto new lines
+      }
+      a {
+        @include transition-content($ease: $cubic-bezier-1);
+        &:hover {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+
+}
+
+@keyframes showDropDownMenu {
+  from {
+    @include opacity(0);
+    @include translate(-10px, 0);
+  }
+  to {
+    @include opacity(1);
+    @include translate(0, 0);
+  }
+}

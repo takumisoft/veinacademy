@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+h1, .h1,
+h2, .h2 {
+	font-family: $font-family-2;
+}
+
+@include responsive($max:$screen-sm-max) {
+	h1, .h1 {
+		font-size:   $font-size-h1 - 8;
+		font-family: $font-family-2;
+	}
+	h2, .h2 {
+		font-size: $font-size-h2 - 4;
+		font-family: $font-family-2;
+	}
+	h3, .h3 {
+		font-size: $font-size-h3 - 4;
+	}
+	h4, .h4 { font-size: $font-size-h4 - 2; }
+	h5, .h5 { font-size: $font-size-h5 - 2; }
+	h6, .h6 { font-size: $font-size-h6 - 2; }
+}
+
+hr {
+	border-color: $gray-border;
+	position: relative;
+}

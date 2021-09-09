@@ -1,0 +1,54 @@
+<div class="slider {{ class }}">
+    <div class="owl-carousel" id="sliderCarousel">
+        {% for slide in slides %}
+            <div class="slider__item">
+                {% set image = TimberImage(slide.image) %}
+                <a class="slider__inner"
+                   title="{{ slide.title }}"
+                   href="{{ slide.link.url|default('javascript:void(0)') }}"
+                        {% if image %}
+                            style="background-image: url('{{ image.src('full') }}')"
+                        {% endif %}
+                >
+
+                    <div class="slider__content">
+                        {% if slide.title %}
+                            <h2 class="slider__title">
+                                {{ slide.title }}
+                            </h2>
+                        {% endif %}
+
+                        {% if slide.link %}
+                            <p class="slider__link"> {{ slide.link.title }} </p>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="slider__nav"></div>
+
+</div>
+
+{#owl-carousel#}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" type="text/css" media="all">
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script id="marque" type="text/javascript">
+    jQuery(document).ready(function () {
+        var sliderCarousel = jQuery('#sliderCarousel');
+        sliderCarousel.owlCarousel({
+            items: 1,
+            nav: true,
+            singleItem: true,
+            margin: 0,
+            autoplay: true,
+            autoplayTimeout: 10000,
+            loop: true,
+            navContainer: '.slider__nav',
+            dotsClass: 'slider__dots',
+            dotClass: 'slider__dot',
+            navText: ["<i class='icon-custom-arrow-left-liner'></i>","<i class='icon-custom-arrow-right-liner'></i>"]
+        });
+    });
+</script>

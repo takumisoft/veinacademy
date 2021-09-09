@@ -1,0 +1,57 @@
+$wp-video__player--color: $brand-primary;
+
+.wp-video {
+  height:    100% !important;
+  max-width: 100% !important;
+  width:     100% !important;
+  .mejs {
+    &-container,
+    &-overlay.load {
+      height: 100% !important;
+      width:  100% !important;
+    }
+    &-container {
+      padding-top: 56.25%;
+    }
+    &-mediaelement {
+      bottom:   0;
+      left:     0;
+      position: absolute;
+      right:    0;
+      top:      0;
+    }
+
+    &-controls {
+      //display: none;
+    }
+
+    &-overlay-play {
+      bottom: 0;
+      height: auto !important;
+      left:   0;
+      right:  0;
+      top:    0;
+      width:  auto !important;
+    }
+  }
+  &-shortcode {
+    height:    100% !important;
+    max-width: 100% !important;
+    position:  relative;
+    width:     100% !important;
+  }
+
+  // Color
+  .mejs {
+    &-container,
+    &-embed,
+    &-embed body,
+    &-container .mejs-controls {
+      background-color: darken($wp-video__player--color, 20);
+    }
+
+    &-time-current {
+      background-color: $wp-video__player--color !important;
+    }
+  }
+}

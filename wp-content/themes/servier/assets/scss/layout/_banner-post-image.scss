@@ -1,0 +1,225 @@
+$banner-post-image-title--color: $white;
+$banner-post-image--bg-color: $brand-primary;
+$banner-post-image-title--border-radius: $border-radius-base;
+$banner-post-image-title--font-size: 34px;
+$banner-post-image-title--padding-y: 20px;
+$banner-post-image-title--padding-x: 70px;
+
+.banner-post-image {
+  @include border-radius($banner-post-image-title--border-radius);
+  @include background-cover();
+  background-color: $banner-post-image--bg-color;
+  color:            $banner-post-image-title--color;
+  margin-bottom:    20px;
+  overflow:         hidden;
+  padding:          $banner-post-image-title--padding-y $banner-post-image-title--padding-x/2;
+  @include responsive(md) {
+    padding: $banner-post-image-title--padding-y $banner-post-image-title--padding-x;
+    > .row {
+      width: 100%;
+      > div {
+        vertical-align: top;
+        + div {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  &__title {
+    color:         $banner-post-image-title--color;
+    font-weight:   normal;
+    line-height:   1.18;
+    margin-bottom: $banner-post-image-title--padding-y;
+    margin-top:    $banner-post-image-title--padding-y;
+    @include responsive(md) {
+      font-size: $banner-post-image-title--font-size;
+    }
+    &:after {
+      @include opacity(0.8);
+      background-color: $banner-post-image-title--color;
+      content:          '';
+      display:          block;
+      height:           1px;
+      margin-top:       15px;
+      width:            100%;
+    }
+  }
+
+  &__subtitle {
+    font-size:     16px;
+    font-weight:   normal;
+    line-height:   1.5;
+    margin-bottom: 30px;
+  }
+
+  &__btn {
+    margin-bottom: 30px;
+    margin-top:    15px;
+    &:hover {
+      @include opacity(0.9);
+    }
+  }
+  &__download-apps {
+    @include clearfix;
+    > a {
+      display: inline-block;
+      + a {
+        @include responsive(sm) {
+          margin-left: 30px;
+        }
+      }
+    }
+    &-label {
+      font-size:     14px;
+      font-weight:   300;
+      line-height:   1.71;
+      margin-bottom: 20px;
+      padding-left:  5px;
+      &:after {
+        @include opacity(0.5);
+        background-color: $black;
+        content:          '';
+        display:          block;
+        height:           1px;
+        margin-left:      -5px;
+        margin-top:       4px;
+        width:            40px;
+      }
+    }
+    &-btn {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+// Figure default
+.banner-figure {
+  @include embed-ratio(16 11);
+  @include background-cover($size: contain);
+  position: relative;
+  &__inner {
+    @include background-cover($size: contain);
+    @include center-block();
+    display:  block;
+    height:   100%;
+    left:     0;
+    position: absolute;
+    right:    0;
+    top:      0;
+    width:    100%;
+  }
+}
+
+// Figure with MockUps
+// Website
+$banner-image--website-full-width: 100%;
+$banner-image--website-full-height: 100%;
+$banner-image--website-left: 11%;
+$banner-image--website-right: 11%;
+$banner-image--website-top: 12%;
+$banner-image--website-bottom: 16%;
+
+// Apps
+$banner-image--apps-full-width: 100%;
+$banner-image--apps-full-height: 100%;
+$banner-image--apps-left: 35%;
+$banner-image--apps-right: 35%;
+$banner-image--apps-top: 11%;
+$banner-image--apps-bottom: 11%;
+$banner-image--apps-z-index: 2;
+
+.banner-figure {
+  &--website {
+    background-image: url("#{$assetPath}img/banner/mockup-website.png") !important;
+    .banner-figure__inner {
+      @include background-cover($position: center top);
+      @include box-shadow(-35px 40px 102px -9px rgba($black, 0.2));
+      background-color: $gray-lightest;
+      border:           2px inset rgba($gray-light, 0.2);
+      height:           $banner-image--website-full-height - ($banner-image--website-top + $banner-image--website-bottom);
+      top:              $banner-image--website-top;
+      width:            $banner-image--website-full-width - ($banner-image--website-right + $banner-image--website-left);
+    }
+  }
+
+  &--apps {
+    background-image: url("#{$assetPath}img/banner/mockup-apps.png") !important;
+    z-index:          $banner-image--apps-z-index;
+    .banner-figure__inner {
+      @include background-cover($position: center top);
+      background-color: $gray-lightest;
+      border:           2px inset rgba($gray-light, 0.2);
+      height:           $banner-image--apps-full-height - ($banner-image--apps-top + $banner-image--apps-bottom);
+      top:              $banner-image--apps-top;
+      width:            $banner-image--apps-full-width - ($banner-image--apps-right + $banner-image--apps-left);
+      z-index:          $banner-image--apps-z-index - 1;
+    }
+  }
+}
+
+// Apps
+$apps-gallery__item-inner-full-width: 100%;
+$apps-gallery__item-inner-full-height: 100%;
+$apps-gallery__item-inner-left: 7%;
+$apps-gallery__item-inner-right: 7%;
+
+$apps-gallery__item-inner-lateral-offset: (($apps-gallery__item-inner-right/2) - 0.5);
+
+$apps-gallery__item-inner-top: 12%;
+$apps-gallery__item-inner-bottom: 12%;
+$apps-gallery__item-inner-z-index: 2;
+
+.apps-gallery {
+  @include make-row(0);
+  > * {
+    @include make-xs-column(4, 0);
+
+    &.iphone-only {
+      @include make-xs-column-offset(4);
+      background-image: url("#{$assetPath}img/banner/mockup-apps.png") !important;
+    }
+  }
+  &__item {
+    @include embed-ratio(6 12);
+    @include background-cover($size: contain);
+    position: relative;
+    z-index:  $apps-gallery__item-inner-z-index;
+    &--1:not(.iphone-only),
+    &--3 {
+      z-index: $apps-gallery__item-inner-z-index - 1;
+      .apps-gallery__item-inner {
+        border: 0;
+        &:before {
+          content: '';
+          @include covered();
+          @include box-shadow(-12px 35px 102px -9px rgba($black, 0.3));
+        }
+      }
+    }
+    &--1 {
+      margin-right: - $apps-gallery__item-inner-lateral-offset;
+    }
+    &--3 {
+      margin-left: - $apps-gallery__item-inner-lateral-offset;
+    }
+    &--2 {
+      background-image: url("#{$assetPath}img/banner/mockup-apps.png") !important;
+    }
+    &-inner {
+      @include center-block();
+      @include background-cover($position: center top);
+      background-color: $gray-lightest;
+      border:           2px inset rgba($gray-light, 0.2);
+      display:          block;
+      height:           $apps-gallery__item-inner-full-height - ($apps-gallery__item-inner-top + $apps-gallery__item-inner-bottom);
+      left:             0;
+      position:         absolute;
+      right:            0;
+      top:              $apps-gallery__item-inner-top;
+      width:            $apps-gallery__item-inner-full-width - ($apps-gallery__item-inner-right + $apps-gallery__item-inner-left);
+      z-index:          $apps-gallery__item-inner-z-index - 1;
+
+    }
+  }
+}

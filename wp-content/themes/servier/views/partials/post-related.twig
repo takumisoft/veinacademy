@@ -1,0 +1,78 @@
+{% set related_posts_per_page = 3 %}
+{% set related_posts_args = {
+    'post_type':post.post_type,
+    'posts_per_page': related_posts_per_page,
+    'post__not_in':[post.ID],
+    'orderby' : 'rand'
+} %}
+{#Related posts within categories#}
+{% if not post.terms is empty %}
+
+    {% set related_term = (post_type == 'library' ? 'library-type' : 'category') %}
+    {% for term in post.terms(related_term) if term.posts()|length > 1 %}
+
+        {% set term_label = term.name|lower %}
+        {% set related_posts = term.posts(related_posts_args) %}
+
+        <aside class="post-related">
+            <h3 class="post-related__title"> {{ __('Other ') ~ term_label }}</h3>
+            <div class="row">
+
+                {% set teaser_type = post.type == 'library' ? 'library' : 'default' %}
+
+                {% for related_post in related_posts %}
+                    <article class="col-sm-4">
+                        {% include 'partials/teaser-'~teaser_type~'.twig' with {
+                            post : TimberPost(related_post)
+                        } %}
+                    </article>
+                {% endfor %}
+            </div>
+            {% if not(related_posts|length < related_posts_per_page) %}
+                {#add_query_arg to filter categories if is News #}
+                {% set hasCategory = related_term == 'category' %}
+                {% set view_all_link = hasCategory ? fn('add_query_arg', {'cat': term.term_id}, fn('get_post_type_archive_link', post_type)) : fn('get_term_link',term.term_id, related_term)  %}
+
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <a class="btn btn-link gray-dark f12 td-u" href="{{ view_all_link }}">
+                            {{ 'View all' }} <i class="icon-custom-arrow-right ml5"></i>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </aside>
+    {% endfor %}
+
+{% else %}
+
+    {#Related posts within same post type#}
+    {% set post_type_label = post.get_post_type.labels.archives|lower %}
+    {% set related_posts = get_posts(related_posts_args) %}
+
+    <aside class="post-related">
+        <h3 class="post-related__title">{{ __('Other ') ~ post_type_label }}</h3>
+        <div class="row">
+            {% for related_post in related_posts %}
+                <article class="col-sm-12">
+                    {% include 'partials/teaser.twig' with {
+                        post : TimberPost(related_post)
+                    } %}
+                </article>
+            {% endfor %}
+        </div>
+
+        {% if not(related_posts|length < related_posts_per_page) %}
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <a class="btn btn-link gray-dark f12 td-u" href="{{ fn('get_post_type_archive_link', post_type) }}">
+                        {{ 'View all' }} <i class="icon-custom-arrow-right ml5"></i>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+    </aside>
+{% endif %}
+

@@ -1,0 +1,39 @@
+{#This is a fallback file for archive listing, not currently used#}
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {% include 'layout/banner-default.twig' %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                {% if posts|length %}
+                    <div class="col-xs-12">
+                        {#Sort#}
+                        {% if posts|length > 1 %}
+                            {% include 'partials/content-sort.twig' %}
+                        {% endif %}
+                        <div class="content__top">
+                            {% for row in posts|batch(3) %}
+                                <div class="row">
+                                    {% for post in row %}
+                                        <article class="col-xs-12">
+                                            {% include 'partials/teaser.twig' %}
+                                        </article>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="content__bottom">
+                            {% include 'layout/pagination.twig' %}
+                        </div>
+                    </div>
+                {% else %}
+                    {% include 'partials/content-none.twig' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

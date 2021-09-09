@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" {{site.language_attributes}}> <![endif]-->
+<!--[if !IE]><!-->
+<html {{site.language_attributes}} class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="{{ site.charset }}"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    {#Responsive capability#}
+    {% block viewport %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    {% endblock %}
+    <title>
+        {% if wp_title %}
+            {{ wp_title }}
+        {% else %}
+            {{ site.name }}
+        {% endif %}
+    </title>
+    <link rel="pingback" href="{{ site.pingback_url }}"/>
+    {#Wp-Head#}
+    {{ function('wp_head') }}
+
+    {# Block for additionnal .css #}
+    {% block head_scripts %}{% endblock head_scripts %}
+</head>
+<body class="{% block body_class %} {{ body_class }} {% endblock %}" data-template="base.twig" {% block body_attributes %}{% endblock %}>
+
+    {#Google Tag Manager - See gp-google-tag-manager.php#}
+    {% if fn('function_exists','google_tag_manager_snippet_body') %}
+        {{ fn('google_tag_manager_snippet_body') }}
+    {% endif %}
+
+    {#Body Scripts#}
+    {% block body_scripts %} {% endblock body_scripts %}
+
+    {#Loader#}
+    {% block pre_loader %}
+        {% include "layout/pre-loader.twig" %}
+    {% endblock pre_loader %}
+
+    {% block header %}
+
+        {% include "layout/header.twig" %}
+
+    {% endblock %}
+
+    <main class="main">
+        <aside id="sidebarContainer" class="main__sidebar">
+            {% block sidebar %}
+                {% include "layout/sidebar.twig" %}
+            {% endblock %}
+        </aside>
+
+        <article class="main__content">
+            {% block content %}
+                {{ __('Sorry, no content') }}
+            {% endblock %}
+        </article>
+    </main>
+
+    {% block footer %}
+
+        {% include 'layout/footer.twig' %}
+
+    {% endblock %}
+
+    {#Wp-Footer#}
+    {{ function('wp_footer') }}
+
+    {# Block for additionnal .js #}
+    {% block footer_scripts %}{% endblock %}
+
+</body>
+</html>

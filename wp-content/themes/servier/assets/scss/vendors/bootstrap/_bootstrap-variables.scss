@@ -1,0 +1,96 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+// Overwrite bootstrap variables
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+// Create gray scales
+$gray:                                #6b7a96;
+$gray-light:                          #8b99b4;
+$gray-lighter:                        #bbbbbb;
+$gray-lightest:                       #ebebeb;
+$gray-dark:                           #31455f;
+
+$brand-primary:         							$theme-brand-primary;
+$brand-danger:         							  $red;
+
+//** Global text color on `<body>`.
+$text-color:                          $gray;
+$font-family-base :                   $font-family-1;
+$link-color:                          $brand-primary;
+$btn-font-weight:                     300;
+$border-radius-large:                 8px;
+$border-radius-small:                 2px;
+
+$btn-border-radius-base:              $border-radius-large 0 $border-radius-large 0;
+$btn-border-radius-large:             ($btn-border-radius-base + 2) 0 ($btn-border-radius-base + 2) 0;
+
+$btn-default-color:              			$white;
+$btn-default-bg:                  		$gray-light;
+$btn-default-border:             			$btn-default-bg;
+
+$btn-primary-color:              			$white;
+$btn-primary-bg:                 			$blue-servier;
+$btn-primary-border:             			$btn-primary-bg;
+
+$headings-font-family:                $font-family-1;
+$headings-font-weight:                300;
+
+//== Pagination
+//
+//##
+
+$pagination-color:                     $gray-lightest;
+$pagination-bg:                        #fff;
+$pagination-border:                    transparent;
+
+$pagination-hover-color:               $gray-light;
+$pagination-hover-bg:                  transparent;
+$pagination-hover-border:              $pagination-hover-bg;
+
+$pagination-active-color:              $brand-primary;
+$pagination-active-bg:                 transparent;
+$pagination-active-border:             transparent;
+
+$pagination-disabled-color:            $gray-lightest;
+$pagination-disabled-bg:               transparent;
+$pagination-disabled-border:           $pagination-disabled-bg;
+
+//== Forms
+//
+//##
+$input-color:                    $gray;
+//** `<input>` border color
+$input-border:                   #c4cbd9;
+
+$input-border-radius:            $border-radius-small;
+//** Border color for inputs on focus
+$input-border-focus:             #66afe9;
+//** Placeholder text color
+$input-color-placeholder:        $gray-light;
+//** Default `.form-control` height
+$input-height-base:              ($line-height-computed + ($padding-base-vertical * 3) + 3);
+
+//** Background for the dropdown menu.
+$dropdown-bg:                    $brand-primary;
+$dropdown-border:                $dropdown-bg;
+//** Dropdown menu `border-color` **for IE8**.
+$dropdown-fallback-border:       $brand-primary;
+//** Divider color for between dropdown items.
+$dropdown-divider-bg:            rgba($white, 0.4);
+
+//** Dropdown link text color.
+$dropdown-link-color:            $white;
+$dropdown-link-hover-color:      $dropdown-link-color;
+$dropdown-link-hover-bg:         transparent;
+$dropdown-link-active-color:     $dropdown-link-color;
+$dropdown-link-active-bg:        transparent;
+$dropdown-header-color:          $white;
+
+// Navbar toggle
+$navbar-default-toggle-icon-bar-bg:        $brand-primary;
+
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:          $screen-md-min;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max:     ($grid-float-breakpoint - 1);

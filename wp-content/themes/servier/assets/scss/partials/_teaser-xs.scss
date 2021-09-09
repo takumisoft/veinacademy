@@ -1,0 +1,76 @@
+$teaser-xs--after-circle--size: 36px;
+$teaser-xs--border-radius: $border-radius-large + 1;
+$tease-xs__image--width: 100px;
+$tease-xs__image--min-height: 84px;
+
+.teaser-xs {
+  color:         $gray;
+  margin-bottom: 10px;
+  min-height:    $tease-xs__image--min-height;
+  &__inner {
+    display: block;
+  }
+  &__category {
+    color:       $brand-primary;
+    font-size:   12px;
+    font-weight: normal;
+  }
+
+  &__date {
+    color:         $gray;
+    font-size:     10px;
+    font-weight:   300;
+    margin-bottom: $padding-small-vertical;
+  }
+
+  // title
+  &__title {
+    font-size:       13px;
+    font-weight:     normal;
+    line-height:     1.38;
+    margin:          5px 0;
+    text-decoration: underline;
+    a {
+      color: inherit;
+    }
+  }
+  p {
+    margin-bottom: 5px;
+  }
+  // Display
+  & {
+    display:      table;
+    table-layout: fixed;
+    width:        100%;
+    > * {
+      display:        table-cell;
+      vertical-align: top;
+    }
+  }
+
+  &__image {
+    width: $tease-xs__image--width;
+  }
+  &__content {
+    padding:  0 8px;
+    position: relative;
+  }
+  &__image {
+    @include transition-content($time: 250ms, $ease: $cubic-bezier-3);
+    @include border-bottom-left-radius($teaser-xs--border-radius);
+    @include border-top-left-radius($teaser-xs--border-radius);
+    @include background-cover();
+    @include embed-ratio(4 3);
+    overflow: hidden;
+    position: relative;
+    .teaser-xs:hover & {
+      @include opacity(0.8);
+      &:after {
+        @include opacity(1);
+      }
+    }
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}

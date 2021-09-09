@@ -1,0 +1,50 @@
+{#Location#}
+{% set country = post.terms('country')|first %}
+{% set city = post.terms('city') ? post.terms('city')|first ~ ',' : false %}
+{% set location = country or city ? "%s %s"|format(city, country ) : false %}
+
+{#Dates event#}
+{% set date_day_disabled = post.get_field('date_day_disabled') %}
+{% set date_end = date_day_disabled ? null : post.get_field('date_end') %}
+{% set date_start = date_day_disabled ? post.get_field('date_start')|date('F Y') : (post.get_field('date_start')|date('F Y') == (date_end is not empty ? date_end|date('F Y'): null) ) ? post.get_field('date_start')|date('j') : post.get_field('date_start') %}
+{% set date_event = date_start or date_end ? "%s %s"|format(date_start, date_end is not empty ? ' - '~date_end : '') : false %}
+
+{% set organizer = post.terms('organizer') %}
+
+<div class="post-event-data">
+    <ul class="post-event-data__list">
+        {% if location %}
+            <li class="post-event-data__item">
+                <dl class="m0">
+                    <dt class="post-event-data__label">{{ __('Where?') }}</dt>
+                    <dd class="post-event-data__info">
+                        {{ location }}
+                    </dd>
+                </dl>
+            </li>
+        {% endif %}
+
+        {% if date_event %}
+            <li class="post-event-data__item">
+                <dl class="m0">
+                    <dt class="post-event-data__label">{{ __('When?') }}</dt>
+                    <dd class="post-event-data__info">
+                        {{ date_event }}
+                    </dd>
+                </dl>
+            </li>
+        {% endif %}
+
+        {% if organizer %}
+            <li class="post-event-data__item">
+                <dl class="m0">
+                    <dt class="post-event-data__label">{{ __('Event organizer:') }}</dt>
+                    <dd class="post-event-data__info">
+                        {{ organizer|join(', ') }}
+                    </dd>
+                </dl>
+            </li>
+        {% endif %}
+
+    </ul>
+</div>

@@ -1,0 +1,201 @@
+{#This is a fallback file for archive listing, not currently used#}
+{% extends "base.twig" %}
+{% set isLibrary = post_type == 'library' %}
+{% set isPublication = '/library-type/publications/' in current_url %}
+{% set isInterviews = '/library-type/interviews-podcasts/' in current_url %}
+{% set isTax = fn('is_tax') %}
+{% block content %}
+
+    {% include 'layout/banner-hero.twig' with {
+        image: archive_banner_image
+    } %}
+	
+
+    <div class="content {{ 'content--'~post_type }} {% if isTax %} {{ 'content--isTax' }} {% endif %}">
+        <div class="container-fluid">
+            <div class="row">
+                {% if posts|length %}
+                    <div class="col-lg-3">
+                        {% if archive_description %}
+                            <h2 class="content__description">	
+                               {{ archive_description }}
+                            </h2>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-9">
+						<div>						
+							{% if isPublication %}
+								<nav class="content-filter">
+                                <ul>
+                                    <li class="content-filter__label">
+                                        {{ __('Filter by') }} &nbsp; &nbsp;
+                                    </li>
+									
+									{% set current_url_no_paged = current_url|split('page/') %}
+									
+									{% for libcat in libpublications %}
+									    {% set cats_in_query = get_libcat_query ? get_libcat_query|split(',') : [] %}
+                                        {% set has_cat_query = libcat.id in cats_in_query %}
+										<li class="content-filter__item {% if has_cat_query %} active{% endif %}">
+											{% set category_link = fn('add_query_arg', {'libcat': libcat.id}, current_url_no_paged[0]) %}
+											<a href="{{ category_link }}">
+												{{ libcat.name }} ({{ libcat.count }})
+											</a>
+										</li>
+									{% endfor %}
+								</nav>
+							{% endif %}
+							{% if isInterviews %}
+								{% if archive_presentation %}
+									<div id="accordion" class="content__presentation">
+										{{ archive_presentation }}
+									</div>
+								{% endif %}
+								<nav class="content-filter">
+                                <ul>
+                                    <li class="content-filter__label">
+                                        {{ __('Filter by') }} &nbsp; &nbsp;
+                                    </li>
+									
+									{% set current_url_no_paged = current_url|split('page/') %}
+									
+									{% for libcat in libinterviews %}
+									    {% set cats_in_query = get_libcat_query ? get_libcat_query|split(',') : [] %}
+                                        {% set has_cat_query = libcat.id in cats_in_query %}
+										<li class="content-filter__item {% if has_cat_query %} active{% endif %}">
+											{% set category_link = fn('add_query_arg', {'libcat': libcat.id}, current_url_no_paged[0]) %}
+											<a href="{{ category_link }}">
+												{{ libcat.name }} ({{ libcat.count }})
+											</a>
+										</li>
+									{% endfor %}
+								</nav>
+							{% endif %}
+						</div>
+
+                        {% if categories %}
+                            <nav class="content-filter">
+                                <ul>
+                                    <li class="content-filter__label">
+                                        {{ __('Filter by') }} &nbsp; &nbsp;
+                                    </li>
+
+                                    {% set current_url_no_paged = current_url|split('page/') %}
+
+                                    {% for category in categories if category.id != 1 %}
+                                        {% set cats_in_query = get_category_query ? get_category_query|split(',') : [] %}
+                                        {% set has_cat_query = category.id in cats_in_query %}
+                                        <li class="content-filter__item {% if has_cat_query %} active{% endif %}">
+                                            {% set category_link = fn('add_query_arg', {'cat': category.id}, current_url_no_paged[0]) %}
+                                            <a href="{{ category_link }}">
+                                                {{ category.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        {% endif %}
+
+                        {#Sort#}
+                        {% if posts|length > 1 %}
+                            {% include 'partials/content-sort.twig' %}
+                        {% endif %}
+
+                        <div class="content__top">
+                            {#If is Library and library_types #}
+                            {% if isLibrary and not isTax %}
+                                <div class="content-term">
+                                    {% for type in library_types %}
+                                        <h2 class="content-term__title">{{ type.name }}</h2>
+
+                                        {% if type.description %}
+                                            <div class="content-term__description">
+                                                {{ type.description }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% set archive_view_all_prefix_label = type.archive_view_all_prefix_label|default('Browse all '~ type.name|lower) %}
+                                        {% set archive_view_all_button_label = type.archive_view_all_button_label|default('Browse') %}
+
+                                        {% set term_query =
+                                            {'posts_per_page' : 2,
+                                                'post_type' : 'library',
+                                                'tax_query' : [{
+                                                'taxonomy' : type.taxonomy,
+                                                'field' : 'term_id',
+                                                'terms': type.id
+                                            }]
+                                            } %}
+
+                                        {% for row in TimberPost(fn('get_posts', term_query))|batch(3) %}
+                                            <div class="row">
+                                                {% for post in row %}
+                                                    <article class="col-sm-4">
+                                                        {% include 'partials/teaser-library.twig' %}
+                                                    </article>
+                                                {% endfor %}
+
+                                                <article class="col-sm-4">
+                                                    <div class="content-term__view-all">
+                                                        <p>
+                                                            {{ archive_view_all_prefix_label }}
+                                                        </p>
+                                                        <a href="{{ type.link }}"
+                                                           class="btn btn-default">
+                                                            {{ archive_view_all_button_label }}
+                                                            <i class="icon-custom-arrow-right ml10"></i>
+                                                        </a>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                            <hr>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {% for row in posts|batch(3) %}
+                                    <div class="row test">
+                                        {% for post in row %}
+                                            {% if post.type == 'library' %}
+												{% if isPublication %}
+													<article class="col-xs-12">
+														{% include 'partials/teaser-publication.twig' %}
+													</article>
+												{% elseif isInterviews %}
+													<article class="col-sm-4">
+														{% include 'partials/teaser-interviews.twig' %}
+													</article>
+												{% else %}
+													<article class="col-sm-4">
+														{% include 'partials/teaser-library.twig' %}
+													</article>
+												{% endif %}
+                                            {% else %}
+                                                <article class="col-xs-12">
+                                                    {% include 'partials/teaser.twig' %}
+                                                </article>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                    {#Divider for libray items#}
+                                    {% if post_type == 'library' and not isPublication %}
+                                        <hr>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% endif %}
+                        </div>
+
+                        <div class="content__bottom">
+                            {% include 'layout/pagination.twig' %}
+                        </div>
+                    </div>
+                {% else %}
+                    {% include 'partials/content-none.twig' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

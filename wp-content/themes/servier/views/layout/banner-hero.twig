@@ -1,0 +1,9 @@
+<div class="banner-hero {{ 'banner--'~ class|default(post_type) }}"
+     style="background-image: url('{{ image|default(theme.link~'/assets/img/banner/banner-default.jpg') }}')"
+>
+    {% if title %}
+        <h1 class="banner-hero__title">
+            {{ title }}
+        </h1>
+    {% endif %}
+</div>

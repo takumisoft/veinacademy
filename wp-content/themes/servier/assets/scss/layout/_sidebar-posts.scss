@@ -1,0 +1,67 @@
+.sidebar-posts {
+  h2 {
+    color:          $brand-primary;
+    font-size:      17px;
+    font-weight:    bold;
+    line-height:    1.1;
+    margin-bottom:  10px;
+    margin-top:     0;
+    text-transform: uppercase;
+    @include responsive(lg) {
+      padding-right: $padding-percentage-base;
+    }
+    @include responsive($max:$screen-sm-max) {
+      margin-top: 30px;
+    }
+  }
+  h3 {
+    color:          $yellow-light;
+    font-size:      16px;
+    font-weight:    500;
+    margin-bottom:  10px;
+    text-transform: uppercase;
+  }
+
+  &__view-all {
+    text-align: right;
+  }
+  $sidebar-posts__nav--width: 3px;
+  $sidebar-posts__nav--bg-color: $gray-lightest;
+  $sidebar-posts__nav--bg-color-active: $yellow-light;
+  $sidebar-posts__nav--border-radius-active: 8px;
+  &__nav {
+    background-color: $sidebar-posts__nav--bg-color;
+    height:           100%;
+    position:         absolute;
+    right:            - ($grid-gutter-width/2) + 5;
+    top:              0;
+    width:            $sidebar-posts__nav--width;
+    @include responsive(lg) {
+      right:            - $grid-gutter-width;
+
+    }
+    > a {
+      @include transition-content($ease: $cubic-bezier-2);
+      display: block;
+      height:  50%;
+      width:            $sidebar-posts__nav--width;
+      // Active
+      &[aria-disabled="true"] {
+        @include border-radius($sidebar-posts__nav--border-radius-active);
+        @include opacity(1);
+        background-color: $sidebar-posts__nav--bg-color-active;
+      }
+      &:hover {
+        background-color: $sidebar-posts__nav--bg-color-active;
+        @include opacity(0.5);
+      }
+    }
+
+    &-prev {
+    }
+    &-next {
+
+    }
+
+  }
+}

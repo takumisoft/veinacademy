@@ -1,0 +1,12 @@
+.page-about {
+  .editorial-board {
+    @include responsive(lg) {
+      padding-right: $padding-percentage-base;
+    }
+  }
+  .post-resources {
+    .btn + .btn {
+      margin-left: auto;
+    }
+  }
+}

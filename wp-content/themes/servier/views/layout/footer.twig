@@ -1,0 +1,100 @@
+<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+    <meta itemprop="copyrightYear" content="{{ last_modified_on_website|date('Y') }}"/>
+    <meta itemprop="description" content="{{ site.description }}"/>
+    <meta itemprop="copyrightHolder" content="{{ site.name }}"/>
+
+    {% if footer_columns %}
+        <div class="container-fluid">
+            <section class="footer__columns">
+
+                <ul class="row row-spacing-0">
+                    {#Column#}
+                    {% for column in footer_columns %}
+                        {% set bootstrap_grid_columns = 12 %}
+                        {% set column_class = 'col-sm-'~ bootstrap_grid_columns / footer_columns|length %}
+
+                        <li class="{{ column_class }} {{ 'col--'~column.acf_fc_layout }}">
+
+                            {#Flex Content Address#}
+                            {% if column.acf_fc_layout == "menu" %}
+                                {% if column.title %}
+                                    <div class="row row-spacing-3">
+                                        <div class="col-lg-2">
+                                            <h3>
+                                                {{ column.title }}
+                                            </h3>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <ul>
+                                                {#Menu item#}
+                                                {% for item in column.repeater %}
+                                                    <li>
+                                                        <a href="{{ item.link.url }}" title="{{ item.link.title }}" {% if item.link.target %} target="_blank" {% endif %}>
+                                                            {% if item.link.title %}
+                                                                {{ item.link.title }}
+                                                            {% endif %}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <ul>
+                                        {#Menu item#}
+                                        {% for item in column.repeater %}
+                                            <li>
+                                                <a href="{{ item.link.url }}" title="{{ item.link.title }}" {% if item.link.target %} target="_blank" {% endif %}>{{ item.link.title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+
+
+                                {#Flex Content image#}
+                            {% elseif column.acf_fc_layout == "image" %}
+                                {% if column.title %}
+                                    <h3>
+                                        {{ column.title }}
+                                    </h3>
+                                {% endif %}
+
+                                {% if column.link %}
+                                    <a href="{{ column.link.url }}"
+                                    {% if column.link.target %} target="_blank" {% endif %}
+                                    {% if column.link.title %} title="{{ column.link.title }}"{% endif %}>
+                                {% endif %}
+
+                                {#Logo#}
+                                {{ function('wp_get_attachment_image', TimberImage(column.image).ID, 'full','', {
+                                    'class':        'img-responsive center-block mb-30',
+                                    'draggable':    'false',
+                                    'alt':          TimberImage(column.image).title
+                                }) }}
+
+                                {% if column.link %}
+                                    </a>
+                                {% endif %}
+                                {% if column.description %}
+                                    <p>
+                                        {{ column.description }}
+                                    </p>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+
+    {% endif %}
+    {#last modified date#}
+    {% if last_modified_on_website %}
+        <div class="container-fluid">
+            <div class="footer__bottom">
+                <span>© Servier – last update: {{ last_modified_on_website }}</span>
+            </div>
+        </div>
+    {% endif %}
+</footer>
+

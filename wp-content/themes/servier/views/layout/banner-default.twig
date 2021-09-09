@@ -1,0 +1,12 @@
+<div class="banner-default {{ 'banner--'~ post_type }} {{ class }}">
+    {% if is_search %}
+        <p class="banner-default__lead">{{ title }}</p>
+        <h1 class="banner-default__title">
+            {{ search_query }}
+        </h1>
+    {% else %}
+        <h1 class="banner-default__title">
+            {{ title }}
+        </h1>
+    {% endif %}
+</div>

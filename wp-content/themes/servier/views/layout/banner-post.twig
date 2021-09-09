@@ -1,0 +1,38 @@
+{% set category = post.terms('category')|join(',') %}
+{% set library_type = post.terms('library-type')|join(',') %}
+{% set speaker = post.terms('speaker')|first %}
+{% set subtitle = post.subtitle %}
+
+<div class="banner-post {{ 'banner--'~ post_type }} {{ class }}">
+    <div class="row">
+        <aside class="col-sm-2">
+            {% if category or library_type %}
+                <p class="banner-post__category">
+                    {% if category %}
+                        <span>{{ category }}</span>
+                    {% elseif library_type %}
+                        <span>{{ library_type }}</span>
+                    {% endif %}
+                </p>
+            {% endif %}
+            <p class="banner-post__date">
+                {{ post.date("m/d/Y") }}
+            </p>
+        </aside>
+        <div class="col-sm-10 col-lg-7">
+            {% if speaker %}
+                <p class="banner-post__speaker">
+                    {{ __('Speaker: ') }} {{ speaker }}
+                </p>
+            {% endif %}
+            <h1 class="banner-post__title">
+                {{ title }}
+            </h1>
+            {% if subtitle %}
+                <p>
+                    {{ subtitle }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>

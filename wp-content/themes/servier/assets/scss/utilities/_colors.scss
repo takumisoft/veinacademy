@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+///************************************************************
+// *  @
+// ************************************************************/
+$bootstrap-colors: (
+                           'primary': $brand-primary,
+                           'gray': $gray,
+                           'gray-light': $gray-light,
+                           'gray-dark': $gray-dark,
+                           'gray-lightest': $gray-lightest,
+                   );
+// Colors and bootstrap classes
+$merge-colors: map-merge($theme-colors, $bootstrap-colors);
+
+@each $class-color, $color in $merge-colors {
+  // Colors
+  .#{$class-color} {
+    color: $color;
+  }
+  // bg
+  .btn-#{$class-color} {
+    @if ($class-color == 'white') {
+      @include button-theme($color: $brand-primary, $background: $color, $border: $color);
+    } @else {
+      @include button-theme($background: $color, $border: $color);
+    }
+  }
+
+  // Teaser post-types home (blue,purple,pink, etc...)
+  .teaser--#{$class-color} {
+    &.teaser-post-type {
+      .teaser-post-type__title {
+        color: $color;
+        &-first-letter {
+          background-color: $color;
+        }
+      }
+
+      .teaser-post-type__image:after {
+        background-color: $color;
+      }
+      .teaser-post-type__btn {
+        @include button-theme($background: $color, $border: $color);
+      }
+    }
+
+  }
+}
+
+// Post types classes
+$post-types-colors: (
+                            'white': $white,
+                            'page': $theme-brand-primary,
+                            'apps': $purple,
+                            'website': $blue,
+                            'news': $blue-dark,
+                            'library': $pink,
+                            'book': $yellow
+                    );
+
+@each $class-color, $color in $post-types-colors {
+  // Banners
+  .banner--#{$class-color} {
+    &.banner-post,
+    &.banner-post-image {
+      background-color: $color;
+    }
+    .banner-hero {
+      &__title {
+        color: if($class-color == 'news', $white, $color);
+        &:before {
+          background-color: if($class-color == 'news', $white, $color);
+        }
+      }
+    }
+  }
+
+  .content--#{$class-color} {
+    // Library
+    @if ($class-color == 'library') {
+      .content__presentation {
+        strong {
+          color: $color;
+        }
+      }
+      .content-term {
+        &__title {
+          color: $color;
+        }
+        &__view-all {
+          background-color: $color;
+        }
+      }
+      // Related posts
+      .post-related {
+        &__title {
+          color:        $color;
+          border-color: $color;
+        }
+      }
+      // Video Player
+      .wp-video .mejs {
+        &-container,
+        &-embed,
+        &-embed body,
+        &-container .mejs-controls {
+          background-color: darken($color, 30);
+        }
+
+        &-time-current {
+          background-color: $color !important;
+        }
+      }
+    }
+
+    // Post content
+    @if (not($class-color == 'page') and not($class-color == 'white')) {
+      .post-content {
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        > blockquote,
+        > blockquote > *,
+        > p > a,
+        > p > strong {
+          color: $color;
+        }
+      }
+      .post-share {
+        .juiz_sps_item > a:hover {
+          background-color: $color;
+        }
+      }
+    }
+
+    .post-content {
+      > ul,
+      > ol {
+        border-color: $color;
+        > li:before {
+          color: $color;
+        }
+      }
+      .post-slider {
+        &__nav {
+          > button:hover {
+            color: $color;
+          }
+        }
+        &__dot:hover,
+        &__dot.active {
+          background-color: $color;
+        }
+      }
+    }
+    .post-resources {
+      > .btn:hover {
+        border-color: $color;
+        color:        $color;
+      }
+    }
+  }
+
+  // Teaser
+  .teaser {
+    &--#{$class-color} {
+      // News
+      @if ($class-color == 'news') {
+        .teaser__category {
+          color: $color;
+        }
+      }
+      @if ($class-color == 'apps' or $class-color == 'website' or  $class-color == 'book') {
+        .teaser__title {
+          color:       $color;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

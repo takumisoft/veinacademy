@@ -1,0 +1,47 @@
+$post-event-data--color: $gray-light;
+.post-event-data {
+  &__list {
+    list-style: none;
+    margin:     0;
+    padding:    0;
+  }
+
+  &__item {
+    @include clearfix;
+    border-bottom: 1px solid $post-event-data--color;
+    color:         $post-event-data--color;
+    font-size:     16px;
+    font-weight:   normal;
+    line-height:   1.75;
+    padding:       10px 0;
+  }
+  &__label {
+    font-weight:   normal;
+    margin-bottom: 5px;
+    @include responsive(xs) {
+      float:        left;
+      margin-right: 15px;
+      width:        100px;
+    }
+  }
+  &__info {
+    color:         $brand-primary;
+    font-weight:   500;
+    margin-bottom: 0;
+  }
+
+  @include responsive(sm) {
+    padding: 0 20px;
+    &__list {
+      display: table;
+      width:   100%;
+      > * {
+        border-bottom:  0;
+        border-left:    1px solid $post-event-data--color;
+        display:        table-cell;
+        padding:        0 10px;
+        vertical-align: top;
+      }
+    }
+  }
+}

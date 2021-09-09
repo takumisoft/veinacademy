@@ -1,0 +1,45 @@
+
+/* == WordPress WYSIWYG Editor Styles == */
+.content .wp-post-image {
+  border: 1px solid $gray-lightest;
+}
+.alignleft,
+img.alignleft {
+  margin-right: 2em;
+  display: inline;
+  float: left;
+  margin-bottom: 1em;
+}
+
+.alignright,
+img.alignright {
+  margin-left: 2em;
+  display: inline;
+  float: right;
+  margin-bottom: 1em;
+}
+
+.aligncenter,
+img.aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  clear: both;
+  margin-bottom: 1em;
+}
+img.size-full {
+  max-width: 100%;
+  height: auto;
+}
+@include responsive(xs) {
+  .alignleft,
+  img.alignleft,
+  .alignright,
+  img.alignright {
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    float: none;
+  }
+}

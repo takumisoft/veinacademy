@@ -1,0 +1,46 @@
+{% set image = post.thumbnail.src('medium')|default('http://via.placeholder.com/295x165?text=No+Image') %}
+{% set thumbnail_image = post.get_field('thumbnail-image') %}
+{% set title = post.title %}
+
+<article class="teaser-default {{ class }}
+    {{ 'teaser--'~post.post_type }}"
+>
+    <a class="teaser-default__inner"
+       href="{{ post.link }}"
+       title=" {{ title }}"
+    >
+
+        <p class="teaser-default__date">
+            {{ post.date("m/d/Y") }}
+        </p>
+
+        <figure class="teaser-default__image"
+                {% if thumbnail_image %}
+                    style="background-image: url('{{ thumbnail_image }}')"
+				{% elseif image %}
+					style="background-image: url('{{ image }}')"
+                {% endif %}
+        >
+        </figure>
+
+        <p class="teaser-default__title">
+            {{ title|truncate(12) }}
+        </p>
+        <div class="teaser-default__excerpt">
+            {#excert#}
+            {% set post_excert %}
+                {% if post.post_excerpt %}
+                    {{ post.post_excerpt }}
+                {% elseif post.subtitle %}
+                    {{ post.subtitle|truncate(7) }}
+                {% else %}
+                    {{ post.post_content|truncate(7) }}
+                {% endif %}
+            {% endset %}
+
+            {{ post_excert }}
+
+        </div>
+
+    </a>
+</article>

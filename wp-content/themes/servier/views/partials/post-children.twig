@@ -1,0 +1,24 @@
+{% set post_children = post.children ? post.children : post.parent ? post.parent.children : null %}
+
+{% if post_children %}
+    <nav class="post-children">
+        <ul>
+            {% if post.parent %}
+                <li>
+                    <a class="btn post-children__btn" href="{{ post.parent.link }}">{{ post.parent.title }}</a>
+                </li>
+            {% else %}
+                <li class="{{ 'active' }}">
+                    <a class="btn post-children__btn" href="{{ post.link }}">{{ post.title }}</a>
+                </li>
+            {% endif %}
+
+            {% for child in post_children if child.post_type == 'page' %}
+                {% set class = post.id == child.id ? 'active' : '' %}
+                <li class="{{ class }}">
+                    <a class="btn post-children__btn" href="{{ child.link }}">{{ child.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}

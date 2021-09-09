@@ -1,0 +1,113 @@
+{% extends "base.twig" %}
+
+{% set isPageAbout = post.id == 115 or post.parent.id == 115 %}
+
+{% block body_class %}
+    {% if isPageAbout %}
+        {{ parent()~ 'page-about' }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{#Page About#}
+{% set hasSide = isPageAbout or post.subtitle %}
+
+{% set resources = post.get_field('resources') %}
+
+{% set editorial_chief = post.get_field('editorial_chief_relationship') %}
+{% set editorial_board = post.get_field('editorial_board_relationship') %}
+
+
+{% block content %}
+    {% set banner_title = isPageAbout ? 'About' : post.title %}
+    {% include 'layout/banner-hero.twig' with {
+        class: isPageAbout ? 'white' : false,
+        post:post,
+        title: banner_title,
+        image: post.thumbnail.src('full')
+    } %}
+
+    {% set post_children = post.children ? post.children : post.parent ? post.parent.children : null %}
+
+    {% if isPageAbout %}
+        {% include 'partials/post-children.twig' %}
+    {% endif %}
+
+    <div class="content {{ 'content--'~post_type }}">
+        <div class="container-fluid">
+            <div class="row">
+                {% if hasSide %}
+                    <div class="col-lg-3">
+                        <div class="post-content__side">
+                            {% if isPageAbout %}
+                                <h1 class="post-content__side-title">{{ post.title }}</h1>
+                            {% endif %}
+                            {% if post.subtitle %}
+                                <p class="post-content__side-subtitle">
+                                    {{ post.subtitle }}
+                                </p>
+                            {% endif %}
+                            {#resources#}
+                            {% if isPageAbout and resources %}
+                                {% include 'partials/post-resources.twig' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="{{ hasSide ? 'col-lg-9' : 'col-sm-8 col-sm-offset-2' }}">
+                    <article class="post-content">
+                        {#The content#}
+                        {{ post.content }}
+
+                        {#Flexible content#}
+                        {% if post.get_field('flexible_content') %}
+                            {% include 'partials/post-flexible-content.twig' %}
+                        {% endif %}
+
+                    </article>
+
+                    {#Editors#}
+                    {% if editorial_chief %}
+                        <div class="editorial-board">
+                            <h2 class="editorial-board__heading">{{ 'Editorial Chief' }}</h2>
+                            {% for row in editorial_chief|batch(2) %}
+                                <div class="row row-spacing-40">
+                                    {% for member in row %}
+                                        <div class="col-sm-6">
+                                            {% include 'partials/teaser-editorial-board.twig' with {
+                                                post : member
+                                            } %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if editorial_board %}
+                        <div class="editorial-board">
+                            <h2 class="editorial-board__heading">{{ 'Editorial Board' }}</h2>
+                            {% for row in editorial_board|batch(2) %}
+                                <div class="row row-spacing-40">
+                                    {% for member in row %}
+                                        <div class="col-sm-6">
+                                            {% include 'partials/teaser-editorial-board.twig' with {
+                                                post : member
+                                            } %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {#resources#}
+                    {% if (resources.url or resources.file) and not isPageAbout %}
+                        {% include 'partials/post-resources.twig' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

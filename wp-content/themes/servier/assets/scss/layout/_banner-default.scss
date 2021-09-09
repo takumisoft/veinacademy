@@ -1,0 +1,30 @@
+$banner-default-title--color: $white;
+$banner-default--bg-color: $brand-primary;
+$banner-default-title--border-radius: $border-radius-base;
+$banner-default-title--padding-y: 94px;
+$banner-default-title--padding-x: $padding-percentage-base;
+
+.banner-default {
+  @include border-radius($banner-default-title--border-radius);
+  @include background-cover();
+  background-color: $banner-default--bg-color;
+  margin-bottom:    20px;
+  padding:          $banner-default-title--padding-y/2 $banner-default-title--padding-x;
+  @include responsive(md) {
+    padding: $banner-default-title--padding-y $banner-default-title--padding-x;
+  }
+  &__lead {
+    color:       $banner-default-title--color;
+    font-size:   24px;
+    font-weight: 300;
+  }
+  &__title {
+    color:       $banner-default-title--color;
+    font-size:   30px;
+    font-weight: 300;
+    line-height: 1.12;
+    @include responsive(md) {
+      font-size: 51px;
+    }
+  }
+}

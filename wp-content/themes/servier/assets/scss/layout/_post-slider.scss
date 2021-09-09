@@ -1,0 +1,98 @@
+$post-slider__content--padding-x: $padding-percentage-base;
+$post-slider__content--padding-y: 30px;
+
+$post-slider__nav--size: 30px;
+$post-slider__nav--color: $gray-light;
+
+.post-slider {
+  @include clearfix;
+  margin:   $post-slider__content--padding-y 0;
+  padding:  0 $post-slider__content--padding-x;
+  position: relative;
+  @include responsive(xs) {
+    padding: 0 $post-slider__content--padding-x*2;
+  }
+  &__caption {
+    color:      $text-color;
+    font-size:  12px;
+    margin-top: 10px;
+    a {
+      text-decoration: underline;
+    }
+  }
+  &__item {
+    img {
+      border: 1px solid $gray-lightest;
+    }
+  }
+
+  &__nav {
+    font-size: $post-slider__nav--size;
+    @include clearfix;
+    padding:   0;
+    width:     100%;
+    z-index:   2;
+    &.disabled {
+      display: none;
+    }
+    &-prev,
+    &-next {
+      @include transition-ease-in-out(150ms);
+      background: none;
+      border:     0;
+      color:      $post-slider__nav--color;
+      margin-top: -($post-slider__nav--size/2);
+      outline:    0;
+      position:   absolute;
+      top:        50%;
+      &:hover {
+        color: $brand-primary;
+      }
+      &.disabled {
+        @include opacity(0.3);
+        cursor: not-allowed;
+      }
+    }
+    &-prev {
+      left: 0;
+    }
+    &-next {
+      right: 0;
+    }
+    @include responsive(xs) {
+      font-size: 5vw;
+      padding:   0;
+    }
+  }
+
+  $post-slider__dot--size: 12px;
+  $post-slider__dot--bg-color: $gray-lightest;
+  $post-slider__dot--bg-color--active: $brand-primary;
+  &__dots {
+    @include clearfix;
+    padding:    0 $post-slider__content--padding-x;
+    position:   relative;
+    text-align: center;
+    width:      100%;
+    &.disabled {
+      display: none;
+    }
+  }
+  &__dot {
+    @include border-radius($post-slider__dot--size);
+    @include transition-ease-in-out(150ms);
+    background-color: $post-slider__dot--bg-color;
+    border:           0;
+    display:          inline-block;
+    height:           $post-slider__dot--size;
+    margin-left:      5px;
+    margin-right:     5px;
+    outline:          0;
+    padding:          0;
+    width:            $post-slider__dot--size;
+    &:hover,
+    &.active {
+      background-color: $post-slider__dot--bg-color--active;
+    }
+  }
+}

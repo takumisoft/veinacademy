@@ -1,0 +1,47 @@
+$teaser-default--after-circle--size: 36px;
+$teaser-default--border-radius: $border-radius-base;
+.teaser-default {
+  color:      $gray;
+  &__inner {
+    overflow: hidden;
+    position: relative;
+  }
+  &__date {
+    color:         $gray-light;
+    font-size:     12px;
+    font-weight:   500;
+    line-height:   1.5;
+    margin-bottom: $padding-small-vertical;
+  }
+
+  // title
+  &__title {
+    font-size:   18px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+  &__excerpt {
+    font-size:   14px;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  &__inner {
+    display: block;
+  }
+  &__image {
+    @include transition-content($time: 250ms, $ease: $cubic-bezier-3);
+    @include border-radius($teaser-default--border-radius);
+    @include background-cover();
+    @include embed-ratio(4 2);
+    margin-bottom: 15px;
+    overflow:      hidden;
+    position:      relative;
+
+    .teaser-default:hover & {
+      @include opacity(0.8);
+      &:after {
+        @include opacity(1);
+      }
+    }
+  }
+}

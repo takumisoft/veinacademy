@@ -1,0 +1,24 @@
+{% set title = item.title %}
+{% set image = TimberImage(item.image).src('full')|default('http://via.placeholder.com/193x128?text=No+image') %}
+{% set color = item.color|default('gray') %}
+<article class="teaser-post-type {{ 'teaser--'~color }} {{ class }}">
+    <a class="teaser-post-type__inner"
+       href="{{ item.link }}"
+       title=" {{ title }}"
+    >
+        <h2 class="teaser-post-type__title">
+            <span class="teaser-post-type__title-first-letter">{{ title|first }}</span>
+            {{ title }}
+        </h2>
+        <figure class="teaser-post-type__image"
+                {% if image %}
+                    style="background-image: url('{{ image }}')"
+                {% endif %}
+        >
+        </figure>
+        {#Fake btn#}
+        <div class="teaser-post-type__btn btn">
+            {{ __('Browse') }} <i class="icon-custom-arrow-right ml10"></i>
+        </div>
+    </a>
+</article>

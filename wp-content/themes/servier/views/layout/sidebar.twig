@@ -1,0 +1,60 @@
+{% if sidebar_menu %}
+    <nav class="sidebar" id="sidebar">
+
+        <ul class="sidebar__menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+
+            {# Custom logo #}
+            <li class="sidebar__menu-logo hidden-xs hidden-sm">
+                {% if fn('get_custom_logo') is not null %}
+
+                    {{ fn('get_custom_logo') }}
+                {% else %}
+                    <img src="{{ theme.link ~ 'assets/img/servier-vein-academy-logo.png' }}" alt="servier-vein-academy-logo">
+                {% endif %}
+            </li>
+
+            {% for item in sidebar_menu.get_items %}
+                <li class="sidebar__menu-item {{ item.classes | join(' ') }} {% if item.current %} active {% endif %}" itemprop="name">
+                    <a
+                            {% if not item.get_children %}
+                                href="{{ item.get_link }}"
+                            {% else %}
+                                href="javascript:void(0);"
+                                data-toggle="dropdown"
+                            {% endif %}
+                            title="{{ item.title }}"
+                            itemprop="url"
+                    >
+                        <span itemprop="name">{{ item.title }}</span>
+                    </a>
+                    {% if item.get_children %}
+                        <ul class="sidebar__dropdown-menu dropdown-menu">
+                            <li class="sidebar__dropdown-menu-heading">
+                                <button class="sidebar__dropdown-menu--close close"><i class="icon-custom-close"></i></button>
+                                <h4><a href="{{ item.link }}">{{ item.title }}</a></h4>
+                            </li>
+                            {% for child in item.get_children %}
+                                {% set is_menu_item_news = item.menu_object.object == 'news' %}
+                                {% set has_category = child.menu_object.object == 'category' %}
+                                {% set child_link = (is_menu_item_news and has_category) ? fn('add_query_arg', {'cat': child.menu_object.object_id}, item.get_link) : child.get_link  %}
+
+                                <li class="sidebar__dropdown-menu-item {{ child.classes | join(' ') }}  {% if child.current %}  active  {% endif %}">
+                                    <a href="{{ child_link }}"
+                                       title="{{ child.title }}"
+                                       itemprop="url">
+                                        <span itemprop="name">{{ child.title }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% include "layout/search-form.twig" with {
+            class: 'visible-xs visible-sm'
+        } %}
+    </nav><!--/.sidebar -->
+{% endif %}
+

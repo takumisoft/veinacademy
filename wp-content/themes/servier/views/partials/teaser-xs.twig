@@ -1,0 +1,48 @@
+{% set image = post.thumbnail.src('medium')|default('http://via.placeholder.com/170x170?text=No+Image') %}
+{% set thumbnail_publi = post.get_field('thumbnail-image') %}
+{% set title = post.title %}
+{% set category = post.terms('category')|first %}
+{% set resources = post.get_field('resources') %}
+
+{% set has_resource_url = 'Events / Congress' in [category] and resources.url %}
+
+<article class="teaser-xs {{ class }} {{ 'teaser-xs--'~post.post_type }}">
+
+    <figure class="teaser-xs__image"
+			{% if thumbnail_publi %}
+				style="background-image: url('{{ thumbnail_publi }}');";
+			{% elseif image %}
+				style="background-image: url('{{ image }}');";
+			{% endif %}
+    >
+    </figure>
+    <div class="teaser-xs__content">
+        {% if category %}
+            <p>
+                {% set category_url = fn('add_query_arg' , {
+                    'cat':category.id
+                }, fn('get_post_type_archive_link', post.post_type ) ) %}
+
+                <a href="{{category_url }}">
+                    <span class="teaser-xs__category">{{ category.name }}</span>
+                </a>
+            </p>
+        {% endif %}
+
+        <h4 class="teaser-xs__title">
+            {% set post_link = post.link %}
+            {% set post_target = '' %}
+
+            {% if has_resource_url %}
+                {% set post_link = resources.url %}
+                {% set post_target = 'target="_blank" rel="nofollow noreferrer noopener"' %}
+            {% endif %}
+
+            <a href="{{ post_link }}" {{ post_target }} >{{ title|truncate(5) }}</a>
+
+        </h4>
+        <span class="teaser-xs__date">{{ post.date("m/d/Y") }}</span>
+
+    </div>
+
+</article>

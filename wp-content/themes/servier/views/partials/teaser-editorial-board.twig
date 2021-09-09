@@ -1,0 +1,41 @@
+{% set editor_thumbnail = post.thumbnail.src('medium-large') %}
+{% set editor_resume = post.get_field('resume') %}
+
+{#member_title#}
+{% set member_title %}
+    {% if editor_resume %}
+        <a href="{{ editor_resume.url }}" class="td-u" download>
+            {{ post.title }}
+            <small class="icon-custom-pdf"></small>
+        </a>
+    {% else %}
+        {{ post.title }}
+    {% endif %}
+{% endset %}
+
+<article class="teaser-editorial-board__item">
+    <aside class="teaser-editorial-board__left">
+        <figure class="teaser-editorial-board__image"
+                {% if editor_thumbnail %}
+                    style="background-image: url('{{ editor_thumbnail }}')"
+                {% endif %}
+        >
+        </figure>
+    </aside>
+    <div class="teaser-editorial-board__right">
+        <h3 class="teaser-editorial-board__title">
+            {{ member_title }}
+        </h3>
+        {% if post.content %}
+            <div class="teaser-editorial-board__content">
+                {{ post.content }}
+            </div>
+            {% if editor_resume %}
+                <div class="hidden clearfix text-right">
+                    <a class="teaser-editorial-board__btn btn btn-liner" href="{{ editor_resume.url }}" download>{{ __('Resume') }}</a>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+</article>

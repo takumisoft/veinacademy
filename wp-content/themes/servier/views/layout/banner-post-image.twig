@@ -1,0 +1,103 @@
+{% set resources = post.get_field('resources') %}
+{% set url_google_play = post.get_field('url_google_play') %}
+{% set url_app_store = post.get_field('url_app_store') %}
+
+<div class="banner-post-image {{ 'banner--'~ post_type }} {{ class }}">
+    <div class="row row-col-vertical">
+
+        <div class="col-sm-6">
+            <h1 class="banner-post-image__title">
+                {{ title }}
+            </h1>
+            {% if post.subtitle %}
+                <p class="banner-post-image__subtitle">
+                    {{ post.subtitle }}
+                </p>
+            {% endif %}
+            {% if url_google_play or url_app_store %}
+                <div class="banner-post-image__download-apps">
+                    <p class="banner-post-image__download-apps-label">
+                        {{ __('Get the app') }}
+                    </p>
+                    {% if url_google_play %}
+                        <a class="banner-post-image__download-apps-btn"
+                           href="{{ url_google_play }}"
+                           title="{{ __('Get it on Google Play') }}"
+                           target="_blank"
+                           rel="noopener nofollow">
+                            <img src="{{ theme.link ~ '/assets/img/apps/btn-google-play-md.png' }}" alt="btn-google-play">
+                        </a>
+                    {% endif %}
+                    {% if url_app_store %}
+                        <a class="banner-post-image__download-apps-btn"
+                           href="{{ url_app_store }}"
+                           title="{{ __('Download on the App Store') }}"
+                           target="_blank"
+                           rel="noopener nofollow">
+                            <img src="{{ theme.link ~ '/assets/img/apps/btn-app-store-md.png' }}" alt="btn-google-play">
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {% if resources and hasResourcesInBanner %}
+                {% if resources.file %}
+                    <a class="banner-post-image__btn btn btn-lg btn-white"
+                       href="{{ resources.file.url }}"
+                       download="{{ resources.file.name }}"
+                    >
+                        {{ __('Download') }}
+                        <i class="icon-custom-{{ '.ppt' in resources.file.filename ? 'ppt' : 'pdf' }} ml20 f14"></i>
+                    </a>
+                {% endif %}
+
+                {% if isWebsite and resources.url %}
+                    <a class="banner-post-image__btn btn btn-lg btn-white"
+                       href="{{ resources.url }}"
+                       rel="nofollow"
+                       rel="noopener"
+                       target="_blank"
+                    >
+                        {{ __('Visit site') }}
+                        <small class="icon-custom-link ml20"></small>
+                    </a>
+                {% endif %}
+
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6">
+            {% set image_size = isWebsite ? 'ratio_8_5' : 'medium-large' %}
+            {% set post_thumbnail = post.thumbnail.src(image_size)|default('http://via.placeholder.com/360x288?text=No+Image') %}
+            {% set apps_gallery = post.get_field('apps_gallery') %}
+
+            {#Apps Gallery#}
+            {% if apps_gallery %}
+                <div class="apps-gallery">
+                    {% set iphone_only = apps_gallery|length == 1 ? 'iphone-only' : '' %}
+                    {% for image in apps_gallery %}
+                        <div class="apps-gallery__item  {{ 'apps-gallery__item--'~ loop.index }} {{ iphone_only }}">
+                            <div class="apps-gallery__item-inner"
+                                style="background-image: url('{{ TimberImage(image).src('medium_large') }}')"
+                            >
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% elseif post_thumbnail %}
+                <div class="banner-figure banner-figure--{{ post_type }}">
+                    <div class="banner-figure__inner"
+                         title="{{ post.title }}"
+                         style="background-image: url('{{ post_thumbnail }}')"
+                    >
+                        {{ function( 'the_post_thumbnail','full' , {
+                            class: ' hidden img-responsive',
+                            title: post.title,
+                            alt: post.title,
+                            draggable : "false"
+                        }) }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

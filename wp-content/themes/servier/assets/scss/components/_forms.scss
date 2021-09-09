@@ -1,0 +1,29 @@
+input {
+  border: none;
+}
+
+form {
+  @include clearfix;
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="url"],
+  textarea,
+  select {
+    //display: block;
+  }
+  label {
+    color:       $gray-dark;
+    font-size:   18px;
+    font-weight: 300;
+  }
+  textarea {
+    height: auto; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  }
+}
+
+.form-control {
+  font-size:   16px;
+  font-weight: 300;
+}
