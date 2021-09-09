@@ -1,0 +1,7 @@
+{% if new_menu %}
+    <ul>
+        {% for item in new_menu.get_items %}
+            <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
