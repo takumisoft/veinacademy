@@ -28,12 +28,8 @@
     {# Block for additionnal .css #}
     {% block head_scripts %}{% endblock head_scripts %}
 </head>
-<body class="{% block body_class %} {{ body_class }} {% endblock %}" data-template="base.twig" {% block body_attributes %}{% endblock %}>
-
-    {#Google Tag Manager - See gp-google-tag-manager.php#}
-    {% if fn('function_exists','google_tag_manager_snippet_body') %}
-        {{ fn('google_tag_manager_snippet_body') }}
-    {% endif %}
+<body class="{% block body_class %} {{ body_class }} {% endblock %} zy" data-template="base.twig" {% block body_attributes %}{% endblock %}>
+<div class="container">
 
     {#Body Scripts#}
     {% block body_scripts %} {% endblock body_scripts %}
@@ -45,23 +41,15 @@
 
     {% block header %}
 
-        {% include "layout/header.twig" %}
+        {% include "layout/new_header.twig" %}
 
     {% endblock %}
 
-    <main class="main">
-        <aside id="sidebarContainer" class="main__sidebar">
-            {% block sidebar %}
-                {% include "layout/sidebar.twig" %}
-            {% endblock %}
-        </aside>
-
-        <article class="main__content">
-            {% block content %}
-                {{ __('Sorry, no content') }}
-            {% endblock %}
-        </article>
-    </main>
+    <div class="page_content">
+        {% block content %}
+            {{ __('Sorry, no content') }}
+        {% endblock %}
+    </div>
 
     {% block footer %}
 
@@ -74,6 +62,8 @@
 
     {# Block for additionnal .js #}
     {% block footer_scripts %}{% endblock %}
+</div>
+    
 
 </body>
 </html>

@@ -1,4 +1,22 @@
-{% include 'layout/new_header.twig' %}
-
-{% include 'layout/new_sidebar.twig'
-    with {menus: menus} %}
+{% extends "new_base.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div id="zy-sidebar">
+                {% block sidebar %}
+                    {% include "layout/new_sidebar.twig" %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="col-sm-9">
+            {% include "pages/new_search.twig" %}
+            <h2 class="section-title">Our best reading content</h2>
+            {# <pre>{{posts|array|print_r}}</pre> #}
+            {% for p in posts %}
+                {% include "partials/new_postcard.twig"
+                    with p|array %}
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}

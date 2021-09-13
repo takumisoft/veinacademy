@@ -1,0 +1,29 @@
+<div class="zy-postcard">
+    <div class="zy-postcard-wrapper">
+        <div class="row">
+            {% if p.thumbnail %}
+            <div class="col-sm-2">
+                <div class="zy-postcard-thumbnail">
+                    
+                        <img src="{{ p.thumbnail }}">
+                    
+                </div>
+            </div>
+            {% endif %}
+            <div class="{% if p.thumbnail %}col-sm-10{% else %}col-sm-12{% endif %}">
+                <div class="zy-postcard-content">
+                    <div class="zy-postcard-post-type">
+                        <span>{{ p.post_type }}</span> - {{ p.date }}
+                    </div>
+                    <div class="zy-postcard-title">
+                        <h3>{{ p.post_title }}</h3>
+                        <h4>{{ p.subtitle }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="zy-postcard-readmore">
+        <a href="{{ p.link }}"><h4>Read more ►</h4></a>
+    </div>
+</div>

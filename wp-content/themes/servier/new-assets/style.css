@@ -1,0 +1,128 @@
+#zy-header {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.page.zy {
+  height: calc(100vh + 100px);
+  background: #fcfcfc;
+}
+.page.zy .section-title {
+  font-family: Heebo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #024A85;
+}
+
+.zy-postcard {
+  position: relative;
+  margin-bottom: 16px;
+}
+.zy-postcard .zy-postcard-wrapper {
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.zy-postcard .zy-postcard-wrapper .zy-postcard-thumbnail img {
+  width: 100%;
+}
+.zy-postcard .zy-postcard-wrapper .zy-postcard-content {
+  padding: 20px 15px 50px;
+}
+.zy-postcard .zy-postcard-wrapper .zy-postcard-content .zy-postcard-post-type span {
+  text-transform: capitalize;
+}
+.zy-postcard .zy-postcard-wrapper .zy-postcard-content .zy-postcard-title h3 {
+  margin: 0px;
+  margin-bottom: 16px;
+  color: #6B7A96;
+  font-family: Heebo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0px;
+}
+.zy-postcard .zy-postcard-wrapper .zy-postcard-content .zy-postcard-title h4 {
+  margin: 0px;
+  color: #6B7A96;
+  font-family: Heebo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.zy-postcard .zy-postcard-readmore {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background: #2E71B5;
+  border-radius: 8px 0px 3px;
+}
+.zy-postcard .zy-postcard-readmore h4 {
+  font-family: Heebo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #fff;
+  margin: 0px;
+  padding: 3.5px 6px;
+}
+
+#zy-search {
+  position: relative;
+  width: 100%;
+  height: 232px;
+  background-image: url("img/bg-search.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#zy-search input {
+  position: absolute;
+  bottom: 35px;
+  left: 45px;
+  right: 45px;
+  width: calc(100% - 90px);
+  font-family: Heebo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 18px;
+  letter-spacing: 0px;
+  padding: 13px 17px;
+  outline: none;
+}
+
+#zy-sidebar {
+  position: relative;
+}
+#zy-sidebar ul {
+  position: fixed;
+  -webkit-padding-start: 0px;
+  list-style: none;
+}
+#zy-sidebar ul li {
+  margin-bottom: 24px;
+}
+#zy-sidebar ul li a {
+  font-family: Heebo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+#zy-sidebar ul li:last-child {
+  margin-bottom: 0px;
+}
+
+/*# sourceMappingURL=style.css.map */

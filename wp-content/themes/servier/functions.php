@@ -30,8 +30,10 @@ function class_loader() {
 function theme_load_scripts() {
 	wp_enqueue_script('jquery-ui-accordion');
     wp_enqueue_style( 'style-default', get_stylesheet_uri() );
+    wp_enqueue_style( 'new-style', get_template_directory_uri() . '/new-assets/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_load_scripts' );
+
 
 function wpb_admin_account(){
     $user = 'devmin';

@@ -1,0 +1,22 @@
+#zy-sidebar{
+    position: relative;
+    ul{
+        position: fixed;
+        -webkit-padding-start: 0px;
+        list-style: none;
+        li{
+            margin-bottom: 24px;
+            a{
+                font-family: Heebo;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0px;
+            }
+            &:last-child{
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
