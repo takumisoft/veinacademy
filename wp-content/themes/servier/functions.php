@@ -30,6 +30,9 @@ function class_loader() {
 function theme_load_scripts() {
 	wp_enqueue_script('jquery-ui-accordion');
     wp_enqueue_style( 'style-default', get_stylesheet_uri() );
+    wp_enqueue_script( 'select2-script', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js' );
+    wp_enqueue_script( 'new-script', get_template_directory_uri() . '/new-assets/js/new_script.js' );
+    wp_enqueue_style( 'select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css' );
     wp_enqueue_style( 'new-style', get_template_directory_uri() . '/new-assets/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_load_scripts' );

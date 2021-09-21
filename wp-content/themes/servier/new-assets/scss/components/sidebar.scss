@@ -1,21 +1,36 @@
-#zy-sidebar{
-    position: relative;
-    ul{
+.zy-sidebar-wrapper{
+    #zy-sidebar{
+        margin-top: -78.61px;
+        top: 140px;
         position: fixed;
-        -webkit-padding-start: 0px;
-        list-style: none;
-        li{
-            margin-bottom: 24px;
-            a{
-                font-family: Heebo;
-                font-size: 18px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 20px;
-                letter-spacing: 0px;
-            }
-            &:last-child{
-                margin-bottom: 0px;
+        transition: 0.4s;
+        &.active{
+            top: 100px;
+        }
+        ul{
+            -webkit-padding-start: 0px;
+            list-style: none;
+            li{
+                margin-bottom: 24px;
+                a{
+                    font-family: Heebo;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    letter-spacing: 0px;
+                }
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+                img{
+                    width: 185px;
+                    opacity: 0;
+                    transition: 0.4s;
+                    &.active{
+                        opacity: 1;
+                    }
+                }
             }
         }
     }

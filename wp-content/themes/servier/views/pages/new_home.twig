@@ -2,20 +2,55 @@
 {% block content %}
     <div class="row">
         <div class="col-sm-3">
-            <div id="zy-sidebar">
-                {% block sidebar %}
-                    {% include "layout/new_sidebar.twig" %}
-                {% endblock %}
+            <div class="zy-sidebar-wrapper">
+                <div id="zy-sidebar">
+                    {% block sidebar %}
+                        {% include "layout/new_sidebar.twig" %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
-        <div class="col-sm-9">
-            {% include "pages/new_search.twig" %}
-            <h2 class="section-title">Our best reading content</h2>
-            {# <pre>{{posts|array|print_r}}</pre> #}
-            {% for p in posts %}
-                {% include "partials/new_postcard.twig"
-                    with p|array %}
-            {% endfor %}
+        <div class="col-sm-8">
+            <div class="main-content">
+                {% include "partials/new_search.twig" %}
+                <h2 class="section-title">What's new on Vein Academy</h2>
+                <div class="new-content">
+                    <div class="new-content-left">
+                        <div class="square-box-big" style="--bg: url({{ base_url }}/new-assets/img/new-content-4.png);"></div>
+                    </div>
+                    <div class="new-content-right">
+                        <div class="new-content-right-top">
+                            <div class="square-box-small" style="--bg: url({{ base_url }}/new-assets/img/new-content-3.png);">
+                                <div class="square-box-content">
+                                    <p class="date">20 october 2020</p>
+                                    <p class="title">Eberhard Rabe , Catherine Rébde</p>
+                                </div>
+                            </div>
+                            <div class="square-box-small" style="--bg: url({{ base_url }}/new-assets/img/new-content-2.png);">
+                                <div class="square-box-content">
+                                    <p class="date">20 october 2020</p>
+                                    <p class="title">Eberhard Rabe , Catherine Rébde</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-content-right-bottom">
+                            <div class="square-box-long" style="--bg: url({{ base_url }}/new-assets/img/new-content-4.png);">
+                                <div class="square-box-content">
+                                    <p class="date">20 october 2020</p>
+                                    <p class="title">Eberhard Rabe , Catherine Rébde</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="section-title">Our best reading content</h2>
+                <div class="best-content">
+                    {% for p in posts %}
+                        {% include "partials/new_postcard.twig"
+                            with p|array %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
     

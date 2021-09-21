@@ -1,28 +1,53 @@
 <div class="zy-postcard">
     <div class="zy-postcard-wrapper">
-        <div class="row">
-            {% if p.thumbnail %}
-            <div class="col-sm-2">
-                <div class="zy-postcard-thumbnail">
-                    
-                        <img src="{{ p.thumbnail }}">
-                    
-                </div>
+        {% if p.thumbnail %}
+            <div class="zy-postcard-thumbnail">
+                <div class="zy-postcard-thumbnail-image" style="background-image: url({{ p.thumbnail }})"></div>
             </div>
-            {% endif %}
-            <div class="{% if p.thumbnail %}col-sm-10{% else %}col-sm-12{% endif %}">
-                <div class="zy-postcard-content">
-                    <div class="zy-postcard-post-type">
-                        <span>{{ p.post_type }}</span> - {{ p.date }}
-                    </div>
-                    <div class="zy-postcard-title">
-                        <h3>{{ p.post_title }}</h3>
-                        <h4>{{ p.subtitle }}</h4>
-                    </div>
-                </div>
+        {% endif %}
+        <div class="zy-postcard-content">
+            <div class="zy-postcard-post-type">
+                {# <pre>{{ p|print_r }}</pre> #}
+                {% if p.terms %}
+                    {% for t in p.terms %}
+                        {% if t.taxonomy == 'library-type' or t.taxonomy == 'category' %}
+                            <span>{{ t.name }}</span>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <span>{{ p.type }}</span>
+                {% endif %}
+                    - {{ p.date }}
+            </div>
+            <div class="zy-postcard-title">
+                <h3>{{ p.post_title }}</h3>
+                <h4>{{ p.subtitle }}</h4>
+                <p class="speakers">
+                    {% for s in p.terms %}
+                        {% if s.taxonomy == 'speaker' %}
+                            <span>{{ s.name }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </p>
             </div>
         </div>
     </div>
+    {% if p.post_type == 'book' %}
+        <div class="zy-postcard-pdf">
+            <a href="{{ site.url }}/wp-content/uploads/{{ p.meta('resources_file').filename  }}" target="_blank"><h4>Download PDF <img src="{{ base_url }}/new-assets/img/download-pdf.png"></h4></a>
+        </div>
+    {% endif %}
+    {% if p.post_type == 'website' %}
+        <div class="zy-postcard-website">
+            <a href="{{ p.resources_url }}"><h4>Visit Website ></h4></a>
+        </div>
+    {% endif %}
+    {% if p.post_type == 'apps' %}
+        <div class="zy-postcard-app">
+            <a href="{{ p.meta('url_app_store') }}"><img src="{{ base_url }}/new-assets/img/Store=App Store, Style=Black.png"></a>
+            <a href="{{ p.meta('url_google_play') }}"><img src="{{ base_url }}/new-assets/img/Store=Google Play, Style=Black.png"></a>
+        </div>
+    {% endif %}
     <div class="zy-postcard-readmore">
         <a href="{{ p.link }}"><h4>Read more ►</h4></a>
     </div>
