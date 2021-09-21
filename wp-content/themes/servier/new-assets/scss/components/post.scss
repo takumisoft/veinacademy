@@ -1,0 +1,119 @@
+.zy-postcard{
+    position: relative;
+    margin-bottom: 16px;
+    .zy-postcard-wrapper{
+        display: flex;
+        background: #FFFFFF;
+        border: 1px solid #E0E0E0;
+        box-sizing: border-box;
+        border-radius: 4px;
+        .zy-postcard-thumbnail{
+            flex-basis: 167px;
+            .zy-postcard-thumbnail-image{
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .zy-postcard-content{
+            flex-basis: 100%;
+            padding: 20px 15px 50px;
+            .zy-postcard-post-type{
+                span{
+                    text-transform: capitalize;
+                }
+            }
+            .zy-postcard-title{
+                h3{
+                    margin: 0px;
+                    margin-bottom: 16px;
+                    color: #6B7A96;
+                    font-family: Heebo;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 29px;
+                    letter-spacing: 0px;
+                }
+                h4{
+                    margin: 0px;
+                    color: #6B7A96;
+                    font-family: Heebo;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 21px;
+                    letter-spacing: 0px;
+                    text-align: left;
+                }
+                .speakers{
+                    margin-top: 16px;
+                }
+            }
+        }
+    }
+    .zy-postcard-app{
+        position: absolute;
+        bottom: 0px;
+        right: 100px;
+        a{
+            img{
+                width: 75px;
+            }
+        }
+    }
+    .zy-postcard-pdf{
+        position: absolute;
+        bottom: 0px;
+        right: 100px;
+        border: 1px solid #E0E0E0;
+        border-radius: 8px 0px 3px;
+        h4{
+            font-family: Heebo;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0px;
+            margin: 0px;
+            padding: 3.5px 6px;
+        }
+    }
+    .zy-postcard-website{
+        position: absolute;
+        bottom: 0px;
+        right: 100px;
+        border: 1px solid #E0E0E0;
+        border-radius: 8px 0px 3px;
+        h4{
+            font-family: Heebo;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0px;
+            margin: 0px;
+            padding: 3.5px 6px;
+        }
+    }
+    .zy-postcard-readmore{
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        background: #2E71B5;
+        border-radius: 8px 0px 3px;
+        h4{
+            font-family: Heebo;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0px;
+            color: #fff;
+            margin: 0px;
+            padding: 3.5px 6px;
+        }
+    }
+}

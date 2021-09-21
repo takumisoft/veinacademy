@@ -48,6 +48,7 @@ final class ServierSite extends Site
         new Theme\ThemeFeatures();
 
         new Theme\RegisterMenu('Sidebar menu', 'sidebar_menu');
+        new Theme\RegisterMenu('New Menu', 'new_menu');
 
         // Plugins
         new Plugins\YaostSeo();
