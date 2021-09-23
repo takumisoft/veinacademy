@@ -1,0 +1,55 @@
+{% extends "new_base.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="zy-sidebar-wrapper">
+                <div id="zy-sidebar">
+                    {% block sidebar %}
+                        {% include "layout/new_sidebar.twig" %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="main-content">
+                {% include "partials/new_search.twig" %}
+                {# <pre>{{posts|print_r}}</pre> #}
+                <div class="results-sorting">
+                    <div id="filters">
+                        <p>Filter by</p>
+                        {% for f in filters %}
+                            <button class="filter-item">{{ f }}</button>
+                        {% endfor %}
+                    </div>
+                    <select id="search-sort" style="width: 216px;">
+                        <option></option>
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                        <option>Most Popular</option>
+                    </select>
+                </div>
+                
+                <p class="results-query">{{posts.found_posts}} results for: {{search_query}}</p>
+                <div class="best-content">
+                    {% for p in posts %}
+                        {% include "partials/new_postcard.twig"
+                            with p|array %}
+                    {% endfor %}
+                </div>
+                <div class="no-posts-found">
+                    <div class="no-posts-found-image"><img src="{{ base_url }}/new-assets/img/no-posts.png"></div>
+                    <h3>Sorry we couldn’t find any matches for “Daflon”</h3>
+                    <p>Please try searching or filter with another term</p>
+                </div>
+                <h2 class="section-title">Our most popular content</h2>
+                <div class="most-popular">
+                    {% for p in no_posts %}
+                        {% include "partials/new_postcard.twig"
+                            with p|array %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

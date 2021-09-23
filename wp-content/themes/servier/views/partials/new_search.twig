@@ -1,4 +1,7 @@
-<div id="zy-search">
+<div id="zy-search" style="--thumbnail: url('{{ thumbnail }}')">
+    {% if not frontpage %}
+        <h2>{{ post.post_title }}</h2>
+    {% endif %}
     <div class="input-wrapper">
         <form method="GET" action="{{ site.url }}">
             <input type="text" name="s" placeholder="What are you looking for ?">

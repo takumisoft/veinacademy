@@ -16,21 +16,11 @@
                 {# <pre>{{posts|print_r}}</pre> #}
                 {% if posts.found_posts > 0 %}
                 <div class="results-sorting">
-                    <div id="search-post-types">
-                        <div class="search-post-types-holder">Type of content</div>
-                        <div class="search-post-types-options">
-                            <div class="placeholder-sim">Type of content <div class="arrow opened"><img src="{{ base_url }}/new-assets/img/select-arrow.png"></div></div>
-                            <form id="form-post-types">
-                            {% for option in options %}
-                                <label for="{{ option }}" class="post-types-label">
-                                    <input id="{{ option }}" type="checkbox" name="post-types" value="{{ option }}">
-                                    <div class="post-types-checkbox"></div>
-                                    <label for={{ option }}>{{ option }}</label>
-                                </label>
-                            {% endfor %}
-                            </form>
-                        </div>
-                        <div class="arrow closed"><img src="{{ base_url }}/new-assets/img/select-off-arrow.png"></div>
+                    <div id="filters">
+                        <p>Filter by</p>
+                        {% for term in terms %}
+                            <div class="filter-item">{{ term }}</div>
+                        {% endfor %}
                     </div>
                     <select id="search-sort" style="width: 216px;">
                         <option></option>
@@ -50,7 +40,7 @@
                 {% else %}
                     <div class="no-posts-found">
                         <div class="no-posts-found-image"><img src="{{ base_url }}/new-assets/img/no-posts.png"></div>
-                        <h3>Sorry we couldn’t find any matches for "{{ search_query }}"</h3>
+                        <h3>Sorry we couldn’t find any matches for “Daflon”</h3>
                         <p>Please try searching or filter with another term</p>
                     </div>
                     <h2 class="section-title">Our most popular content</h2>

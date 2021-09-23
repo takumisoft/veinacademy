@@ -114,7 +114,8 @@
   height: calc(100vh + 100px);
   background: #fcfcfc;
 }
-.page.zy .section-title {
+
+.section-title {
   font-family: Heebo;
   font-size: 16px;
   font-style: normal;
@@ -126,6 +127,7 @@
 
 .main-content .results-sorting {
   margin-top: 16px;
+  margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
 }
@@ -217,9 +219,51 @@
 .main-content .results-sorting #search-post-types .arrow.opened {
   top: 17px;
 }
+.main-content .results-sorting #filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.main-content .results-sorting #filters p {
+  margin: 3px;
+}
+.main-content .results-sorting #filters .filter-item {
+  padding: 5px 10px;
+  background: #ebebeb;
+  margin: 3px;
+  border: none;
+  border-radius: 4px;
+}
+.main-content .results-sorting #filters .filter-item.active {
+  background: #2e71b5;
+  color: #fff;
+}
 .main-content .results-query {
   margin-top: 40px;
   margin-bottom: 8px;
+}
+.main-content .no-posts-found {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.main-content .no-posts-found h3 {
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  color: #0071ba;
+}
+.main-content .no-posts-found p {
+  width: 290px;
+  max-width: 100%;
+  font-family: Heebo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  margin: auto;
 }
 
 .zy-postcard {
@@ -340,10 +384,19 @@
   position: relative;
   width: 100%;
   height: 232px;
-  background-image: url("img/bg-search.png");
+  background-image: var(--thumbnail);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 40px;
+}
+#zy-search h2 {
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 51px;
+  line-height: 20px;
+  color: #96368b;
 }
 #zy-search .input-wrapper {
   position: absolute;

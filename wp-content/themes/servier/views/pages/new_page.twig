@@ -1,0 +1,47 @@
+{% extends "new_base.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="zy-sidebar-wrapper">
+                <div id="zy-sidebar">
+                    {% block sidebar %}
+                        {% include "layout/new_sidebar.twig" %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="main-content">
+                {% include "partials/new_search.twig" %}
+                {# <pre>{{posts|print_r}}</pre> #}
+                <div class="results-sorting">
+                    <div id="filters">
+                        <p>Filter by</p>
+                        {% for f in filters %}
+                            <button class="filter-item">{{ f }}</button>
+                        {% endfor %}
+                    </div>
+                    <select id="search-sort" style="width: 216px;">
+                        <option></option>
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                        <option>Most Popular</option>
+                    </select>
+                </div>
+                <div class="best-content">
+                    {% for p in posts %}
+                        {% include "partials/new_postcard.twig"
+                            with p|array %}
+                    {% endfor %}
+                </div>
+                <div class="the-posts">
+                    {% for p in no_posts %}
+                        {% include "partials/new_postcard.twig"
+                            with p|array %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
