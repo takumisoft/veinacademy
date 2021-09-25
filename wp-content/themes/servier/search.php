@@ -25,7 +25,7 @@ $no_posts =  [
     'order' => 'DESC'
 ];
 $context['frontpage'] = true;
-$context['thumbnail'] = get_the_post_thumbnail_url();
+$context['thumbnail'] = get_template_directory_uri() . '/new-assets/img/bg-search.png';
 $context['no_posts'] = Timber::get_posts($no_posts);
 $context['base_url'] = get_template_directory_uri();
 $context['options'] = $post_types;
