@@ -11,7 +11,6 @@ $posts =  [
     'order' => 'DESC'
 ];
 $context['frontpage'] = true;
-$context['thumbnail-image'] = get_the_post_thumbnail($context['post']['thumbnail-image']);
 $context['thumbnail'] = get_the_post_thumbnail_url();
 $context['base_url'] = get_template_directory_uri();
 $context['posts'] = Timber::get_posts($posts);
