@@ -13,9 +13,65 @@
         <div class="col-sm-8">
             <div class="main-content single">
                 {% include "partials/new_search.twig" %}
-                <div class="post-content">
+                <div class="post-content-publication">
                     {# <pre>{{ post|print_r }}</pre> #}
                     {{ post.post_content }}
+                </div>
+                <div class="post-content">
+                    {% if post.file_video and not post.is_embed_enabled %}
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9 mb-15">
+                            {{ fn('wp_video_shortcode', {
+                                'mp4': post.get_field('file_video').url
+                            }) }}
+                        </div>
+                    {% elseif post.embed and post.is_embed_enabled %}
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9 mb-15">
+                            {{ post.get_field('embed') }}
+                        </div>
+                    {% elseif post.thumbnail and not hasBannerPostImage %}
+                        {{ function('get_the_post_thumbnail', post.ID, 'full', {
+                            'class': 'img-responsive center-block mb-15',
+                            'draggable': 'false',
+                            'alt': post.title
+                        }) }}
+                    {% endif %}
+
+                    {% include 'partials/post-event-data.twig' %}
+
+                    <article class="post-content">
+
+                        {#The content#}
+                        {{ post.content }}
+
+                        {#Flexible content#}
+                        {% if post.get_field('flexible_content') %}
+                            {% include 'partials/post-flexible-content.twig' %}
+                        {% endif %}
+
+                    </article>
+
+                    {#resources#}
+                    {% if (resources.url or resources.file) and not hasResourcesInBanner %}
+                        {% include 'partials/post-resources.twig' %}
+                    {% endif %}
+
+                    {#Date for books#}
+                    {% if isBook %}
+                        <hr style="border-width: 2px;border-color: #6b7a96;">
+                        <p class="f14">
+                            {{ 'Published the '~ post.date('d/m/y') }}
+                        </p>
+                    {% endif %}
+
+                    {#Plugin Juiz Social post sharer #}
+                    {% if constant('JUIZ_SPS_VERSION') is defined and (post._jsps_metabox_hide_buttons and 'off' in post._jsps_metabox_hide_buttons) %}
+                        {% include 'partials/share-buttons.twig' %}
+                    {% endif %}
+
+                    {#Related posts#}
+                    {% include 'partials/post-related.twig' %}
                 </div>
             </div>
         </div>

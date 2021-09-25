@@ -49,6 +49,16 @@ $(document).ready(function(){
         }
     });
 
+    $('.menu-hamburger').on('click', function(){
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+            $('.menu-mobile').hide(200);
+        }else{
+            $(this).addClass('active');
+            $('.menu-mobile').show(200);
+        }
+    });
+
     $('#form-post-types input').on('change', function(){
         var data = $('#form-post-types').serializeArray();
         console.log(data);
