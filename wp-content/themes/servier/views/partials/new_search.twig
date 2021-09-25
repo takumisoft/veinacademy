@@ -1,11 +1,18 @@
 <div id="zy-search" style="--thumbnail: url('{{ thumbnail }}')">
-    {% if not frontpage %}
-        <h2>{{ post.post_title }}</h2>
-    {% endif %}
+    <div class="list-post-context">
+        {% if not frontpage %}
+            <h2>{{ post.post_title }}</h2>
+        {% endif %}
+        {% if single %}
+            <p>{{ post.subtitle }}</p>
+        {% endif %}
+    </div>
+    {% if not single %}
     <div class="input-wrapper">
         <form method="GET" action="{{ site.url }}">
             <input type="text" name="s" placeholder="What are you looking for ?">
             <img src="http://localhost/vein/wp-content/themes/servier/new-assets/img/icon-lens.png">
         </form>
     </div>
+    {% endif %}
 </div>

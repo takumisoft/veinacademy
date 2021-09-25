@@ -1,6 +1,10 @@
-<div class="zy-postcard">
+<div class="zy-postcard {% if p.terms %}{% for t in p.terms %}{% if t.taxonomy == 'library-type' or t.taxonomy == 'category' %}{{ t.name|lower|replace({" ":""}) }} {% endif %}{% endfor %}{% else %}{{ p.type|lower|replace({" ":""}) }} {% endif %}">
     <div class="zy-postcard-wrapper">
-        {% if p.thumbnail %}
+        {% if p.meta('thumbnail-image') %}
+            <div class="zy-postcard-thumbnail">
+                <div class="zy-postcard-thumbnail-image" style="background-image: url({{ p.meta('thumbnail-image') }})"></div>
+            </div>
+        {% elseif p.thumbnail %}
             <div class="zy-postcard-thumbnail">
                 <div class="zy-postcard-thumbnail-image" style="background-image: url({{ p.thumbnail }})"></div>
             </div>

@@ -265,6 +265,9 @@
   letter-spacing: 0px;
   margin: auto;
 }
+.main-content.single .post-content {
+  padding-left: 100px;
+}
 
 .zy-postcard {
   position: relative;
@@ -380,7 +383,7 @@
   padding: 3.5px 6px;
 }
 
-#zy-search {
+.main-content #zy-search {
   position: relative;
   width: 100%;
   height: 232px;
@@ -390,7 +393,7 @@
   background-repeat: no-repeat;
   padding: 40px;
 }
-#zy-search h2 {
+.main-content #zy-search .list-post-context h2 {
   font-family: Heebo;
   font-style: normal;
   font-weight: normal;
@@ -398,14 +401,14 @@
   line-height: 20px;
   color: #96368b;
 }
-#zy-search .input-wrapper {
+.main-content #zy-search .input-wrapper {
   position: absolute;
   bottom: 35px;
   left: 45px;
   right: 45px;
   width: calc(100% - 90px);
 }
-#zy-search .input-wrapper input {
+.main-content #zy-search .input-wrapper input {
   width: 100%;
   font-family: Heebo;
   font-size: 14px;
@@ -416,11 +419,27 @@
   padding: 13px 17px;
   outline: none;
 }
-#zy-search .input-wrapper img {
+.main-content #zy-search .input-wrapper img {
   position: absolute;
   right: 13px;
   top: 50%;
   transform: translateY(-50%);
+}
+.main-content.single #zy-search .list-post-context h2 {
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  color: #fff;
+}
+.main-content.single #zy-search .list-post-context p {
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #fff;
 }
 
 .zy-sidebar-wrapper #zy-sidebar {

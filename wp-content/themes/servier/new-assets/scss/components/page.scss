@@ -155,4 +155,9 @@
             margin: auto;
         }
     }
+    &.single{
+        .post-content{
+            padding-left: 100px;
+        }
+    }
 }

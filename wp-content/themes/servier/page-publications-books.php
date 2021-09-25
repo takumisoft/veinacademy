@@ -8,7 +8,7 @@ $posts = [
     'post_type' => ['book', 'library'],
     'posts_per_page' => 20,
     'orderby' => 'date',
-    'order' => 'DESC'
+    'order' => 'DESC',
 ];
 
 $context['posts'] = Timber::get_posts($posts);

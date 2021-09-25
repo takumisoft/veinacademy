@@ -18,7 +18,7 @@
                     <div id="filters">
                         <p>Filter by</p>
                         {% for f in filters %}
-                            <button class="filter-item">{{ f }}</button>
+                            <button class="filter-item" data-toggle="{{ f|lower|replace({" ":""}) }}">{{ f }}</button>
                         {% endfor %}
                     </div>
                     <select id="search-sort" style="width: 216px;">

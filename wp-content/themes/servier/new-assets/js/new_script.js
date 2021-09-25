@@ -36,6 +36,18 @@ $(document).ready(function(){
         placeholder: "Sorted by"
     });
 
+    $('.filter-item').on('click', function(){
+        var toggle = $(this).attr('data-toggle');
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+            $('.zy-postcard').css('display', 'block');
+        }else{
+            $('.filter-item').removeClass('active');
+            $(this).addClass('active');
+            $('.zy-postcard').css('display', 'none');
+            $('.zy-postcard.' + toggle).css('display', 'block');
+        }
+    });
 
     $('#form-post-types input').on('change', function(){
         var data = $('#form-post-types').serializeArray();

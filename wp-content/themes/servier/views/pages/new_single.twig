@@ -1,0 +1,24 @@
+{% extends "new_base.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="zy-sidebar-wrapper">
+                <div id="zy-sidebar">
+                    {% block sidebar %}
+                        {% include "layout/new_sidebar.twig" %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="main-content single">
+                {% include "partials/new_search.twig" %}
+                <div class="post-content">
+                    {# <pre>{{ post|print_r }}</pre> #}
+                    {{ post.post_content }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
