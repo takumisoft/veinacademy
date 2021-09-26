@@ -1,33 +1,18 @@
-<?php
+<?php /* Template Name: New Homepage */ ?>
 
-
+<?php 
 $context = Timber::get_context();
-$post = Timber::query_post();
-
+$post = new TimberPost();
 $context['post'] = $post;
-
-$posts_interview = [
-    'post_type' => 'library',
-    'posts_per_page' => 4,
-    'orderby' => 'menu_order',
-    'order' => 'ASC',
-    'tax_query' => [
-        [
-            'taxonomy' => 'library-type',
-            'field'    => 'slug',
-            'terms'    => 'interviews-podcasts',
-        ],
-    ],
+$posts =  [
+    'post_type' => ['news', 'website', 'apps', 'book'],
+    'posts_per_page' => 20,
+    'orderby' => 'date',
+    'order' => 'DESC'
 ];
+$context['frontpage'] = true;
+$context['thumbnail'] = get_the_post_thumbnail_url();
+$context['base_url'] = get_template_directory_uri();
+$context['posts'] = Timber::get_posts($posts);
 
-$posts_news = [
-    'post_type' => 'news',
-    'orderby' => 'menu_order',
-    'order' => 'ASC',
-    'posts_per_page' => 4,
-];
-
-$context['posts_interviews'] = Timber::get_posts($posts_interview);
-$context['posts_news'] = Timber::get_posts($posts_news);
-
-Timber::render('views/pages/home.twig', $context);
+Timber::render('views/pages/new_home.twig', $context);

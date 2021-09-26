@@ -13,10 +13,6 @@
         <div class="col-sm-8">
             <div class="main-content single">
                 {% include "partials/new_search.twig" %}
-                <div class="post-content-publication">
-                    {# <pre>{{ post|print_r }}</pre> #}
-                    {{ post.post_content }}
-                </div>
                 <div class="post-content">
                     {% if post.file_video and not post.is_embed_enabled %}
                         <!-- 16:9 aspect ratio -->
