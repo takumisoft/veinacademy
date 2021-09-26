@@ -1,5 +1,6 @@
 {% extends "new_base.twig" %}
 {% block content %}
+{{page.url}}
     <div class="row">
         <div class="col-sm-3">
             <div class="zy-sidebar-wrapper">
@@ -19,7 +20,10 @@
                     <div id="filters">
                         <p>Filter by</p>
                         {% for f in filters %}
-                            <button class="filter-item" data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</button>
+                            <a 
+                            href="{% if f.slug != filt %}{{ clean_url }}?filter={{ f.slug }}{% else %}{{ clean_url }}{% endif %}" 
+                            class="filter-item {% if f.slug == filt %}active{% endif %}" 
+                            data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</a>
                         {% endfor %}
                     </div>
                     <select id="search-sort" style="--d-width: 216px; --m-width: 150px">
@@ -41,6 +45,25 @@
                             with p|array %}
                     {% endfor %}
                 </div>
+            </div>
+            <div class="tool-pagination">
+                {% if posts.pagination.prev %}
+                    <a href="{{ posts.pagination.prev.link }}" class="prev {{ posts.pagination.prev.link|length ? '' : 'invisible' }}">Prev</a>
+                {% endif %}
+                <ul class="pages">
+                    {% for page in posts.pagination.pages %}
+                        <li>
+                            {% if page.link %}
+                                <a href="{{ page.link }}" class="{{ page.class }}">{{page.title}}</a>
+                            {% else %}
+                                <span class="{{ page.class }}">{{ page.title }}</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% if posts.pagination.next %}
+                    <a href="{{ posts.pagination.next.link }}" class="next {{ posts.pagination.next.link|length ? '' : 'invisible' }}">Next</a>
+                {% endif %}
             </div>
         </div>
     </div>

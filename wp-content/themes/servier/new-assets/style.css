@@ -353,6 +353,30 @@
   margin-top: 20px;
 }
 
+.tool-pagination {
+  display: flex;
+  align-items: center;
+}
+.tool-pagination ul {
+  display: flex;
+  list-style: none;
+  -webkit-padding-start: 0px;
+  margin: 7px;
+}
+.tool-pagination ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.tool-pagination ul li .page-number {
+  padding: 5px 20px;
+  border: 1px solid #2e71b5;
+  border-radius: 5px;
+}
+.tool-pagination ul li .page-number.current {
+  background: #2e71b5;
+  color: #fff;
+}
+
 .zy-postcard {
   position: relative;
   margin-bottom: 16px;

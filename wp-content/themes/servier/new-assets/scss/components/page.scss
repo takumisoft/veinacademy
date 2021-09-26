@@ -170,3 +170,26 @@
         }
     }
 }
+.tool-pagination{
+    display: flex;
+    align-items: center;
+    ul{
+        display: flex;
+        list-style: none;
+        -webkit-padding-start: 0px;
+        margin: 7px;
+        li{
+            display: inline-block;
+            margin-right: 10px;
+            .page-number{
+                padding: 5px 20px;
+                border: 1px solid #2e71b5;
+                border-radius: 5px;
+                &.current{
+                    background: #2e71b5;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
