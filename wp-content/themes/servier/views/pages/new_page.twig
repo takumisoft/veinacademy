@@ -14,11 +14,12 @@
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 {# <pre>{{posts|print_r}}</pre> #}
+                {# <pre>{{filters|print_r}}</pre> #}
                 <div class="results-sorting">
                     <div id="filters">
                         <p>Filter by</p>
                         {% for f in filters %}
-                            <button class="filter-item" data-toggle="{{ f|lower|replace({" ":""}) }}">{{ f }}</button>
+                            <button class="filter-item" data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</button>
                         {% endfor %}
                     </div>
                     <select id="search-sort" style="--d-width: 216px; --m-width: 150px">
