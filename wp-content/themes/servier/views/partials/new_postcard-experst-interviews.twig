@@ -25,12 +25,10 @@
         {% endif %}
         <div class="zy-postcard-content">
             <div class="zy-postcard-post-type">
-                {# <pre>{{ p|print_r }}</pre> #}
+                {# <pre>{{ p.terms|print_r }}</pre> #}
                 {% if p.terms %}
                     {% for t in p.terms %}
-                        {% if t.parent != '0' %}
-                            <span>{{ t.name }}</span>
-                        {% elseif t.taxonomy == 'category' %}
+                        {% if t.parent == '0' and t.taxonomy != 'speaker' %}
                             <span>{{ t.name }}</span>
                         {% endif %}
                     {% endfor %}

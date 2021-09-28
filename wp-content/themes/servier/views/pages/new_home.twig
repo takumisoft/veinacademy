@@ -1,7 +1,7 @@
 {% extends "new_base.twig" %}
 {% block content %}
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="zy-sidebar-wrapper">
                 <div id="zy-sidebar">
                     {% block sidebar %}
@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8 col-sm-12">
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 <h2 class="section-title">What's new on Vein Academy</h2>
@@ -51,6 +51,9 @@
                     {% endfor %}
                 </div>
             </div>
+            {% if posts.pagination.total > 1 %}
+                {% include "partials/new_pagination.twig" %}
+            {% endif %}
         </div>
     </div>
     

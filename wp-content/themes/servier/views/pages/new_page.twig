@@ -2,7 +2,7 @@
 {% block content %}
 {{page.url}}
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="zy-sidebar-wrapper">
                 <div id="zy-sidebar">
                     {% block sidebar %}
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8 col-sm-12">
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 {# <pre>{{posts|print_r}}</pre> #}
@@ -46,25 +46,9 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="tool-pagination">
-                {% if posts.pagination.prev %}
-                    <a href="{{ posts.pagination.prev.link }}" class="prev {{ posts.pagination.prev.link|length ? '' : 'invisible' }}">Prev</a>
-                {% endif %}
-                <ul class="pages">
-                    {% for page in posts.pagination.pages %}
-                        <li>
-                            {% if page.link %}
-                                <a href="{{ page.link }}" class="{{ page.class }}">{{page.title}}</a>
-                            {% else %}
-                                <span class="{{ page.class }}">{{ page.title }}</span>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-                {% if posts.pagination.next %}
-                    <a href="{{ posts.pagination.next.link }}" class="next {{ posts.pagination.next.link|length ? '' : 'invisible' }}">Next</a>
-                {% endif %}
-            </div>
+            {% if posts.pagination.total > 1 %}
+                {% include "partials/new_pagination.twig" %}
+            {% endif %}
         </div>
     </div>
     

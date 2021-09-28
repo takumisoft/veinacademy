@@ -39,7 +39,7 @@ $context['pagination'] = Timber::get_pagination([
 	'end_size' => 1,
 	'mid_size' => 2,
 ]);
-
+print_r($context['pagination']);
 $context['posts'] = new Timber\PostQuery($posts);
 $filters = get_terms('library-type', array('parent' => '11'));
 $context['filters'] = $filters;
@@ -55,4 +55,4 @@ $clean_url = explode('?', $no_page_url)[0];
 $context['clean_url'] = $clean_url;
 
 
-Timber::render('views/pages/new_page.twig', $context);
+Timber::render('views/pages/page-experts-interviews.twig', $context);

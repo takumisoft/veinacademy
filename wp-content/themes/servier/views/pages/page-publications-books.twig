@@ -49,6 +49,9 @@
                     {% endfor %}
                 </div>
             </div>
+            {% if posts.pagination.total > 1 %}
+                {% include "partials/new_pagination.twig" %}
+            {% endif %}
         </div>
     </div>
     

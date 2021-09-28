@@ -1,5 +1,6 @@
 {% extends "new_base.twig" %}
 {% block content %}
+{{page.url}}
     <div class="row">
         <div class="col-sm-3">
             <div class="zy-sidebar-wrapper">
@@ -14,44 +15,40 @@
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 {# <pre>{{posts|print_r}}</pre> #}
-                {% if posts.found_posts > 0 %}
+                {# <pre>{{filters|print_r}}</pre> #}
                 <div class="results-sorting">
                     <div id="filters">
                         <p>Filter by</p>
-                        {% for term in terms %}
-                            <div class="filter-item">{{ term }}</div>
+                        {% for f in filters %}
+                            <a 
+                            href="{% if f.slug != filt %}{{ clean_url }}?filter={{ f.slug }}{% else %}{{ clean_url }}{% endif %}" 
+                            class="filter-item {% if f.slug == filt %}active{% endif %}" 
+                            data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</a>
                         {% endfor %}
                     </div>
-                    <select id="search-sort" style="width: 216px;">
+                    <select id="search-sort" style="--d-width: 216px; --m-width: 150px">
                         <option></option>
-                        <option>Newest</option>
-                        <option>Oldest</option>
-                        <option>Most Popular</option>
+                        <option value="DESC">Newest</option>
+                        <option value="ASC">Oldest</option>
+                        <option value="VIEWS">Most Popular</option>
                     </select>
                 </div>
-                
-                <p class="results-query">{{posts.found_posts}} results for: {{search_query}}</p>
                 <div class="best-content">
                     {% for p in posts %}
-                        {% include "partials/new_postcard.twig"
+                        {% include "partials/new_postcard-experst-interviews.twig"
                             with p|array %}
                     {% endfor %}
                 </div>
-                {% else %}
-                    <div class="no-posts-found">
-                        <div class="no-posts-found-image"><img src="{{ base_url }}/new-assets/img/no-posts.png"></div>
-                        <h3>Sorry we couldn’t find any matches for “Daflon”</h3>
-                        <p>Please try searching or filter with another term</p>
-                    </div>
-                    <h2 class="section-title">Our most popular content</h2>
-                    <div class="most-popular">
-                        {% for p in no_posts %}
-                            {% include "partials/new_postcard.twig"
-                                with p|array %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
+                <div class="the-posts">
+                    {% for p in no_posts %}
+                        {% include "partials/new_postcard-experst-interviews.twig"
+                            with p|array %}
+                    {% endfor %}
+                </div>
             </div>
+            {% if posts.pagination.total > 1 %}
+                {% include "partials/new_pagination.twig" %}
+            {% endif %}
         </div>
     </div>
     
