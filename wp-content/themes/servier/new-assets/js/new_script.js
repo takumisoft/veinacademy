@@ -1,4 +1,21 @@
 $(document).ready(function(){
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+        return false;
+    };
+
     if (($(window).scrollTop()) > 100) {
         $('#zy-sidebar').addClass('active');
         $('#zy-sidebar img').addClass('active');
@@ -41,13 +58,18 @@ $(document).ready(function(){
     });
 
     $('#search-sort').on('change', function(){
+        let search_parameter = getUrlParameter('s');
         if($(this).val() == 'VIEWS'){
-            var ext = '?orderby=popular&order=DESC';
+            var ext = '?orderby=popular&order=DESC&s=' + search_parameter;
         }else{
-            var ext = '?orderby=date&order=' + $(this).val();
+            var ext = '?orderby=date&order=' + $(this).val() + '&s=' + search_parameter;
         }
         var link = window.location.href.split('?')[0];
         var linkfull = link + ext;
+
+        console.log( 'views: ' + $(this).val() );
+        console.log( 'linkfull: ' + linkfull );
+
         window.location.href = linkfull;
     });
 
