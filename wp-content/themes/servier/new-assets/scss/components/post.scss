@@ -131,3 +131,58 @@
         }
     }
 }
+.best-content.experts-interviews{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: -71px;
+    .zy-postcard{
+        margin-bottom: 45px;
+        flex-basis: 30%;
+        .zy-postcard-wrapper{
+            border: none;
+            flex-direction: column;
+            background: transparent;
+            .zy-postcard-post-type{
+                font-size: 12px;
+                font-family: Roboto;
+                span{
+                    text-transform: capitalize;
+                    color: #8B3E87;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 14px;
+                    letter-spacing: 0px;
+                }
+            }
+            .zy-postcard-thumbnail{
+                flex-basis: 135px;
+                .zy-postcard-thumbnail-image{
+                    height: 135px;
+                    border-radius: 4px;
+                    position: relative;
+                    a{
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+            }
+            .zy-postcard-content{
+                padding: 5px 0px 25px;
+                h3{
+                    font-family: Heebo;
+                    font-style: normal;
+                    font-weight: 400;
+                    letter-spacing: 0px;
+                    text-align: left;
+                    margin-bottom: 10px;
+                    font-size: 18px;
+                    font-weight: 300;
+                    line-height: 1.3;
+                }
+            }
+        }
+    }
+}

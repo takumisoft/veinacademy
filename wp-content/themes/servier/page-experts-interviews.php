@@ -22,7 +22,7 @@ if(!isset($_GET['filter']) || !$_GET['filter']){
 
 $posts = [
     'post_type' => 'library',
-    'posts_per_page' => 10,
+    'posts_per_page' => 9,
     'orderby' => 'date',
     'order' => 'DESC',
     'paged' => $paged,
@@ -39,7 +39,6 @@ $context['pagination'] = Timber::get_pagination([
 	'end_size' => 1,
 	'mid_size' => 2,
 ]);
-print_r($context['pagination']);
 $context['posts'] = new Timber\PostQuery($posts);
 $filters = get_terms('library-type', array('parent' => '11'));
 $context['filters'] = $filters;
