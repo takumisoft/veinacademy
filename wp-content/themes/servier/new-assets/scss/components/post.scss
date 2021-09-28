@@ -138,6 +138,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: -71px;
+    @media (max-width: 992px){
+        flex-direction: column;
+    }
     .zy-postcard{
         margin-bottom: 45px;
         flex-basis: 30%;
