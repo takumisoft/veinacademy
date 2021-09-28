@@ -1,6 +1,6 @@
 {% if new_menu %}
     <ul>
-        <li><a href="{{ site.url }}"><img src="http://localhost/vein/wp-content/themes/servier/assets/img/new-logo.png"></a></li>
+        <li><a href="{{ site.url }}"><img src="{{ base_url }}/new-assets/img/new-logo.png"></a></li>
         {% for item in new_menu.get_items %}
             <li><a href="{{ site.url }}{{ item.link }}">{{ item.name }}</a></li>
         {% endfor %}

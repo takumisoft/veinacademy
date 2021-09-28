@@ -37,7 +37,12 @@
                     {% include 'partials/post-event-data.twig' %}
 
                     <article class="post-content">
-
+                        {#publication url#}
+                        {% if post.meta('publication_url') %}
+                            <div class="publication-url">
+                                <a href="{{ post.meta('publication_url') }}">Read the full text <img src="{{ base_url }}/new-assets/img/_blank.png"></a>
+                            </div>
+                        {% endif %}
                         {#The content#}
                         {{ post.content }}
 
@@ -47,7 +52,6 @@
                         {% endif %}
 
                     </article>
-
                     {#resources#}
                     {% if (resources.url or resources.file) and not hasResourcesInBanner %}
                         {% include 'partials/post-resources.twig' %}

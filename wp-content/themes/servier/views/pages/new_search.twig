@@ -21,11 +21,11 @@
                         <div class="search-post-types-options">
                             <div class="placeholder-sim">Type of content <div class="arrow opened"><img src="{{ base_url }}/new-assets/img/select-arrow.png"></div></div>
                             <form id="form-post-types">
-                            {% for option in options %}
-                                <label for="{{ option }}" class="post-types-label">
-                                    <input id="{{ option }}" type="checkbox" name="post-types" value="{{ option }}">
+                            {% for tag in tags %}
+                                <label for="{{ tag.name }}" class="post-types-label">
+                                    <input id="{{ tag.name }}" type="checkbox" name="post-types" value="{{ tag.slug }}">
                                     <div class="post-types-checkbox"></div>
-                                    <label for={{ option }}>{{ option }}</label>
+                                    <label for={{ tag.name }}>{{ tag.name }}</label>
                                 </label>
                             {% endfor %}
                             </form>

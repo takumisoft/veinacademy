@@ -203,6 +203,7 @@
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .main-content .results-sorting #search-post-types {
   position: relative;
@@ -352,6 +353,21 @@
 .main-content.single .post-content {
   margin-top: 20px;
 }
+.main-content.single .post-content .publication-url {
+  background: #015d9e;
+  text-align: center;
+  padding: 22px;
+}
+.main-content.single .post-content .publication-url a {
+  color: #fff;
+  text-decoration: none;
+  font-family: Heebo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
 
 .tool-pagination {
   display: flex;
@@ -405,7 +421,8 @@
 }
 @media (max-width: 768px) {
   .zy-postcard .zy-postcard-wrapper .zy-postcard-thumbnail .zy-postcard-thumbnail-image {
-    height: 200px;
+    height: 135px;
+    background-size: 50%;
   }
 }
 .zy-postcard .zy-postcard-wrapper .zy-postcard-content {
