@@ -16,12 +16,12 @@
 
         <aside class="post-related">
             <h3 class="post-related__title"> {{ __('Other ') ~ term_label }}</h3>
-            <div class="row">
+            <div class="post-related-library">
 
                 {% set teaser_type = post.type == 'library' ? 'library' : 'default' %}
 
                 {% for related_post in related_posts %}
-                    <article class="col-sm-4">
+                    <article class="post-related-item">
                         {% include 'partials/teaser-'~teaser_type~'.twig' with {
                             post : TimberPost(related_post)
                         } %}

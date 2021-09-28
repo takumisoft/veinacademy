@@ -554,14 +554,15 @@
   margin: 0px;
   padding: 3.5px 6px;
 }
-.zy-postcard .zy-postcard-readmore {
+
+.zy-postcard-readmore {
   position: absolute;
   bottom: 0px;
   right: 0px;
   background: #2E71B5;
   border-radius: 8px 0px 3px;
 }
-.zy-postcard .zy-postcard-readmore h4 {
+.zy-postcard-readmore h4 {
   font-family: Heebo;
   font-size: 12px;
   font-style: normal;
@@ -627,6 +628,18 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 1.3;
+}
+
+.post-related-library {
+  display: flex;
+  justify-content: space-between;
+}
+.post-related-library .post-related-item {
+  flex-basis: 30%;
+  position: relative;
+}
+.post-related-library .post-related-item .teaser-library {
+  padding-bottom: 30px;
 }
 
 .main-content #zy-search {
