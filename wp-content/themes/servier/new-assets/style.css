@@ -642,6 +642,11 @@
   padding-bottom: 30px;
 }
 
+h3.post-related__title {
+  color: #96368b;
+  border-color: #96368b;
+}
+
 .main-content #zy-search {
   position: relative;
   width: 100%;
