@@ -83,8 +83,33 @@ $(document).ready(function(){
         }
     });
 
+    function getSearchParameters() {
+        var prmstr = window.location.search.substr(1);
+        return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+    }
+    
+    function transformToAssocArray( prmstr ) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for ( var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
+
     $('#form-post-types input').on('change', function(){
         var data = $('#form-post-types').serializeArray();
-        console.log(data);
+        var url = window.location.href.split('?')[0];
+        var params = getSearchParameters();
+        for(var i = 0; i < data.length; i++){
+            params[data[i].value] = 1;
+        }
+        var newlink = [];
+        for(param in params){
+            newlink.push(param+'='+params[param]);
+        }
+        newlink = newlink.join('&');
+        window.location.href = url + '?' + newlink;
     });
 });

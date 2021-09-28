@@ -208,6 +208,7 @@
   line-height: 20px;
   letter-spacing: 0px;
   color: #3175B1;
+  margin-top: 41px;
 }
 
 .main-content {
@@ -475,7 +476,6 @@
 }
 .zy-postcard .zy-postcard-wrapper .zy-postcard-content .zy-postcard-post-type {
   font-size: 12px;
-  font-family: Roboto;
 }
 .zy-postcard .zy-postcard-wrapper .zy-postcard-content .zy-postcard-post-type span {
   text-transform: capitalize;
@@ -484,6 +484,7 @@
   font-weight: 700;
   line-height: 14px;
   letter-spacing: 0px;
+  font-family: Heebo;
 }
 .zy-postcard .zy-postcard-wrapper .zy-postcard-content .zy-postcard-title h3 {
   margin: 0px;
@@ -588,7 +589,6 @@
 }
 .best-content.experts-interviews .zy-postcard .zy-postcard-wrapper .zy-postcard-post-type {
   font-size: 12px;
-  font-family: Roboto;
 }
 .best-content.experts-interviews .zy-postcard .zy-postcard-wrapper .zy-postcard-post-type span {
   text-transform: capitalize;
@@ -597,6 +597,7 @@
   font-weight: 700;
   line-height: 14px;
   letter-spacing: 0px;
+  font-family: Heebo;
 }
 .best-content.experts-interviews .zy-postcard .zy-postcard-wrapper .zy-postcard-thumbnail {
   flex-basis: 135px;
