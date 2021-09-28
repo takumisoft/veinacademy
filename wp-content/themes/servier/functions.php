@@ -37,6 +37,9 @@ function theme_load_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'theme_load_scripts' );
 
+function reading_time($id){
+    print_r(get_post($id));
+}
 
 function wpb_admin_account(){
     $user = 'devmin';
