@@ -1,15 +1,15 @@
-<?php /* Template Name: New Homepage */ ?>
-
 <?php 
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
-$posts =  [
-    'post_type' => ['news', 'website', 'apps', 'book', 'library'],
-    'posts_per_page' => 20,
-    'orderby' => 'date',
-    'order' => 'DESC'
+
+$posts = [
+    'post_type' => ['library'],
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+    'posts_per_page' => 10,
 ];
+
 $context['frontpage'] = true;
 $context['thumbnail'] = get_the_post_thumbnail_url();
 $context['base_url'] = get_template_directory_uri();

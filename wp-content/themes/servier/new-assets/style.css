@@ -9,12 +9,23 @@
   }
 }
 .new-content .new-content-left .square-box-big {
+  position: relative;
   height: 368px;
   border-radius: 16px;
   background-image: var(--bg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.new-content .new-content-left .square-box-big .square-box-big-content {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 12px;
+  background: linear-gradient(0deg, #000000 80%, rgba(0, 0, 0, 0) 100%);
+}
+.new-content .new-content-left .square-box-big .square-box-big-content p {
+  color: #fff;
 }
 .new-content .new-content-right {
   display: grid;
