@@ -1,4 +1,23 @@
 {% extends "new_base.twig" %}
+
+{% set isPageAbout = post.id == 115 or post.parent.id == 115 %}
+
+{% block body_class %}
+    {% if isPageAbout %}
+        {{ parent()~ 'page-about' }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{#Page About#}
+{% set hasSide = isPageAbout or post.subtitle %}
+
+{% set resources = post.get_field('resources') %}
+
+{% set editorial_chief = post.get_field('editorial_chief_relationship') %}
+{% set editorial_board = post.get_field('editorial_board_relationship') %}
+
 {% block content %}
 {{page.url}}
     <div class="row">
@@ -12,17 +31,64 @@
             </div>
         </div>
         <div class="col-md-8 col-sm-12">
+			{% set banner_title = isPageAbout ? 'About' : post.title %}
+
+			{% set post_children = post.children ? post.children : post.parent ? post.parent.children : null %}
             <div class="main-content">
                 <div class="banner-hero banner--white" data-bg="https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://vein-academy.servier.com/wp-content/themes/servier/assets/img/banner/banner-default.jpg" style="background-image: url({{ post.thumbnail }})">
 					<h1 class="banner-hero__title"> About</h1>
                 </div>
 				{% include 'partials/post-children.twig' %}
 				<h1 class="post-content__side-title">{{ post.title }}</h1>
-				<div class="content content--page">
-					<div class="post-content">
-						{{ post.content }}
+				<article class="post-content">
+                        {#The content#}
+                        {{ post.content }}
+
+                        {#Flexible content#}
+                        {% if post.get_field('flexible_content') %}
+                            {% include 'partials/post-flexible-content.twig' %}
+                        {% endif %}
+
+                    </article>
+				{#Editors#}
+				{% if editorial_chief %}
+					<div class="editorial-board">
+						<h2 class="editorial-board__heading">{{ 'Editorial Chief' }}</h2>
+						{% for row in editorial_chief|batch(2) %}
+							<div class="row row-spacing-40">
+								{% for member in row %}
+									<div class="col-sm-6">
+										{% include 'partials/teaser-editorial-board.twig' with {
+											post : member
+										} %}
+									</div>
+								{% endfor %}
+							</div>
+						{% endfor %}
 					</div>
-				</div>
+				{% endif %}
+
+				{% if editorial_board %}
+					<div class="editorial-board">
+						<h2 class="editorial-board__heading">{{ 'Editorial Board' }}</h2>
+						{% for row in editorial_board|batch(2) %}
+							<div class="row row-spacing-40">
+								{% for member in row %}
+									<div class="col-sm-6">
+										{% include 'partials/teaser-editorial-board.twig' with {
+											post : member
+										} %}
+									</div>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</div>
+				{% endif %}
+
+				{#resources#}
+				{% if (resources.url or resources.file) and not isPageAbout %}
+					{% include 'partials/post-resources.twig' %}
+				{% endif %}
             </div>
         </div>
     </div>
