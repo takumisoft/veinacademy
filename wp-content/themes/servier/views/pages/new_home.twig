@@ -23,35 +23,35 @@
                 
                 <div class="new-content">
                     <div class="new-content-left">
-                        <div class="square-box-big" style="--bg: url({{ post1.meta('thumbnail-image') }});">
+                        <a href="{{ post1.link }}" class="square-box-big" style="--bg: url({{ post1.meta('thumbnail-image') }});">
                             <div class="square-box-big-content">
                                 <p class="date">{{ post1.date }}</p>
                                 <p class="title">{{ post1.title }}</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="new-content-right">
                         <div class="new-content-right-top">
-                            <div class="square-box-small" style="--bg: url({{ post2.meta('thumbnail-image') }});">
+                            <a href="{{ post2.link }}" class="square-box-small" style="--bg: url({{ post2.meta('thumbnail-image') }});">
                                 <div class="square-box-content">
                                     <p class="date">{{ post2.date }}</p>
                                 <p class="title">{{ post2.title }}</p>
                                 </div>
-                            </div>
-                            <div class="square-box-small" style="--bg: url({{ post3.meta('thumbnail-image') }});">
+                            </a>
+                            <a href="{{ post3.link }}" class="square-box-small" style="--bg: url({{ post3.meta('thumbnail-image') }});">
                                 <div class="square-box-content">
                                     <p class="date">{{ post3.date }}</p>
                                 <p class="title">{{ post3.title }}</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="new-content-right-bottom">
-                            <div class="square-box-long" style="--bg: url({{ post4.meta('thumbnail-image') }});">
+                            <a href="{{ post4.link }}" class="square-box-long" style="--bg: url({{ post4.meta('thumbnail-image') }});">
                                 <div class="square-box-content">
                                     <p class="date">{{ post4.date }}</p>
                                 <p class="title">{{ post4.title }}</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

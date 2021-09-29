@@ -7,6 +7,7 @@
     }
     .new-content-left{
         .square-box-big{
+            display: block;
             position: relative;
             height: 368px;
             border-radius: 16px;
@@ -36,6 +37,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             .square-box-small{
+                display: block;
                 position: relative;
                 height: 180px;
                 border-radius: 16px;
@@ -75,6 +77,7 @@
             }
         }
         .square-box-long{
+            display: block;
             position: relative;
             height: 180px;
             border-radius: 16px;
