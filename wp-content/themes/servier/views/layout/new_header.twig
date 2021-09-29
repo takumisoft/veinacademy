@@ -10,7 +10,11 @@
     {% if new_menu %}
         <ul>
             {% for item in new_menu.get_items %}
-                <li><a href="{{ site.url }}{{ item.link }}">{{ item.name }}</a></li>
+                {% if item.name == 'Contact' %}
+                    <li><a href="{{ item.link }}">{{ item.name }}</li>
+                {% else %}
+                    <li><a href="{{ site.url }}{{ item.link }}">{{ item.name }}</a></li>
+                {% endif %}
             {% endfor %}
         </ul>
     {% endif %}
