@@ -52,20 +52,22 @@
                             'alt': post.title
                         }) }}
                     {% endif %}
-
-                {# {% include "partials/new_search.twig" %} #}
                 <div class="post-content">
                     {% include 'partials/post-event-data.twig' %}
 
                     <article class="post-content">
+                        {#The content#}
+                        {{ post.content }}
+
                         {#publication url#}
                         {% if post.meta('publication_url') %}
                             <div class="publication-url">
                                 <a href="{{ post.meta('publication_url') }}">Read the full text <img src="{{ base_url }}/new-assets/img/_blank.png"></a>
                             </div>
                         {% endif %}
-                        {#The content#}
-                        {{ post.content }}
+
+                        {#social buttons#}
+                        {{ function('do_shortcode', '[social_warfare buttons="twitter,linkedin,facebook,mix"]') }}
 
                         {#Flexible content#}
                         {% if post.get_field('flexible_content') %}
