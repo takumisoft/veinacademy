@@ -14,7 +14,7 @@
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 {# <pre>{{posts|print_r}}</pre> #}
-                {% if posts.found_posts > 0 %}
+                
                 <div class="results-sorting">
                     <div id="search-post-types">
                         <div class="search-post-types-holder">Type of content</div>
@@ -39,7 +39,7 @@
                         <option>Most Popular</option>
                     </select>
                 </div>
-                
+                {% if posts.found_posts > 0 %}
                 <p class="results-query">{{posts.found_posts}} results for: {{search_query}}</p>
                 <div class="best-content">
                     {% for p in posts %}
