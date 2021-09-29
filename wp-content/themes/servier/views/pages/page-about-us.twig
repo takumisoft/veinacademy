@@ -1,0 +1,30 @@
+{% extends "new_base.twig" %}
+{% block content %}
+{{page.url}}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="zy-sidebar-wrapper">
+                <div id="zy-sidebar">
+                    {% block sidebar %}
+                        {% include "layout/new_sidebar.twig" %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="main-content">
+                <div class="banner-hero banner--white" data-bg="https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://vein-academy.servier.com/wp-content/themes/servier/assets/img/banner/banner-default.jpg" style="background-image: url({{ post.thumbnail }})">
+					<h1 class="banner-hero__title"> About</h1>
+                </div>
+				{% include 'partials/post-children.twig' %}
+				<h1 class="post-content__side-title">{{ post.title }}</h1>
+				<div class="content content--page">
+					<div class="post-content">
+						{{ post.content }}
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
