@@ -1,4 +1,5 @@
 {% extends "new_base.twig" %}
+
 {% block content %}
     <div class="row">
         <div class="col-md-3">
@@ -14,35 +15,41 @@
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 <h2 class="section-title">What's new on Vein Academy</h2>
+                
+                {% set post1 = new_posts.0 %}
+                {% set post2 = new_posts.1 %}
+                {% set post3 = new_posts.2 %}
+                {% set post4 = new_posts.3 %}
+                
                 <div class="new-content">
                     <div class="new-content-left">
-                        <div class="square-box-big" style="--bg: url({{ base_url }}/new-assets/img/new-content-4.png);">
+                        <div class="square-box-big" style="--bg: url({{ post1.meta('thumbnail-image') }});">
                             <div class="square-box-big-content">
-                                <p class="date">20 october 2020</p>
-                                <p class="title">Hemorrhoidal disease and chronic venous insufficiency: results of the CHORUS study</p>
+                                <p class="date">{{ post1.date }}</p>
+                                <p class="title">{{ post1.title }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="new-content-right">
                         <div class="new-content-right-top">
-                            <div class="square-box-small" style="--bg: url({{ base_url }}/new-assets/img/new-content-3.png);">
+                            <div class="square-box-small" style="--bg: url({{ post2.meta('thumbnail-image') }});">
                                 <div class="square-box-content">
-                                    <p class="date">20 october 2020</p>
-                                    <p class="title">Eberhard Rabe , Catherine Rébde</p>
+                                    <p class="date">{{ post2.date }}</p>
+                                <p class="title">{{ post2.title }}</p>
                                 </div>
                             </div>
-                            <div class="square-box-small" style="--bg: url({{ base_url }}/new-assets/img/new-content-2.png);">
+                            <div class="square-box-small" style="--bg: url({{ post3.meta('thumbnail-image') }});">
                                 <div class="square-box-content">
-                                    <p class="date">20 october 2020</p>
-                                    <p class="title">Eberhard Rabe , Catherine Rébde</p>
+                                    <p class="date">{{ post3.date }}</p>
+                                <p class="title">{{ post3.title }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="new-content-right-bottom">
-                            <div class="square-box-long" style="--bg: url({{ base_url }}/new-assets/img/new-content-4.png);">
+                            <div class="square-box-long" style="--bg: url({{ post4.meta('thumbnail-image') }});">
                                 <div class="square-box-content">
-                                    <p class="date">20 october 2020</p>
-                                    <p class="title">Eberhard Rabe , Catherine Rébde</p>
+                                    <p class="date">{{ post4.date }}</p>
+                                <p class="title">{{ post4.title }}</p>
                                 </div>
                             </div>
                         </div>
