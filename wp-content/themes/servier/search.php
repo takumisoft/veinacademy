@@ -6,7 +6,19 @@ $context = Timber::get_context();
 $context['title'] = 'The first content platform specialized in chronic venous disease and hemorrhoidal disease';
 $context['search_query'] = get_search_query();
 
+$link = $_SERVER["REQUEST_URI"];
+$uris = explode('/', $link);
+for($i = 0; $i < count($uris); $i++){
+    if($uris[$i] == 'page'){
+        $paged = $uris[$i + 1];
+    }
+}
+if(!isset($paged) || !$paged){
+    $paged = 1;
+}
+
 $posts = [
+    'post_type' => 'book',
     'posts_per_page' => 10,
     'orderby' => 'date',
     'order' => 'DESC',
@@ -28,10 +40,7 @@ foreach($context['posts'] as $p){
     }
 }
 $context['tags'] = $tags;
-$context['pagination'] = Timber::get_pagination([
-    'end_size' => 1,
-    'mid_size' => 2,
-]);
+$context['pagination'] = Timber::get_pagination();
 
 $post_types = array();
 foreach($context['posts'] as $post){

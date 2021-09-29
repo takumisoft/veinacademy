@@ -13,6 +13,27 @@
             height: 180px;
             padding: 20px;
         }
+        &.vein-news{
+            .list-post-context{
+                h2{
+                    color: #fff;
+                }
+            }
+        }
+        &.publications-books{
+            .list-post-context{
+                h2{
+                    color: #f39325;
+                }
+            }
+        }
+        &.apps-websites{
+            .list-post-context{
+                h2{
+                    color: #00b3bb;
+                }
+            }
+        }
         .list-post-context{
             h2{
                 font-family: Heebo;

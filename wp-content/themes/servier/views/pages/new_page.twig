@@ -16,13 +16,15 @@
                 {% include "partials/new_search.twig" %}
                 <div class="results-sorting">
                     <div id="filters">
-                        <p>Filter by</p>
-                        {% for f in filters %}
-                            <a 
-                            href="{% if f.slug != filt %}{{ clean_url }}?filter={{ f.slug }}{% else %}{{ clean_url }}{% endif %}" 
-                            class="filter-item {% if f.slug == filt %}active{% endif %}" 
-                            data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</a>
-                        {% endfor %}
+                        {% if filters %}
+                            <p>Filter by</p>
+                            {% for f in filters %}
+                                <a 
+                                href="{% if f.slug != filt %}{{ clean_url }}?filter={{ f.slug }}{% else %}{{ clean_url }}{% endif %}" 
+                                class="filter-item {% if f.slug == filt %}active{% endif %}" 
+                                data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</a>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <select id="search-sort" style="--d-width: 216px; --m-width: 150px">
                         <option></option>

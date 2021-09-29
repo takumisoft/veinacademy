@@ -38,6 +38,8 @@ $context['pagination'] = Timber::get_pagination([
 	'mid_size' => 2,
 ]);
 
+
+$context['posts_type'] = 'publications-books';
 $context['posts'] = new Timber\PostQuery($posts);
 $filters = get_terms('library-type', array('parent' => '52'));
 $context['filters'] = $filters;

@@ -43,8 +43,7 @@
                 <p class="results-query">{{posts.found_posts}} results for: {{search_query}}</p>
                 <div class="best-content">
                     {% for p in posts %}
-                        {% include "partials/new_postcard.twig"
-                            with p|array %}
+                        {% include "partials/new_postcard.twig" %}
                     {% endfor %}
                 </div>
                 {% else %}

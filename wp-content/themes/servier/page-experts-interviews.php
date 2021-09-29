@@ -39,6 +39,8 @@ $context['pagination'] = Timber::get_pagination([
 	'end_size' => 1,
 	'mid_size' => 2,
 ]);
+
+$context['posts_type'] = 'experts-interviews';
 $context['posts'] = new Timber\PostQuery($posts);
 $filters = get_terms('library-type', array('parent' => '11'));
 $context['filters'] = $filters;

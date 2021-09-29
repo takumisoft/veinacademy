@@ -1,0 +1,57 @@
+{# <pre>{{ post|print_r }}</pre> #}
+{% if post.post_type in ['website', 'apps', 'library', 'news'] %}
+
+	{% if post.post_type == 'library' %}
+		<div class="banner-post banner--library ">
+			<h1 class="banner-post__title">{{ post.title }}</h1>
+			<p>{{ post.subtitle }}</p>
+		</div>
+	{% endif %}
+
+	{% if post.post_type == 'website' %}
+		<div class="banner-post-image banner--website ">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1 class="banner-post-image__title"> {{ post.title }}</h1>
+					<p class="banner-post-image__subtitle"> {{ post.subtitle }}</p> 				
+					<a class="banner-post-image__btn btn btn-lg btn-white" href="{{ post.meta('resources_url') }}" rel="nofollow" target="_blank"> Visit site <small class="icon-custom-link ml20"></small> </a>
+				</div>
+				<div class="col-sm-6">
+					<div class="banner-figure banner-figure--website">
+						<div class="banner-figure__inner">
+							<img src="{{ post.thumbnail }}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+	{% if post.post_type == 'apps' %}
+		<div class="banner-post-image banner--apps ">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1 class="banner-post-image__title"> {{ post.title }}</h1>
+					<p class="banner-post-image__subtitle"> {{ post.subtitle }}</p> 				
+					<div class="banner-post-image__download-apps">
+						<p class="banner-post-image__download-apps-label"> Get the app</p>
+						<a class="banner-post-image__download-apps-btn" href="{{ post.meta('url_google_play') }}" title="Get it on Google Play" target="_blank" rel="noopener nofollow">
+							<img src="https://vein-academy.servier.com/wp-content/themes/servier/assets/img/apps/btn-google-play-md.png" alt="btn-google-play">
+						</a>
+						<a class="banner-post-image__download-apps-btn" href="{{ post.meta('url_app_store') }}" title="Download on the App Store" target="_blank" rel="noopener nofollow">
+							<img src="https://vein-academy.servier.com/wp-content/themes/servier/assets/img/apps/btn-app-store-md.png" alt="btn-google-play">
+						</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="banner-figure banner-figure--apps">
+						<div class="banner-figure__inner">
+							<div class="app-background" style="background-image: url({{ function('wp_get_attachment_url', post.apps_gallery.0) }})"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+{% endif %}

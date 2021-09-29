@@ -11,6 +11,8 @@ $posts = [
     'order' => 'DESC'
 ];
 
+
+$context['posts_type'] = 'apps-websites';
 $context['posts'] = Timber::get_posts($posts);
 $terms = array();
 foreach($posts['post_type'] as $type){

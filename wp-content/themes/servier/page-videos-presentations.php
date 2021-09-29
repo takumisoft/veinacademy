@@ -14,11 +14,6 @@ for($i = 0; $i < count($uris); $i++){
 if(!isset($paged) || !$paged){
     $paged = 1;
 }
-if(!isset($_GET['filter']) || !$_GET['filter']){
-    $filter = 'interviews-podcasts';
-}else{
-    $filter = $_GET['filter'];
-}
 $posts = [
     'post_type' => 'library',
     'posts_per_page' => 10,
@@ -29,7 +24,7 @@ $posts = [
         [
             'taxonomy' => 'library-type',
             'field'    => 'slug',
-            'terms'    => $filter,
+            'terms'    => 'discovery-tools',
         ],
     ],
 ];
@@ -38,10 +33,8 @@ $context['pagination'] = Timber::get_pagination([
 	'mid_size' => 2,
 ]);
 
+$context['posts_type'] = 'discovery-tools';
 $context['posts'] = new Timber\PostQuery($posts);
-$filters = get_terms('library-type', array('parent' => '11'));
-$context['filters'] = $filters;
-$context['filt'] = $filter;
 $context['frontpage'] = false;
 $context['thumbnail'] = get_the_post_thumbnail_url($context['post']->id);
 $context['base_url'] = get_template_directory_uri();

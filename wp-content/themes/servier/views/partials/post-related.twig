@@ -33,9 +33,11 @@
                 {% set hasCategory = related_term == 'category' %}
                 {% set view_all_link = hasCategory ? fn('add_query_arg', {'cat': term.term_id}, fn('get_post_type_archive_link', post_type)) : fn('get_term_link',term.term_id, related_term)  %}
 
+                {# <pre>{{post|print_r}}</pre> #}
+
                 <div class="row">
                     <div class="col-sm-12 text-right">
-                        <a class="btn btn-link gray-dark f12 td-u" href="{{ view_all_link }}">
+                        <a class="btn btn-link gray-dark f12 td-u" href="{{ site.url }}/{{ view_all }}">
                             {{ 'View all' }} <i class="icon-custom-arrow-right ml5"></i>
                         </a>
                     </div>
