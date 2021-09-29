@@ -91,6 +91,11 @@
 				</div>
 			{% elseif t.slug == 'interviews-podcasts' %}
 				<div class="banner-post banner--library">
+					{% for t2 in post.terms %}
+						{% if t2.taxonomy == 'speaker' %}
+							<p>{{ t2.name }}</p>
+						{% endif %}
+					{% endfor %}
 					<h1 class="banner-post__title">{{ post.title }}</h1>
 					<p>{{ post.subtitle }}</p>
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
