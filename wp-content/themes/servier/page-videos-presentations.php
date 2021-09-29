@@ -24,7 +24,7 @@ $posts = [
         [
             'taxonomy' => 'library-type',
             'field'    => 'slug',
-            'terms'    => 'discovery-tools',
+            'terms'    => 'videos-presentations',
         ],
     ],
 ];
@@ -33,7 +33,7 @@ $context['pagination'] = Timber::get_pagination([
 	'mid_size' => 2,
 ]);
 
-$context['posts_type'] = 'discovery-tools';
+$context['posts_type'] = 'videos-presentations';
 $context['posts'] = new Timber\PostQuery($posts);
 $context['frontpage'] = false;
 $context['thumbnail'] = get_the_post_thumbnail_url($context['post']->id);
