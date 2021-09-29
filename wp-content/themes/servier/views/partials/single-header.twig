@@ -1,4 +1,4 @@
-{# <pre>{{ post|print_r }}</pre> #}
+{# <pre>{{ post.terms|print_r }}</pre> #}
 {% if post.post_type in ['website', 'apps', 'library', 'news'] %}
 
 
@@ -91,7 +91,7 @@
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
 					<p class="banner-post__date"> {{ post.date }}</p>
 				</div>
-			{% elseif t.slug == 'discovery-tools' %}
+			{% elseif t.slug == 'videos-presentations' %}
 				<div class="banner-post banner--library discovery-tools">
 					<h1 class="banner-post__title">{{ post.title }}</h1>
 					<p>{{ post.subtitle }}</p>
