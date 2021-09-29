@@ -1,12 +1,6 @@
 {# <pre>{{ post|print_r }}</pre> #}
 {% if post.post_type in ['website', 'apps', 'library', 'news'] %}
 
-	{% if post.post_type == 'library' %}
-		<div class="banner-post banner--library ">
-			<h1 class="banner-post__title">{{ post.title }}</h1>
-			<p>{{ post.subtitle }}</p>
-		</div>
-	{% endif %}
 
 	{% if post.post_type == 'website' %}
 		<div class="banner-post-image banner--website ">
@@ -58,8 +52,45 @@
 		<div class="banner-post banner--news">
 			<h1 class="banner-post__title">{{ post.title }}</h1>
 			<p>{{ post.subtitle }}</p>
+			{% if post.terms %}
+				<div class="banner-post__category"><span>{{ post.terms.0.name }}</span></div>
+			{% endif %}
 			<p class="banner-post__date"> {{ post.date }} - 2 min read</p>
 		</div>
+	{% endif %}
+
+	{% if post_type == 'library' %}
+		{% for t in post.terms %}
+			{% if t.slug == 'books' %}
+				<div class="banne-post banner-books">
+					<div class="row row-col-vertical">
+						<div class="col-sm-6">
+							<h1 class="banner-post-image__title"> The vein glossary (updated 2020 version)</h1>
+							<p class="banner-post-image__subtitle"> The reference book containing 1000 terms on venous pathology and some complementary illustrations. It was developed with the contribution of 30 international experts from 15 countries. Each term is defined in English and translated in 6 languages.</p> <a class="banner-post-image__btn btn btn-lg btn-white" href="https://vein-academy.servier.com/wp-content/uploads/7993-dico-VEIN-complet.pdf" download="7993-dico-vein-complet"> Download <i class="icon-custom-pdf ml20 f14"></i> </a>
+						</div>
+						<div class="col-sm-6">
+							<div class="banner-figure banner-figure--book">
+								<div class="banner-figure__inner" title="The vein glossary (updated 2020 version)" data-bg="https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://vein-academy.servier.com/wp-content/uploads/carte_54x86_2020_180220-1.png" style="background-image: url('https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://vein-academy.servier.com/wp-content/uploads/carte_54x86_2020_180220-1.png')"> 
+									<img width="542" height="819" src="/https://vein-academy.servier.com/wp-content/uploads/carte_54x86_2020_180220-1.png" class=" hidden img-responsive wp-post-image" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% elseif t.slug == 'studies' %}
+				<div class="banner-post banner--studies ">
+					<h1 class="banner-post__title">{{ post.title }}</h1>
+					<p>{{ post.subtitle }}</p>
+				</div>
+			{% elseif t.slug == 'discovery-tools' %}
+				<div class="banner-post banner--library discovery-tools">
+					<h1 class="banner-post__title">{{ post.title }}</h1>
+					<p>{{ post.subtitle }}</p>
+					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
+					<p class="banner-post__date"> {{ post.date }}</p>
+				</div>
+			{% endif %}
+		{% endfor %}
 	{% endif %}
 
 {% endif %}

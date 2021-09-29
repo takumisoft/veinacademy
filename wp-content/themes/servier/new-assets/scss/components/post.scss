@@ -252,5 +252,13 @@ h3.post-related__title{
                 text-align: left;
             }
         }
+        &.banner--library{
+            &.discovery-tools{
+                margin-bottom: -60px;
+                @media (max-width: 992px){
+                    margin-bottom: 20px;
+                }
+            }
+        }
     }
 }

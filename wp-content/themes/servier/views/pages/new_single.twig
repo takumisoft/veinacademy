@@ -2,7 +2,6 @@
 
 {% set hasBannerPostImage = post_type in ['website', 'book','apps'] %}
 {% set isWebsite = post_type == 'website' %}
-{% set isBook = post_type == 'book' %}
 
 {% set hasResourcesInBanner = isWebsite or isBook %}
 
@@ -75,7 +74,7 @@
 
                     </article>
                     {#resources#}
-                    {% if (resources.url or resources.file) and not hasResourcesInBanner %}
+                    {% if (resources.url or resources.file) and post.terms.0.slug == 'discovery-tools' %}
                         {% include 'partials/post-resources.twig' %}
                     {% endif %}
 
