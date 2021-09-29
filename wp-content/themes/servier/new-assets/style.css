@@ -779,6 +779,9 @@ h3.post-related__title {
 .single-header .banner-post.banner--studies {
   background: #96368b;
 }
+.single-header .banner-post.banner--guidelines {
+  background: #96368b;
+}
 
 .main-content #zy-search {
   position: relative;

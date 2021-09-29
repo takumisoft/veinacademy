@@ -77,6 +77,13 @@
 						</div>
 					</div>
 				</div>
+			{% elseif t.slug == 'guidelines' %}
+				<div class="banner-post banner--guidelines ">
+					<h1 class="banner-post__title">{{ post.title }}</h1>
+					<p>{{ post.subtitle }}</p>
+					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
+					<p class="banner-post__date"> {{ post.date }}</p>
+				</div>
 			{% elseif t.slug == 'studies' %}
 				<div class="banner-post banner--studies ">
 					<h1 class="banner-post__title">{{ post.title }}</h1>
