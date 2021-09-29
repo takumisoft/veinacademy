@@ -4,7 +4,7 @@
  */
 
 
-$templates = ['views/pages/archive.twig'];
+$templates = ['views/pages/new_page.twig'];
 
 $context = Timber::get_context();
 $context['title'] = get_the_archive_title();
@@ -53,7 +53,6 @@ if (is_post_type_archive()) {
 	);
 }
 
-
 $context['library_types'] = Timber::get_terms('library-type', [
         'hide_empty' => true,
         'orderby'    => 'name',
@@ -94,6 +93,9 @@ $context['posts'] = $posts;
 $context['archive_description'] = strip_tags($archive_description);
 $context['archive_presentation'] = $archive_presentation;
 $context['archive_banner_image'] = $archive_banner_image;
+
+
+$context['base_url'] = get_template_directory_uri();
 
 Timber::render($templates, $context);
 
