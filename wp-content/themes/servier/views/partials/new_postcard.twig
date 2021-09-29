@@ -25,10 +25,7 @@
         {% endif %}
         <div class="zy-postcard-content">
             <div class="zy-postcard-post-type">
-                {# <pre>{{ p.content|print_r }}</pre> #}
-                {# {{ if p.content }} #}
-                    
-                {# {% endif %} #}
+                {# <pre>{{ p.terms|print_r }}</pre> #}
                 {% if p.terms %}
                     {% for t in p.terms %}
                         {% if t.taxonomy == 'library-type' and t.parent == 0 %}
@@ -42,7 +39,7 @@
                 {% else %}
                     <span>{{ p.type }}</span>
                 {% endif %}
-                    - {{ p.date }} - {{ function('get_word_count', p.content) }}
+                    - {{ p.date }}
             </div>
             <div class="zy-postcard-title">
                 <h3><a href="{{ p.link }}">{{ p.post_title }}</a></h3>

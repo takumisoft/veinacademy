@@ -42,9 +42,6 @@
 					{% include 'partials/post-children.twig' %}
 					<h1 class="post-content__side-title">{{ post.title }}</h1>
 				{% endif %}
-				{% if isPageAbout and resources %}
-					{% include 'partials/post-resources.twig' %}
-				{% endif %}
 				<article class="post-content">
 					{#The content#}
 					{{ post.content }}

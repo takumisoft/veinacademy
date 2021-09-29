@@ -1,5 +1,7 @@
 {% extends "new_base.twig" %}
 {% block content %}
+
+
     <div class="row">
         <div class="col-sm-3">
             <div class="zy-sidebar-wrapper">
@@ -14,21 +16,34 @@
             <div class="main-content">
                 {% include "partials/new_search.twig" %}
                 {# <pre>{{posts|print_r}}</pre> #}
-                
+
                 <div class="results-sorting">
                     <div id="search-post-types">
                         <div class="search-post-types-holder">Type of content</div>
                         <div class="search-post-types-options">
                             <div class="placeholder-sim">Type of content <div class="arrow opened"><img src="{{ base_url }}/new-assets/img/select-arrow.png"></div></div>
-                            <form id="form-post-types">
-                            {% for tag in tags %}
-                                <label for="{{ tag.name }}" class="post-types-label">
-                                    <input id="{{ tag.name }}" type="checkbox" name="post-types" value="{{ tag.slug }}">
-                                    <div class="post-types-checkbox"></div>
-                                    <label for={{ tag.name }}>{{ tag.name }}</label>
-                                </label>
-                            {% endfor %}
+
+                            
+
+                            <form method="GET" id="form-post-types">
+                                {% for key, value in full_terms %}
+
+                                    {% set checked = '' %}
+                                    {% for tax_key, tax_value in type_query %}
+                                        {% if tax_key == value.id %}
+                                            {% set checked = 'checked="checked"' %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <label data-tax="{{ value.id }}" for="{{ key }}" class="post-types-label">
+                                        <input id="{{ key }}" {{ checked }} type="checkbox" name="post-types" value="type[{{ value.taxonomy }}][{{ value.id }}]">
+                                        <div class="post-types-checkbox"></div>
+                                        <label for={{ key }}>{{ key }} ({{ value.count }}) </label>
+                                    </label>
+
+                                {% endfor %}
                             </form>
+
                         </div>
                         <div class="arrow closed"><img src="{{ base_url }}/new-assets/img/select-off-arrow.png"></div>
                     </div>
@@ -39,11 +54,33 @@
                         <option>Most Popular</option>
                     </select>
                 </div>
+
+
+                {% if type_query is not empty %}
+
+                    <div class="sort_wrapper">
+                        {% for tax_key, tax_value in type_query %}
+                            <div data-id="{{ tax_key }}" class="sort_item noclear">
+                                <p>{{ tax_value }}</p>
+                                <span data-id="{{ tax_key }}" class="x_close">x</span>
+                            </div>
+                        {% endfor %}
+
+                        <div data-id="{{ tax_key }}" class="sort_item clearall">
+                            <span data-id="{{ tax_key }}" class="x_close">x</span>
+                            <p>Clear Filters</p>
+                        </div>
+
+                    </div>
+                
+                {% endif %}
+
                 {% if posts.found_posts > 0 %}
                 <p class="results-query">{{posts.found_posts}} results for: {{search_query}}</p>
                 <div class="best-content">
                     {% for p in posts %}
-                        {% include "partials/new_postcard.twig" %}
+                        {% include "partials/new_postcard.twig"
+                            with p|array %}
                     {% endfor %}
                 </div>
                 {% else %}

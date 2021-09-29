@@ -57,7 +57,55 @@ $(document).ready(function(){
         placeholder: "Sorted by"
     });
 
+    console.log('aas');
+
     $('#search-sort').on('change', function(){
+
+        let val = $(this).val();
+        
+        if ( true ) {
+            console.log('val: ' + val);
+            var data = $('#form-post-types').serializeArray();
+            var url = window.location.href.split('?')[0];
+            var params = getSearchParameters();
+            for(var i = 0; i < data.length; i++){
+                params[data[i].value] = 1;
+            }
+            var newlink = [];
+            var hasOrder = false;
+
+            for(param in params){
+
+                if (param == 'order') {
+                    hasOrder = true;
+                    newlink.push(param+'='+val);
+                } else {
+                    newlink.push(param+'='+params[param]);
+                }
+
+            }
+            console.log('val: ' + val);
+            if (!hasOrder){
+                newlink.push('order'+'='+val);
+            }
+            console.log('val: ' + val);
+            newlink = newlink.join('&');
+            // get base URL
+            var getUrl = window.location;
+            if ( $('.results-query').text() != '' ) {
+                var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+            } else {
+                var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+            }
+            
+            //
+            console.log(baseUrl + '?' + newlink);
+            window.location.href = baseUrl + '?' + newlink;
+        }
+
+
+
+        /*
         let search_parameter = getUrlParameter('s');
         if($(this).val() == 'VIEWS'){
             var ext = '?orderby=popular&order=DESC&s=' + search_parameter;
@@ -71,6 +119,7 @@ $(document).ready(function(){
         console.log( 'linkfull: ' + linkfull );
 
         window.location.href = linkfull;
+        */
     });
 
     $('.menu-hamburger').on('click', function(){
@@ -107,9 +156,76 @@ $(document).ready(function(){
         }
         var newlink = [];
         for(param in params){
+
             newlink.push(param+'='+params[param]);
+
         }
         newlink = newlink.join('&');
+
         window.location.href = url + '?' + newlink;
     });
+
+    $('.sort_item.clearall').click(function(){
+        var data = $('#form-post-types').serializeArray();
+        var params = getSearchParameters();
+        for(var i = 0; i < data.length; i++){
+            params[data[i].value] = 1;
+        }
+        var newlink = [];
+        for(param in params){
+
+            var result = param.split('[');
+
+            if (result[0] != 'type') {
+                newlink.push(param+'='+params[param]);
+            }
+
+        }
+        
+        newlink = newlink.join('&');
+
+        // get base URL
+        var getUrl = window.location;
+        var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+        //
+        console.log(newlink);
+        window.location.href = baseUrl + '?' + newlink;
+    })
+
+    $('.sort_item.noclear').click(function(){
+        let tax_id = $(this).attr('data-id');
+        //$('div[data-id="' + tax_id + '"]').remove();
+
+        console.log('clicked on ID : ' + tax_id);
+        var data = $('#form-post-types').serializeArray();
+        var params = getSearchParameters();
+        for(var i = 0; i < data.length; i++){
+            params[data[i].value] = 1;
+        }
+        var newlink = [];
+        for(param in params){
+
+            var result = param.split('[');
+
+            if (result[0] == 'type') {
+                let this_id = result[2].replace("]", "");
+                if (this_id != tax_id){
+                    newlink.push(param+'='+params[param]);
+                }
+                console.log("TAX RESULT : " + this_id);
+            } else {
+                newlink.push(param+'='+params[param]);
+            }
+
+        }
+        
+        newlink = newlink.join('&');
+
+        // get base URL
+        var getUrl = window.location;
+        var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+        //
+        window.location.href = baseUrl + '?' + newlink;
+    });
+
 });
