@@ -688,6 +688,11 @@ h3.post-related__title {
 .single-header .banner-post.banner--news {
   margin-bottom: -100px;
 }
+@media (max-width: 992px) {
+  .single-header .banner-post.banner--news {
+    margin-bottom: 0px;
+  }
+}
 
 .main-content #zy-search {
   position: relative;

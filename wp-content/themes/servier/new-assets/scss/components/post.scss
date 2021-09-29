@@ -239,6 +239,9 @@ h3.post-related__title{
     .banner-post{
         &.banner--news{
             margin-bottom: -100px;
+            @media (max-width: 992px){
+                margin-bottom: 0px;
+            }
         }
     }
 }
