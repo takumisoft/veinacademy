@@ -205,6 +205,10 @@
             }
         }
     }
+    &>img{
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 .tool-pagination{
     width: fit-content;

@@ -407,6 +407,10 @@
   line-height: 20px;
   letter-spacing: 0px;
 }
+.main-content > img {
+  width: 80%;
+  margin: 0 auto;
+}
 
 .tool-pagination {
   width: fit-content;
@@ -680,6 +684,9 @@ h3.post-related__title {
 }
 .single-header .banner-post-image__download-apps a {
   margin: 0px !important;
+}
+.single-header .banner-post.banner--news {
+  margin-bottom: -100px;
 }
 
 .main-content #zy-search {

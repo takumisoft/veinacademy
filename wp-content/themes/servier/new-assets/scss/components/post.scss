@@ -236,4 +236,9 @@ h3.post-related__title{
             margin: 0px !important;
         }
     }
+    .banner-post{
+        &.banner--news{
+            margin-bottom: -100px;
+        }
+    }
 }
