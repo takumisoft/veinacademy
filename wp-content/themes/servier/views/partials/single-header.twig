@@ -62,11 +62,11 @@
 	{% if post_type == 'library' %}
 		{% for t in post.terms %}
 			{% if t.slug == 'books' %}
-				<div class="banne-post banner-books">
+				<div class="banner-post banner-books">
 					<div class="row row-col-vertical">
 						<div class="col-sm-6">
-							<h1 class="banner-post-image__title"> The vein glossary (updated 2020 version)</h1>
-							<p class="banner-post-image__subtitle"> The reference book containing 1000 terms on venous pathology and some complementary illustrations. It was developed with the contribution of 30 international experts from 15 countries. Each term is defined in English and translated in 6 languages.</p> <a class="banner-post-image__btn btn btn-lg btn-white" href="https://vein-academy.servier.com/wp-content/uploads/7993-dico-VEIN-complet.pdf" download="7993-dico-vein-complet"> Download <i class="icon-custom-pdf ml20 f14"></i> </a>
+							<h1 class="banner-post-image__title"> {{ post.title }}</h1>
+							<a class="banner-post-image__btn btn btn-lg btn-white" href="https://vein-academy.servier.com/wp-content/uploads/7993-dico-VEIN-complet.pdf" download="7993-dico-vein-complet"> Download <i class="icon-custom-pdf ml20 f14"></i> </a>
 						</div>
 						<div class="col-sm-6">
 							<div class="banner-figure banner-figure--book">

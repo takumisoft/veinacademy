@@ -710,6 +710,9 @@ h3.post-related__title {
     margin-bottom: 20px;
   }
 }
+.single-header .banner-post.banner-books {
+  background: #f39325;
+}
 
 .main-content #zy-search {
   position: relative;
