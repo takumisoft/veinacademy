@@ -31,15 +31,10 @@ if(!isset($_GET['order']) || !$_GET['order']){
 }else{
 	$order = $_GET['order'];
 }
-if(!isset($_GET['orderby']) || !$_GET['orderby']){
-	$orderby = 'date';
-}else{
-	$orderby = $_GET['orderby'];
-}
 $posts = [
     'post_type' => 'news',
     'posts_per_page' => 10,
-    'orderby' => $orderby,
+    'orderby' => 'publish_date',
     'order' => $order,
     'paged' => $paged,
 	'tax_query' => [
@@ -55,6 +50,8 @@ $context['pagination'] = Timber::get_pagination([
 	'mid_size' => 2,
 ]);
 
+
+$context['current_page'] = 'news';
 $context['posts_type'] = 'vein-news';
 $context['posts'] = new Timber\PostQuery($posts);
 $filters = get_terms('category', array('parent' => '0'));

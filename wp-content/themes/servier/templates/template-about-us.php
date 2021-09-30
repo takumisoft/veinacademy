@@ -3,6 +3,9 @@
 <?php 
 $context = Timber::get_context();
 $post = new TimberPost();
+
+
+$context['current_page'] = basename(get_permalink());
 $context['post'] = $post;
 $context['frontpage'] = false;
 $context['thumbnail'] = get_the_post_thumbnail_url();

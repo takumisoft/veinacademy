@@ -46,6 +46,8 @@ $context['pagination'] = Timber::get_pagination([
 ]);
 
 
+
+$context['current_page'] = basename(get_permalink());
 $context['posts_type'] = 'publications-books';
 $context['posts'] = new Timber\PostQuery($posts);
 $filters = get_terms('library-type', array('parent' => '52'));

@@ -40,6 +40,9 @@ $context['pagination'] = Timber::get_pagination([
 	'mid_size' => 2,
 ]);
 
+
+
+$context['current_page'] = basename(get_permalink());
 $context['posts_type'] = 'videos-presentations';
 $context['posts'] = new Timber\PostQuery($posts);
 $context['frontpage'] = false;

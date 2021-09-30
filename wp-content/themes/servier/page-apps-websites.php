@@ -23,7 +23,7 @@ $posts = [
     'order' => $args_order
 ];
 
-
+$context['current_page'] = basename(get_permalink());
 $context['posts_type'] = 'apps-websites';
 $context['posts'] = Timber::get_posts($posts);
 $terms = array();

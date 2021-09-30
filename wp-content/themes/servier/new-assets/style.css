@@ -922,6 +922,9 @@ h3.post-related__title {
   transition: background 0.2s;
   border-radius: 5px;
 }
+.zy-sidebar-wrapper #zy-sidebar ul li a.active {
+  background: #ecf1f9;
+}
 .zy-sidebar-wrapper #zy-sidebar ul li a:hover {
   background: #ecf1f9;
 }
