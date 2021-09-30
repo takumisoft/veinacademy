@@ -32,26 +32,25 @@
                 <div class="single-header">
                     {% include 'partials/single-header.twig' %}
                 </div>
-
-                {% if post.file_video and not post.is_embed_enabled %}
-                        <!-- 16:9 aspect ratio -->
-                        <div class="embed-responsive embed-responsive-16by9 mb-15">
-                            {{ fn('wp_video_shortcode', {
-                                'mp4': post.get_field('file_video').url
-                            }) }}
-                        </div>
-                    {% elseif post.embed and post.is_embed_enabled %}
-                        <!-- 16:9 aspect ratio -->
-                        <div class="embed-responsive embed-responsive-16by9 mb-15">
-                            {{ post.get_field('embed') }}
-                        </div>
-                    {% elseif post.thumbnail and (post.terms.0.slug == 'discovery-tools' or post.type == 'news') %}
-                        {{ function('get_the_post_thumbnail', post.ID, 'full', {
-                            'class': 'img-responsive center-block mb-15',
-                            'draggable': 'false',
-                            'alt': post.title
+                {% if post.file_video %}
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9 mb-15">
+                        {{ fn('wp_video_shortcode', {
+                            'mp4': post.get_field('file_video').url
                         }) }}
-                    {% endif %}
+                    </div>
+                {% elseif post.embed and post.is_embed_enabled %}
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9 mb-15">
+                        {{ post.get_field('embed') }}
+                    </div>
+                {% elseif post.thumbnail and (post.terms.0.slug == 'discovery-tools' or post.type == 'news') %}
+                    {{ function('get_the_post_thumbnail', post.ID, 'full', {
+                        'class': 'img-responsive center-block mb-15',
+                        'draggable': 'false',
+                        'alt': post.title
+                    }) }}
+                {% endif %}
                 <div class="post-content">
                     {% include 'partials/post-event-data.twig' %}
 
