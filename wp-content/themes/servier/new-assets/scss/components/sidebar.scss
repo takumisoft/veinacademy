@@ -19,8 +19,8 @@
             padding-start: 0px;
             list-style: none;
             li{
-                margin-bottom: 24px;
                 a{
+                    display: block;
                     font-family: Heebo;
                     font-size: 18px;
                     font-style: normal;
@@ -28,6 +28,12 @@
                     line-height: 20px;
                     letter-spacing: 0px;
                     color: #000;
+                    padding: 12px;
+                    transition: background 0.2s;
+                    border-radius: 5px;
+                    &:hover{
+                        background: #ecf1f9;
+                    }
                 }
                 &:last-child{
                     margin-bottom: 0px;

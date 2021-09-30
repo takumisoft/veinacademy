@@ -901,10 +901,8 @@ h3.post-related__title {
   padding-start: 0px;
   list-style: none;
 }
-.zy-sidebar-wrapper #zy-sidebar ul li {
-  margin-bottom: 24px;
-}
 .zy-sidebar-wrapper #zy-sidebar ul li a {
+  display: block;
   font-family: Heebo;
   font-size: 18px;
   font-style: normal;
@@ -912,6 +910,12 @@ h3.post-related__title {
   line-height: 20px;
   letter-spacing: 0px;
   color: #000;
+  padding: 12px;
+  transition: background 0.2s;
+  border-radius: 5px;
+}
+.zy-sidebar-wrapper #zy-sidebar ul li a:hover {
+  background: #ecf1f9;
 }
 .zy-sidebar-wrapper #zy-sidebar ul li:last-child {
   margin-bottom: 0px;
