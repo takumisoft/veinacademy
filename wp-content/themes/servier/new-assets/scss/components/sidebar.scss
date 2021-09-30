@@ -35,6 +35,13 @@
                         background: #ecf1f9;
                     }
                 }
+                &:first-child{
+                    a{
+                        &:hover{
+                            background: inherit;
+                        }
+                    }
+                }
                 &:last-child{
                     margin-bottom: 0px;
                 }

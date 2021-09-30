@@ -925,6 +925,9 @@ h3.post-related__title {
 .zy-sidebar-wrapper #zy-sidebar ul li a:hover {
   background: #ecf1f9;
 }
+.zy-sidebar-wrapper #zy-sidebar ul li:first-child a:hover {
+  background: inherit;
+}
 .zy-sidebar-wrapper #zy-sidebar ul li:last-child {
   margin-bottom: 0px;
 }

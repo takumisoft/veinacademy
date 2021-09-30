@@ -13,7 +13,7 @@ if (isset($_GET['order']) && $_GET['order'] == 'Oldest') {
 }
 
 $k = 0;
-if ($_GET['type']) {
+if (isset($_GET['type']) && $_GET['type']) {
 	foreach ($_GET['type'] as $tax_key => $tax_val) {
 		
 		foreach ($tax_val as $key => $value) {
@@ -27,24 +27,20 @@ if ($_GET['type']) {
 }
 
 $k = 0;
-foreach ( $_GET['type'] as $type_key => $type_value ) {
-	
-	if ($type_key == 'post_type') {
-		# code...
-	} else {
-
-		foreach ($type_value as $key => $value) {
-			
-			$cat_query[$k]['taxonomy'] = $type_key;
-			$cat_query[$k]['terms'] = $key;
-			$cat_query[$k]['field'] = 'id';
-			$k++;
+if(isset($_GET['type'])){
+	foreach ( $_GET['type'] as $type_key => $type_value ) {
+		if ($type_key == 'post_type') {
+			# code...
+		} else {
+			foreach ($type_value as $key => $value) {	
+				$cat_query[$k]['taxonomy'] = $type_key;
+				$cat_query[$k]['terms'] = $key;
+				$cat_query[$k]['field'] = 'id';
+				$k++;
+			}
 		}
-
 	}
-
 }
-
 
 // Full context
 // We use this to get all posts that match the query without pagination, for the filter
@@ -150,7 +146,7 @@ foreach($context['posts'] as $post){
 
 $no_posts =  [
     'post_type' => ['news', 'website', 'apps', 'book'],
-    'posts_per_page' => 1,
+    'posts_per_page' => 10,
     'orderby' => 'publish_date',
     'order' => 'DESC'
 ];
