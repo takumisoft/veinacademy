@@ -24,7 +24,7 @@
             {% else %}
                 <span>{{ p.type }}</span>
             {% endif %}
-                - {{ p.date }} - {{ p.meta('video_time') }}
+                - {{ p.date }}{% if p.meta('video_time') %}<br>Video Time {{ p.meta('video_time') }}{% endif %}
         </div>
         {% if p.meta('thumbnail-image') %}
             <div class="zy-postcard-thumbnail">
