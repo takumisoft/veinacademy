@@ -1,5 +1,5 @@
 {# <pre>{{ function('get_post_categories', p.id) }}</pre> #}
-{# <pre>{{ p.terms|print_r }}</pre> #}
+{# <pre>{{ p|print_r }}</pre> #}
 
 <div class="zy-postcard 
     {% if p.terms %}
@@ -24,7 +24,7 @@
             {% else %}
                 <span>{{ p.type }}</span>
             {% endif %}
-                - {{ p.date }} - {{ function('get_word_count', p.content) }}
+                - {{ p.date }} - {{ p.meta('video_time') }}
         </div>
         {% if p.meta('thumbnail-image') %}
             <div class="zy-postcard-thumbnail">

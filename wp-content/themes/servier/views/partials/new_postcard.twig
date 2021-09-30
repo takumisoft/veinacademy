@@ -39,7 +39,7 @@
                 {% else %}
                     <span>{{ p.type }}</span>
                 {% endif %}
-                    - {{ p.date }} - {{ function('get_word_count', p.content) }}
+                    - {{ p.date }}{% if p.type != 'apps' and p.type != 'website' %} - {{ function('get_word_count', p.content) }}{% endif %}
             </div>
             <div class="zy-postcard-title">
                 <h3><a href="{{ p.link }}">{{ p.post_title }}</a></h3>
