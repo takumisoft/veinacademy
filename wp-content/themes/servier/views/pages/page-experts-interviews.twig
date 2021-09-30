@@ -26,7 +26,7 @@
                             data-toggle="{{ f.slug }}">{{ f.name }} ({{ f.count }})</a>
                         {% endfor %}
                     </div>
-                    <select id="search-sort" style="--d-width: 216px; --m-width: 150px">
+                    <select id="search-sort" style="--d-width: 216px; --m-width: 150px" data-minimum-results-for-search="Infinity">
                         <option></option>
                         <option value="DESC">Newest</option>
                         <option value="ASC">Oldest</option>

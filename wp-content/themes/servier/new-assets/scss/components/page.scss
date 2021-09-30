@@ -13,6 +13,14 @@
     color: #3175B1;
     margin-top: 41px;
 }
+.page-videos-presentations{
+    .main-content{
+        .results-sorting{
+            justify-content: end;
+        }
+    }
+    
+}
 .main-content{
     margin-bottom: 71px;
     .results-sorting{
@@ -141,6 +149,10 @@
                 border-radius: 4px;
                 @media (max-width: 768px){
                     width: 100%;
+                }
+                &:hover{
+                    background: #2e71b5;
+                    color: #fff;
                 }
                 &.active{
                     background: #2e71b5;
