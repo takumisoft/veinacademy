@@ -35,6 +35,7 @@ foreach(['apps', 'website'] as $type){
     ];
     array_push($terms, $item);
 }
+$context['filt'] = $filter;
 $context['filters'] = $terms;
 $context['frontpage'] = false;
 $context['thumbnail'] = get_the_post_thumbnail_url($context['post']->id);
