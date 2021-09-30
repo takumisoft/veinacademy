@@ -15,6 +15,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            overflow: hidden;
             .square-box-big-content{
                 position: absolute;
                 bottom: 0px;
@@ -46,6 +47,7 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 padding: 12px;
+                overflow: hidden;
                 .square-box-content{
                     position: absolute;
                     bottom: 12px;
@@ -86,6 +88,7 @@
             background-position: center;
             background-repeat: no-repeat;
             padding: 12px;
+            overflow: hidden;
             .square-box-content{
                 position: absolute;
                 bottom: 12px;

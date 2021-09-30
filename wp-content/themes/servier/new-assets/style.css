@@ -17,6 +17,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 .new-content .new-content-left .square-box-big .square-box-big-content {
   position: absolute;
@@ -49,6 +50,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 12px;
+  overflow: hidden;
 }
 .new-content .new-content-right .new-content-right-top .square-box-small .square-box-content {
   position: absolute;
@@ -92,6 +94,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 12px;
+  overflow: hidden;
 }
 .new-content .new-content-right .square-box-long .square-box-content {
   position: absolute;
