@@ -6,7 +6,7 @@ $context = Timber::get_context();
 $context['title'] = 'The first content platform specialized in chronic venous disease and hemorrhoidal disease';
 $context['search_query'] = get_search_query();
 
-if ($_GET['order'] == 'Oldest') {
+if (isset($_GET['order']) && $_GET['order'] == 'Oldest') {
 	$args_order = "ASC";
 } else {
 	$args_order = "DESC";
@@ -50,7 +50,7 @@ foreach ( $_GET['type'] as $type_key => $type_value ) {
 // We use this to get all posts that match the query without pagination, for the filter
 $posts_full = [
     'posts_per_page' => -1,
-    'orderby' => 'date',
+    'orderby' => 'publish_date',
     'order' => $args_order,
     's' => get_search_query(),
 ];
@@ -65,7 +65,7 @@ $cat_query['relation'] = 'OR';
 
 $posts = [
     'posts_per_page' => 10,
-    'orderby' => 'date',
+    'orderby' => 'publish_date',
     'order' => $args_order,
     'paged' => $paged,
     's' => get_search_query(),
@@ -151,7 +151,7 @@ foreach($context['posts'] as $post){
 $no_posts =  [
     'post_type' => ['news', 'website', 'apps', 'book'],
     'posts_per_page' => 1,
-    'orderby' => 'date',
+    'orderby' => 'publish_date',
     'order' => 'DESC'
 ];
 

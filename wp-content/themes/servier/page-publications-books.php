@@ -19,11 +19,18 @@ if(!isset($_GET['filter']) || !$_GET['filter']){
 }else{
     $filter = $_GET['filter'];
 }
+
+if (isset($_GET['order']) && $_GET['order'] == 'Oldest') {
+	$args_order = "ASC";
+} else {
+	$args_order = "DESC";
+}
+
 $posts = [
     'post_type' => 'library',
     'posts_per_page' => 10,
-    'orderby' => 'date',
-    'order' => 'DESC',
+    'orderby' => 'publish_date',
+    'order' => $args_order,
     'paged' => $paged,
     'tax_query' => [
         [

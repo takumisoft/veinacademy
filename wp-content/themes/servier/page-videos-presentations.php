@@ -14,11 +14,18 @@ for($i = 0; $i < count($uris); $i++){
 if(!isset($paged) || !$paged){
     $paged = 1;
 }
+
+if (isset($_GET['order']) && $_GET['order'] == 'Oldest') {
+	$args_order = "ASC";
+} else {
+	$args_order = "DESC";
+}
+
 $posts = [
     'post_type' => 'library',
     'posts_per_page' => 10,
-    'orderby' => 'date',
-    'order' => 'DESC',
+    'orderby' => 'publish_date',
+    'order' => $args_order,
     'paged' => $paged,
     'tax_query' => [
         [
