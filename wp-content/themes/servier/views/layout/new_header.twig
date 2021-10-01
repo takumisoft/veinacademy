@@ -5,6 +5,14 @@
         <span></span>
         <span></span>
     </div>
+    {% if not frontpage %}
+        <div class="input-wrapper">
+            <form class="form-search" method="GET" action="{{ site.url }}">
+                <input type="text" name="s" placeholder="What are you looking for">
+                <img src="{{ base_url }}/new-assets/img/icon-lens.png">
+            </form>
+        </div>
+    {% endif %}
 </div>
 <div class="menu-mobile">
     {% if new_menu %}
@@ -13,9 +21,19 @@
                 {% if item.name == 'Contact' %}
                     <li><a href="{{ item.link }}">{{ item.name }}</li>
                 {% else %}
-                    <li><a href="{{ site.url }}{{ item.link }}">{{ item.name }}</a></li>
+                    <li><a {% if "/#{current_page}" == item.link %}class="active"{% endif %} href="{{ site.url }}{{ item.link }}">{{ item.name }}</a></li>
                 {% endif %}
             {% endfor %}
+            {% if not frontpage %}
+                <li>
+                    <div class="input-wrapper">
+                        <form class="form-search" method="GET" action="{{ site.url }}">
+                            <input type="text" name="s" placeholder="Search">
+                            <img src="{{ base_url }}/new-assets/img/icon-lens.png">
+                        </form>
+                    </div>
+                </li>
+            {% endif %}
         </ul>
     {% endif %}
 </div>

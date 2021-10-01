@@ -33,8 +33,8 @@ $(document).ready(function(){
         }
     });
 
-    $('#form-search img').on('click', function(){
-        $('#form-search').submit();
+    $('.form-search img').on('click', function(){
+        $('.form-search').submit();
     });
 
     if($('.zy-postcard-wrapper').length){

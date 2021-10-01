@@ -132,18 +132,33 @@
 #zy-header {
   margin-top: 30px;
   margin-bottom: 40px;
-}
-@media (max-width: 992px) {
-  #zy-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 @media (max-width: 992px) {
   #zy-header img {
     width: 200px;
   }
+}
+#zy-header .input-wrapper {
+  display: none;
+}
+@media (min-width: 993px) {
+  #zy-header .input-wrapper {
+    display: block;
+  }
+}
+#zy-header .input-wrapper form input {
+  border-bottom: 1px solid #2E71B5;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  padding: 6px 0px;
+  outline: none;
 }
 #zy-header .menu-hamburger {
   display: none;
@@ -197,10 +212,21 @@
   -webkit-padding-start: 0px;
 }
 .menu-mobile ul li a {
+  display: block;
   padding: 10px;
   font-size: 20px;
-  display: inline-block;
   color: #000;
+}
+.menu-mobile ul li a:hover {
+  background: #ecf1f9;
+}
+.menu-mobile ul li a.active {
+  background: #ecf1f9;
+}
+.menu-mobile ul li .input-wrapper form input {
+  padding: 16px 12px;
+  border-bottom: 2px solid;
+  width: 90%;
 }
 
 .page.zy {
