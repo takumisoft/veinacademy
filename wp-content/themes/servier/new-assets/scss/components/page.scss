@@ -23,14 +23,79 @@
 }
 .main-content{
     margin-bottom: 71px;
+    .sort_wrapper{
+        .sort_item {
+            background: #033878;
+            display: inline-block;
+            color: white;
+            padding: 10px;
+            margin-right: 15px;
+            cursor: pointer;
+            border-radius: 7px;
+            @media (max-width: 992px){
+                margin-bottom: 6px;
+                padding: 7px 15px;
+                margin-right: 5px;
+            }
+            &.clearall {
+                background: #333333;
+                span {
+                    margin-right: 10px;
+                    margin-left: 0px;
+                }
+            }
+            * {
+                display: inline-block;
+            }
+            p {
+                margin: 0px;
+            }
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
     .results-sorting{
         margin-top: 16px;
         margin-bottom: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        @media (max-width: 768px){
+        @media (max-width: 992px){
             flex-direction: column;
+        }
+        &.search-page{
+            flex-direction: row;
+            #search-post-types{
+                @media (max-width: 992px){
+                    width: 200px;
+                }
+                .search-post-types-options{
+                    @media (max-width: 992px){
+                        width: 200px;
+                    }
+                }
+            }
+            #search-sort{
+                
+            }
+            .select2.select2-container{
+                height: 37px;
+                @media (max-width: 992px){
+                    margin-top: 0px;
+                }
+                .selection{
+                    .select2-selection{
+                        height: 37px;
+                        .select2-selection__rendered{
+                            line-height: 36px;
+                        }
+                        .select2-selection__arrow{
+                            height: 35px;
+                        }
+                    }
+                }
+            }
         }
         #search-post-types{
             position: relative;
@@ -41,6 +106,9 @@
             box-sizing: border-box;
             border-radius: 4px;
             padding: 8px 12px;
+            @media (max-width: 992px){
+                width: 100%;
+            }
             .search-post-types-options{
                 z-index: 1;
                 position: absolute;
@@ -54,6 +122,9 @@
                 top: -1px;
                 display: none;
                 flex-direction: column;
+                @media (max-width: 992px){
+                    width: 175px;
+                }
                 .placeholder-sim{
                     padding-left: 8px;
                     padding-bottom: 12px;
@@ -124,20 +195,35 @@
         }
         #search-sort{
             width: var(--d-width);
-            @media (max-width: 768px){
+            @media (max-width: 992px){
                 width: var(--m-width);
                 display: none;
             }
         }
         .select2.select2-container{
-            @media (max-width: 768px){
-                display: none;
+            height: 37px;
+            @media (max-width: 992px){
+                margin-top: 6px;
+            }
+            .selection{
+                .select2-selection{
+                    height: 37px;
+                    .select2-selection__rendered{
+                        line-height: 36px;
+                    }
+                    .select2-selection__arrow{
+                        height: 35px;
+                    }
+                }
             }
         }
         #filters{
             display: flex;
             flex-wrap: wrap;
             align-items: center;
+            @media (max-width: 992px){
+                width: 100%;
+            }
             p{
                 margin: 3px;
             }
@@ -147,13 +233,16 @@
                 margin: 3px;
                 border: none;
                 border-radius: 4px;
-                @media (max-width: 768px){
+                @media (max-width: 992px){
                     width: 100%;
                 }
-                &:hover{
-                    background: #2e71b5;
-                    color: #fff;
+                @media (min-width: 993px){
+                    &:hover{
+                        background: #2e71b5;
+                        color: #fff;
+                    }
                 }
+                
                 &.active{
                     background: #2e71b5;
                     color: #fff;
