@@ -77,7 +77,10 @@
                 }
             }
             #search-sort{
-                
+                width: var(--d-width);
+                @media (max-width: 992px){
+                    width: var(--m-width);
+                }
             }
             .select2.select2-container{
                 height: 37px;

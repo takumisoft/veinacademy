@@ -326,6 +326,14 @@
     width: 200px;
   }
 }
+.main-content .results-sorting.search-page #search-sort {
+  width: var(--d-width);
+}
+@media (max-width: 992px) {
+  .main-content .results-sorting.search-page #search-sort {
+    width: var(--m-width);
+  }
+}
 .main-content .results-sorting.search-page .select2.select2-container {
   height: 37px;
 }
