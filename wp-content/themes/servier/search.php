@@ -157,7 +157,10 @@ $context['thumbnail'] = get_template_directory_uri() . '/new-assets/img/bg-searc
 $context['no_posts'] = Timber::get_posts($no_posts);
 $context['base_url'] = get_template_directory_uri();
 $context['full_terms'] = $full_terms;
-$context['type_query'] = $type_query;
+if(isset($type_query)){
+	$context['type_query'] = $type_query;
+}
+
 $context['get'] = $_GET;
 
 Timber::render('views/pages/new_search.twig', $context);
