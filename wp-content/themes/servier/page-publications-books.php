@@ -15,7 +15,7 @@ if(!isset($paged) || !$paged){
     $paged = 1;
 }
 if(!isset($_GET['filter']) || !$_GET['filter']){
-    $filter = 'publications';
+    $filter = 'publications-books';
 }else{
     $filter = $_GET['filter'];
 }

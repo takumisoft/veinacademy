@@ -15,7 +15,7 @@ if(!isset($paged) || !$paged){
     $paged = 1;
 }
 if(!isset($_GET['filter']) || !$_GET['filter']){
-    $filter = 'interviews-podcasts';
+    $filter = 'experts-interviews';
 }else{
     $filter = $_GET['filter'];
 }

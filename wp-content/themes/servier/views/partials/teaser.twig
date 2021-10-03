@@ -46,6 +46,8 @@
     <div class="teaser__content">
         <p>
             {#If search#}
+
+            <span>{{ post.type }}</span> - {{ post.date }}
             {% if is_search %}
                 <span class="teaser__category">
                     {{ post.type.labels.name }}
@@ -138,7 +140,7 @@
         {% endif %}
 
         <div class="teaser__btn-wrapper">
-            {% if resources.url %}
+            {# {% if resources.url %}
                 <a class="teaser__btn btn btn-liner"
                    href="{{ resources.url }}"
                    rel="nofollow"
@@ -148,7 +150,7 @@
                     {{ __('Visit site') }}
                     <small class="icon-custom-link ml30"></small>
                 </a>
-            {% endif %}
+            {% endif %} #}
             <a class="teaser__btn teaser__btn--view-more btn btn-default"
                href="{{ post.link }}">
                 {{ __('Read more') }}

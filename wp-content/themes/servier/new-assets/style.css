@@ -464,6 +464,7 @@
 @media (max-width: 992px) {
   .main-content .results-sorting .select2.select2-container {
     margin-top: 6px;
+    width: 100%;
   }
 }
 .main-content .results-sorting .select2.select2-container .selection .select2-selection {
@@ -563,6 +564,60 @@
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0px;
+}
+.main-content.single .post-content .post-related article {
+  position: relative;
+  padding-bottom: 25px;
+}
+.main-content.single .post-content .post-related article.teaser--apps, .main-content.single .post-content .post-related article.teaser--website {
+  padding-bottom: 0px;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content, .main-content.single .post-content .post-related article.teaser--website .teaser__content {
+  position: relative;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content .teaser__title, .main-content.single .post-content .post-related article.teaser--website .teaser__content .teaser__title {
+  margin: 0;
+  margin-bottom: 16px;
+  color: #475775;
+  font-family: Heebo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content .teaser__download-apps, .main-content.single .post-content .post-related article.teaser--website .teaser__content .teaser__download-apps {
+  top: auto;
+  bottom: 0px;
+  right: 100px;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content .teaser__download-apps a, .main-content.single .post-content .post-related article.teaser--website .teaser__content .teaser__download-apps a {
+  width: 75px;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content .teaser__btn-wrapper a, .main-content.single .post-content .post-related article.teaser--website .teaser__content .teaser__btn-wrapper a {
+  border: none;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content .teaser__btn-wrapper a.teaser__btn, .main-content.single .post-content .post-related article.teaser--website .teaser__content .teaser__btn-wrapper a.teaser__btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #2e71b5;
+  border-radius: 8px 0 3px;
+  font-size: 12px;
+  padding: 3px 5px;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content p, .main-content.single .post-content .post-related article.teaser--website .teaser__content p {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.main-content.single .post-content .post-related article.teaser--apps .teaser__content p span, .main-content.single .post-content .post-related article.teaser--website .teaser__content p span {
+  text-transform: capitalize;
+  color: #8b3e87;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0px;
+  font-family: Heebo;
 }
 .main-content > img {
   width: 80%;

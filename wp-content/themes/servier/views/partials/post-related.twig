@@ -19,25 +19,35 @@
             <div class="post-related-library">
 
                 {% set teaser_type = post.type == 'library' ? 'library' : 'default' %}
-
+                <div class="row">
                 {% for related_post in related_posts %}
-                    <article class="post-related-item">
+                    <article class="col-sm-4">
                         {% include 'partials/teaser-'~teaser_type~'.twig' with {
                             post : TimberPost(related_post)
                         } %}
                     </article>
                 {% endfor %}
+                </div>
             </div>
             {% if not(related_posts|length < related_posts_per_page) %}
                 {#add_query_arg to filter categories if is News #}
                 {% set hasCategory = related_term == 'category' %}
                 {% set view_all_link = hasCategory ? fn('add_query_arg', {'cat': term.term_id}, fn('get_post_type_archive_link', post_type)) : fn('get_term_link',term.term_id, related_term)  %}
 
-                {# <pre>{{post|print_r}}</pre> #}
+                {% if term.parent != 0 %}
+                    {% set parent = function('get_term', term.parent) %}
+                    {% set view_all = site.url~'/'~parent.slug~'/?filter='~term.slug %}
+                {% else %}
+                    {% set view_all = site.url~'/'~term.slug %}
+                {% endif %}
 
+                {% if post.type == 'news' %}
+                    {% set view_all = site.url~'/news/?filter='~post.terms.0.slug %}
+                {% endif %}
+                {# <pre>{{post.terms|print_r}}</pre> #}
                 <div class="row">
                     <div class="col-sm-12 text-right">
-                        <a class="btn btn-link gray-dark f12 td-u" href="{{ site.url }}/{{ view_all }}">
+                        <a class="btn btn-link gray-dark f12 td-u" href="{{ view_all }}">
                             {{ 'View all' }} <i class="icon-custom-arrow-right ml5"></i>
                         </a>
                     </div>
@@ -66,9 +76,10 @@
         </div>
 
         {% if not(related_posts|length < related_posts_per_page) %}
+            {% set view_all = site.url~'/apps-websites' %}
             <div class="row">
                 <div class="col-sm-12 text-right">
-                    <a class="btn btn-link gray-dark f12 td-u" href="{{ fn('get_post_type_archive_link', post_type) }}">
+                    <a class="btn btn-link gray-dark f12 td-u" href="{{ view_all }}">
                         {{ 'View all' }} <i class="icon-custom-arrow-right ml5"></i>
                     </a>
                 </div>
