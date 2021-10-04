@@ -9,6 +9,7 @@
        href="{{ post.link }}"
        title=" {{ title }}"
     >
+        <div class="teaser__content">
         <p class="teaser-default__date">
             {{ term.name }} - {{ post.date("m/d/Y") }}
         </p>
@@ -40,6 +41,24 @@
             {{ post_excert }}
 
         </div>
-
+        <div class="teaser__btn-wrapper">
+            {# {% if resources.url %}
+                <a class="teaser__btn btn btn-liner"
+                   href="{{ resources.url }}"
+                   rel="nofollow"
+                   rel="noopener"
+                   target="_blank"
+                >
+                    {{ __('Visit site') }}
+                    <small class="icon-custom-link ml30"></small>
+                </a>
+            {% endif %} #}
+            <a class="teaser__btn teaser__btn--view-more btn btn-default"
+               href="{{ post.link }}">
+                {{ __('Read more') }}
+                <i class="icon-custom-arrow-right ml10"></i>
+            </a>
+        </div>
+        </div>
     </a>
 </article>

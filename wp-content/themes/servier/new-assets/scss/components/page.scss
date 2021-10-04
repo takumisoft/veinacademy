@@ -312,55 +312,65 @@
                 article{
                     position: relative;
                     padding-bottom: 25px;
+                    .teaser-library__date{
+                        span{
+                            color: #8B3E87;
+                        }
+                    }
                     &.teaser--apps, &.teaser--website{
                         padding-bottom: 0px;
-                        .teaser__content{
-                            position: relative;
-                            .teaser__title{
-                                margin: 0;
-                                margin-bottom: 16px;
-                                color: #475775;
-                                font-family: Heebo;
-                                font-size: 18px;
+                    }
+                    &.teaser--news{
+                        padding-bottom: 25px;
+                    }
+                    .teaser__content{
+                        position: relative;
+                        padding-bottom: 25px;
+                        .teaser__title{
+                            margin: 0;
+                            margin-bottom: 16px;
+                            color: #475775;
+                            font-family: Heebo;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 24px;
+                            letter-spacing: 0px;
+                        }
+                        .teaser__download-apps{
+                            top: auto;
+                            bottom: 0px;
+                            right: 100px;
+                            a{
+                                width: 75px;
+                            }
+                        }
+                        .teaser__btn-wrapper{
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                            a{
+                                border: none;
+                                &.teaser__btn{
+                                    
+                                    background: #2e71b5;
+                                    border-radius: 8px 0 3px;
+                                    font-size: 12px;
+                                    padding: 3px 5px;
+                                }
+                            }
+                        }
+                        p{
+                            font-size: 12px;
+                            margin-bottom: 10px;
+                            span{
+                                text-transform: capitalize;
+                                color: #8b3e87;
                                 font-style: normal;
-                                font-weight: 400;
-                                line-height: 24px;
+                                font-weight: 700;
+                                line-height: 14px;
                                 letter-spacing: 0px;
-                            }
-                            .teaser__download-apps{
-                                top: auto;
-                                bottom: 0px;
-                                right: 100px;
-                                a{
-                                    width: 75px;
-                                }
-                            }
-                            .teaser__btn-wrapper{
-                                a{
-                                    border: none;
-                                    &.teaser__btn{
-                                        position: absolute;
-                                        bottom: 0;
-                                        right: 0;
-                                        background: #2e71b5;
-                                        border-radius: 8px 0 3px;
-                                        font-size: 12px;
-                                        padding: 3px 5px;
-                                    }
-                                }
-                            }
-                            p{
-                                font-size: 12px;
-                                margin-bottom: 10px;
-                                span{
-                                    text-transform: capitalize;
-                                    color: #8b3e87;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 14px;
-                                    letter-spacing: 0px;
-                                    font-family: Heebo;
-                                }
+                                font-family: Heebo;
                             }
                         }
                     }
