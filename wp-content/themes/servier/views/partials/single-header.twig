@@ -105,7 +105,7 @@
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
 					<p class="banner-post__date"> {{ post.date }}</p>
 				</div>
-			{% elseif t.slug == 'interviews-podcasts' %}
+			{% elseif t.slug == 'experts-interviews' %}
 				<div class="banner-post banner--library">
 					{% for t2 in post.terms %}
 						{% if t2.taxonomy == 'speaker' %}
