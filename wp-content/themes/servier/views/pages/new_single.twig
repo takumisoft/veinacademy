@@ -32,7 +32,11 @@
                 <div class="single-header">
                     {% include 'partials/single-header.twig' %}
                 </div>
-                {% if post.file_video and (post.terms.0.slug == 'videos-presentations' or post.type == 'news' or post.terms.2.slug == 'experts-interviews') %}
+                {% for t in post.terms %}
+                    <pre>{{ t.slug }}</pre>
+                    {% set isExperts = t.slug == 'experts-interviews' %}
+                {% endfor %}
+                {% if post.file_video and (post.terms.0.slug == 'videos-presentations' or post.type == 'news' or isExperts) %}
                     <!-- 16:9 aspect ratio -->
                     <div class="embed-responsive embed-responsive-16by9 mb-15">
                         {{ fn('wp_video_shortcode', {
@@ -44,7 +48,7 @@
                     <div class="embed-responsive embed-responsive-16by9 mb-15">
                         {{ post.get_field('embed') }}
                     </div>
-                {% elseif post.thumbnail and (post.terms.0.slug == 'videos-presentations' or post.type == 'news' or post.terms.2.slug == 'experts-interviews') %}
+                {% elseif post.thumbnail and (post.terms.0.slug == 'videos-presentations' or post.type == 'news' or isExperts) %}
                     {{ function('get_the_post_thumbnail', post.ID, 'full', {
                         'class': 'img-responsive center-block mb-15',
                         'draggable': 'false',
