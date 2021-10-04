@@ -162,5 +162,6 @@ if(isset($type_query)){
 }
 
 $context['get'] = $_GET;
+$context['sort'] = isset($_GET['order']) ? $_GET['order'] : '';
 
 Timber::render('views/pages/new_search.twig', $context);

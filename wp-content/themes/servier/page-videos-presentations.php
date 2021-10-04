@@ -52,4 +52,6 @@ $no_page_url = get_pagenum_link();
 $clean_url = explode('?', $no_page_url)[0];
 $context['clean_url'] = $clean_url;
 
+$context['sort'] = isset($_GET['order']) ? $_GET['order'] : '';
+
 Timber::render('views/pages/page-videos-presentations.twig', $context);

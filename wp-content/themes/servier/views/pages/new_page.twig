@@ -28,8 +28,8 @@
                     </div>
                     <select id="search-sort" style="--d-width: 216px; --m-width: calc(100% - 30px)" data-minimum-results-for-search="Infinity">
                         <option></option>
-                        <option>Newest</option>
-                        <option>Oldest</option>
+                        <option {% if sort == 'Newest' %}selected{% endif %}>Newest</option>
+                        <option {% if sort == 'Oldest' %}selected{% endif %}>Oldest</option>
                     </select>
                 </div>
                 <div class="best-content">
