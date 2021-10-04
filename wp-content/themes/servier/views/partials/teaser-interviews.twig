@@ -22,9 +22,9 @@
         {% if date and not is_home %}
             <p class="teaser-library__date">
                 {% if isInterview %}
-                    <small class="gray-lighter">{{ __('Published: ') }}</small>
+                    <span>{{ term.name }}</span> - {{ post.date("m/d/Y") }}
                 {% endif %}
-                {{ date }}
+                
             </p>
         {% endif %}
 
