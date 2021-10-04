@@ -116,6 +116,7 @@
 					<p>{{ post.subtitle }}</p>
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
 					<p class="banner-post__date"> {{ post.date }}</p>
+					{% if p.meta('video_time') %}{{ p.meta('video_time') }}{% endif %}
 				</div>
 			{% endif %}
 		{% endfor %}
