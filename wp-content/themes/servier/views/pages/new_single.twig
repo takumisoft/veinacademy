@@ -32,9 +32,11 @@
                 <div class="single-header">
                     {% include 'partials/single-header.twig' %}
                 </div>
+                {% set isExperts = false %}
                 {% for t in post.terms %}
-                    <pre>{{ t.slug }}</pre>
-                    {% set isExperts = t.slug == 'experts-interviews' %}
+                    {% if t.slug == 'experts-interviews' %}
+                        {% set isExperts = true %}
+                    {% endif %}
                 {% endfor %}
                 {% if post.file_video and (post.terms.0.slug == 'videos-presentations' or post.type == 'news' or isExperts) %}
                     <!-- 16:9 aspect ratio -->
