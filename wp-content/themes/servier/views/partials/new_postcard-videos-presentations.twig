@@ -18,7 +18,11 @@
             {% if p.terms %}
                 {% for t in p.terms %}
                     {% if t.parent == '0' and t.taxonomy != 'speaker' %}
-                        <span>{{ t.name }}</span>
+                        {% if p.file_video or p.embed %}
+                            <span>Video</span>
+                        {% else %}
+                            <span>Presentation</span>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             {% else %}

@@ -3,7 +3,7 @@
         <li><a href="{{ site.url }}"><img src="{{ base_url }}/new-assets/img/new-logo.png"></a></li>
         {% for item in new_menu.get_items %}
             {% if item.name == 'Contact' %}
-                <li><a href="{{ item.link }}">{{ item.name }}</li>
+                <li><a href="{{ item.link }}" target="_blank">{{ item.name }}</li>
             {% else %}
                 <li><a {% if "/#{current_page}" == item.link %}class="active"{% endif %} href="{{ site.url }}{{ item.link }}">{{ item.name }}</a></li>
             {% endif %}

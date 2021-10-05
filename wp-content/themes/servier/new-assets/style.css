@@ -758,7 +758,10 @@
   bottom: 0px;
   right: 100px;
 }
-.zy-postcard .zy-postcard-app a img {
+.zy-postcard .zy-postcard-app a:first-child img {
+  width: 69px;
+}
+.zy-postcard .zy-postcard-app a:last-child img {
   width: 75px;
 }
 .zy-postcard .zy-postcard-pdf {
