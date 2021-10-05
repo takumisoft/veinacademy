@@ -102,7 +102,13 @@
 				<div class="banner-post banner--library discovery-tools">
 					<h1 class="banner-post__title">{{ post.title }}</h1>
 					<p>{{ post.subtitle }}</p>
-					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
+					<p class="banner-post__category"> 
+						{% if post.file_video or post.embed %}
+							<span>Video</span>
+						{% else %}
+							<span>Presentation</span>
+						{% endif %}
+					</p>
 					<p class="banner-post__date"> {{ post.date }}</p>
 				</div>
 			{% elseif t.slug == 'experts-interviews' %}
