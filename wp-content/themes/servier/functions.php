@@ -50,7 +50,7 @@ function decimal_to_time($decimal) {
 }
 
 function get_word_count($content){
-    $word_count = str_word_count($content) / 250;
+    $word_count = str_word_count(strip_tags(strtolower($content))) / 250;
     $time = decimal_to_time($word_count);
     return '<readtime class="reading_time_calc">' . $time . ' min read</readtime>';
 }
