@@ -131,6 +131,12 @@ $(document).ready(function(){
             $('.menu-mobile').show(200);
         }
     });
+    $(window).on('resize', function(){
+        if ($(window).width() > 992){
+            $('.menu-hamburger').removeClass('active');
+            $('.menu-mobile').hide();
+        }
+    });
 
     function getSearchParameters() {
         var prmstr = window.location.search.substr(1);
