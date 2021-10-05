@@ -55,7 +55,17 @@
 			{% if post.terms %}
 				<div class="banner-post__category"><span>{{ post.terms.0.name }}</span></div>
 			{% endif %}
-			<p class="banner-post__date"> {{ post.date }} - 2 min read</p>
+
+			{% set isBook = false %}
+			{% for t in post.terms %}
+				{% if t.slug == 'books' %}
+					{% set isBook = true %}
+				{% endif %}
+			{% endfor %}
+
+			<p class="banner-post__date">
+				{{ post.date }}{% if post.type != 'apps' and post.type != 'website' and not isBook %} - {{ function('get_word_count', post.content) }}{% endif %}
+			</p>
 		</div>
 	{% endif %}
 

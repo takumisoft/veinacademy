@@ -39,7 +39,15 @@
                 {% else %}
                     <span>{{ p.type }}</span>
                 {% endif %}
-                    - {{ p.date }}{% if p.type != 'apps' and p.type != 'website' and p.terms.0.slug != 'books' %} - {{ function('get_word_count', p.content) }}{% endif %}
+
+                {% set isBook = false %}
+                {% for t in post.terms %}
+                    {% if t.slug == 'books' %}
+                        {% set isBook = true %}
+                    {% endif %}
+                {% endfor %}
+
+                    - {{ p.date }}{% if p.type != 'apps' and p.type != 'website' and not isBook %} - {{ function('get_word_count', p.content) }}{% endif %}
             </div>
             <div class="zy-postcard-title">
                 <h3><a href="{{ p.link }}">{{ p.post_title }}</a></h3>

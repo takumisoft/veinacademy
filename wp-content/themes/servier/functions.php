@@ -41,9 +41,18 @@ function reading_time($id){
     print_r(get_post($id));
 }
 
+function decimal_to_time($decimal) {
+    $minutes = floor((int)$decimal % 60);
+    $seconds = $decimal - (int)$decimal; 
+    $seconds = round($seconds * 60); 
+ 
+    return str_pad($minutes, 2, "0", STR_PAD_LEFT) . ":" . str_pad($seconds, 2, "0", STR_PAD_LEFT);
+}
 
 function get_word_count($content){
-    return str_word_count($content) / 250 . ' min read';
+    $word_count = str_word_count($content) / 250;
+    $time = decimal_to_time($word_count);
+    return '<readtime class="reading_time_calc">' . $time . ' min read</readtime>';
 }
 
 function wpdocs_theme_name_scripts() {
