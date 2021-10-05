@@ -92,21 +92,21 @@
 					<h1 class="banner-post__title">{{ post.title }}</h1>
 					<p>{{ post.subtitle }}</p>
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
-					<p class="banner-post__date"> {{ post.date }}</p>
+					<p class="banner-post__date"> {{ post.date }}{% if post.type != 'apps' and post.type != 'website' and not isBook %} - {{ function('get_word_count', post.content) }}{% endif %}</p>
 				</div>
 			{% elseif t.slug == 'studies' %}
 				<div class="banner-post banner--studies ">
 					<h1 class="banner-post__title">{{ post.title }}</h1>
 					<p>{{ post.subtitle }}</p>
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
-					<p class="banner-post__date"> {{ post.date }}</p>
+					<p class="banner-post__date"> {{ post.date }}{% if post.type != 'apps' and post.type != 'website' and not isBook %} - {{ function('get_word_count', post.content) }}{% endif %}</p>
 				</div>
 			{% elseif t.slug == 'reviews' %}
 				<div class="banner-post banner--reviews ">
 					<h1 class="banner-post__title">{{ post.title }}</h1>
 					<p>{{ post.subtitle }}</p>
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
-					<p class="banner-post__date"> {{ post.date }}</p>
+					<p class="banner-post__date"> {{ post.date }}{% if post.type != 'apps' and post.type != 'website' and not isBook %} - {{ function('get_word_count', post.content) }}{% endif %}</p>
 				</div>
 			{% elseif t.slug == 'videos-presentations' %}
 				<div class="banner-post banner--library discovery-tools">
@@ -120,6 +120,7 @@
 						{% endif %}
 					</p>
 					<p class="banner-post__date"> {{ post.date }}</p>
+					{% if post.meta('video_time') %}{{ post.meta('video_time') }}{% endif %}
 				</div>
 			{% elseif t.slug == 'experts-interviews' %}
 				<div class="banner-post banner--library">
@@ -132,7 +133,7 @@
 					<p>{{ post.subtitle }}</p>
 					<p class="banner-post__category"> <span>{{ t.name }}</span></p>
 					<p class="banner-post__date"> {{ post.date }}</p>
-					{% if p.meta('video_time') %}{{ p.meta('video_time') }}{% endif %}
+					{% if post.meta('video_time') %}{{ post.meta('video_time') }}{% endif %}
 				</div>
 			{% endif %}
 		{% endfor %}
