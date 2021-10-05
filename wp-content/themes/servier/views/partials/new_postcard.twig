@@ -41,7 +41,7 @@
                 {% endif %}
 
                 {% set isBook = false %}
-                {% for t in post.terms %}
+                {% for t in p.terms %}
                     {% if t.slug == 'books' %}
                         {% set isBook = true %}
                     {% endif %}
