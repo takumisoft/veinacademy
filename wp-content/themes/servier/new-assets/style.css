@@ -631,9 +631,12 @@
   letter-spacing: 0px;
   font-family: Heebo;
 }
-.main-content.single .post-content .post-resources {
+.main-content.single .post-resources {
   text-align: right;
   margin: 0px 20px;
+}
+.main-content.single .post-resources .btn-liner {
+  padding: 5px 22px;
 }
 .main-content > img {
   width: 80%;

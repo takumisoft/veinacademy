@@ -67,7 +67,7 @@
                         {#publication url#}
                         {% if post.meta('publication_url') %}
                             <div class="publication-url">
-                                <a href="{{ post.meta('publication_url') }}">Read the full text <img src="{{ base_url }}/new-assets/img/_blank.png"></a>
+                                <a href="{{ post.meta('publication_url') }}" target="_blank">Read the full text <img src="{{ base_url }}/new-assets/img/_blank.png"></a>
                             </div>
                         {% endif %}
 
@@ -81,7 +81,13 @@
 
                     </article>
                     {#resources#}
-                    {% if (resources.url or resources.file) and (post.terms.0.slug == 'discovery-tools' or post.post_type == 'news') %}
+                    {% set isVideosPresentations = false %}
+                    {% for t in post.terms %}
+                        {% if t.slug == 'videos-presentations' %}
+                            {% set isVideosPresentations = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if (resources.url or resources.file) and (isVideosPresentations or post.post_type == 'news') %}
                         {% include 'partials/post-resources.twig' %}
                     {% endif %}
 
