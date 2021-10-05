@@ -1,7 +1,12 @@
 {# <pre>{{ post.terms|print_r }}</pre> #}
 {% if post.post_type in ['website', 'apps', 'library', 'news'] %}
 
-
+	{% set isBook = false %}
+	{% for t in post.terms %}
+		{% if t.slug == 'books' %}
+			{% set isBook = true %}
+		{% endif %}
+	{% endfor %}
 	{% if post.post_type == 'website' %}
 		<div class="banner-post-image banner--website ">
 			<div class="row">
@@ -55,13 +60,6 @@
 			{% if post.terms %}
 				<div class="banner-post__category"><span>{{ post.terms.0.name }}</span></div>
 			{% endif %}
-
-			{% set isBook = false %}
-			{% for t in post.terms %}
-				{% if t.slug == 'books' %}
-					{% set isBook = true %}
-				{% endif %}
-			{% endfor %}
 
 			<p class="banner-post__date">
 				{{ post.date }}{% if post.type != 'apps' and post.type != 'website' and not isBook %} - {{ function('get_word_count', post.content) }}{% endif %}
