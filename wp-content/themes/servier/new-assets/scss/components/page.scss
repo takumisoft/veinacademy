@@ -293,6 +293,11 @@
         }
         .post-content{
             margin-top: 20px;
+            p{
+                a{
+                    text-decoration: underline;
+                }
+            }
             .publication-url{
                 background: #015d9e;
                 text-align: center;
@@ -375,6 +380,10 @@
                         }
                     }
                 }
+            }
+            .post-resources{
+                text-align: right;
+                margin: 0px 20px;
             }
         }
     }

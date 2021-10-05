@@ -81,7 +81,7 @@
 
                     </article>
                     {#resources#}
-                    {% if (resources.url or resources.file) and post.terms.0.slug == 'discovery-tools' %}
+                    {% if (resources.url or resources.file) and (post.terms.0.slug == 'discovery-tools' or post.post_type == 'news') %}
                         {% include 'partials/post-resources.twig' %}
                     {% endif %}
 
