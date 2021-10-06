@@ -44,6 +44,14 @@ $(document).ready(function(){
         });
     }
 
+    var type = 0;
+    $('.zy-postcard-post-type').each(function(){
+        if($(this).height() > type){
+            type = $(this).height();
+        }
+    });
+    $('.zy-postcard-post-type').height(type);
+
     $(document).on('click', function(e){
         var $target = $(e.target);
         if(!$target.parents('#search-post-types').length){
