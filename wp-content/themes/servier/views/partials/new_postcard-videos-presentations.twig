@@ -66,8 +66,12 @@
     {% endif %}
     {% if p.post_type == 'apps' %}
         <div class="zy-postcard-app">
-            <a href="{{ p.meta('url_app_store') }}"><img src="{{ base_url }}/new-assets/img/Store=App Store, Style=Black.png"></a>
-            <a href="{{ p.meta('url_google_play') }}"><img src="{{ base_url }}/new-assets/img/Store=Google Play, Style=Black.png"></a>
+            {% if p.meta('url_app_store') %}
+                <a href="{{ p.meta('url_app_store') }}" target="_blank"><img src="{{ base_url }}/new-assets/img/Store=App Store, Style=Black.png"></a>
+            {% endif %}
+            {% if p.meta('url_google_play') %}
+                <a href="{{ p.meta('url_google_play') }}" target="_blank"><img src="{{ base_url }}/new-assets/img/Store=Google Play, Style=Black.png"></a>
+            {% endif %}
         </div>
     {% endif %}
     <div class="zy-postcard-readmore">
