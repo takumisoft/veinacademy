@@ -106,25 +106,25 @@ function get_post_categories( $post_id ) {
 ***/
 
 // CSS
-function add_rel_preload($html, $handle, $href, $media) {
+// function add_rel_preload($html, $handle, $href, $media) {
     
-    if (is_admin())
-        return $html;
+//     if (is_admin())
+//         return $html;
 
-     $html = <<<EOT
-<link rel='preload' as='style' onload="this.onload=null;this.rel='stylesheet'" id='$handle' href='$href' type='text/css' media='all' />
-EOT;
-    return $html;
-}
-add_filter( 'style_loader_tag', 'add_rel_preload', 10, 4 );
+//      $html = <<<EOT
+// <link rel='preload' as='style' onload="this.onload=null;this.rel='stylesheet'" id='$handle' href='$href' type='text/css' media='all' />
+// EOT;
+//     return $html;
+// }
+// add_filter( 'style_loader_tag', 'add_rel_preload', 10, 4 );
 
-// JS
-add_filter( 'clean_url', function( $url )
-{
-    if ( FALSE === strpos( $url, '.js' ) )
-    { // not our file
-        return $url;
-    }
-    // Must be a ', not "!
-    return "$url' defer='defer";
-}, 11, 1 );
+// // JS
+// add_filter( 'clean_url', function( $url )
+// {
+//     if ( FALSE === strpos( $url, '.js' ) )
+//     { // not our file
+//         return $url;
+//     }
+//     // Must be a ', not "!
+//     return "$url' defer='defer";
+// }, 11, 1 );
